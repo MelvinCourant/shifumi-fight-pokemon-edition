@@ -1,4 +1,5 @@
 @use 'fonts';
+@use 'variables';
 
 * {
   margin: 0;
@@ -37,6 +38,12 @@ html {
     .hidden-title {
       font-size: fonts.$hidden;
       position: absolute;
+    }
+
+    main {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
     }
   }
 }

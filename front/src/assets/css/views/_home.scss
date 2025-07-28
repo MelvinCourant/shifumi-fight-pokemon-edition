@@ -1,0 +1,41 @@
+@use "../partials/fonts";
+@use "../partials/functions";
+
+.home {
+  background-image: url('../../../assets/imgs/cynthia-background.jpg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 30px 40px;
+
+    // TODO: to delete after component of settings and rules is done
+    > svg {
+      margin-top: 10px;
+    }
+  }
+
+  &__title {
+    font-size: functions.rem(74);
+    color: var(--white);
+    text-align: center;
+    max-width: 480px;
+    text-shadow: functions.rem(3.72) functions.rem(3.72) 0 var(--text-shadow-grey), 0 functions.rem(3.72) 0 var(--text-shadow-grey), functions.rem(3.72) 0 0 var(--text-shadow-grey);
+
+    span {
+      font-size: functions.rem(48);
+    }
+  }
+
+  &__title,
+  span {
+    font-family: fonts.$power-clear;
+    font-weight: 700;
+    line-height: 0.77;
+  }
+}
