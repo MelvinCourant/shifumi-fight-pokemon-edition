@@ -1,3 +1,28 @@
 @use "sass:map";
 
+@font-face {
+  font-family: 'Pokemon Classic';
+  src: url('../fonts/pokemon-classic.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pokemon DS';
+  src: url('../fonts/pokemon-ds.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Power Clear';
+  src: url('../fonts/power-clear.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+$pokemon-classic: 'Pokemon Classic', sans-serif;
+$pokemon-ds: 'Pokemon DS', sans-serif;
+$power-clear: 'Power Clear', sans-serif;
+
 $hidden: 0;
