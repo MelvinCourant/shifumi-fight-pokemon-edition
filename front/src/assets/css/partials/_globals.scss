@@ -1,0 +1,41 @@
+@use 'fonts';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  body {
+    min-height: 100vh;
+
+    #app {
+      min-height: 100vh;
+    }
+
+    video,
+    img,
+    svg,
+    object {
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    li {
+      list-style: none;
+      text-decoration: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .hidden-title {
+      font-size: fonts.$hidden;
+      position: absolute;
+    }
+  }
+}
