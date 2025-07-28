@@ -1,5 +1,31 @@
 $colors: (
   // global colors
+  'white': #EBE3FB,
+  'black': #303030,
+  'dark-grey': #4C4C4C,
+  'grey': #797979,
+  'move-grey': #303030,
+  'light-grey': #B7B7B7,
+  'cream': #FBF4E4,
+  'red': #DD3635,
+  'green': #58B028,
+  'blue': #78D0F8,
+
+  // transparent colors
+  'dark-transparent': rgba(40, 36, 36, 0.90),
+
+  // gradient colors
+  'gradient-red': linear-gradient(180deg, #DD3635 0%, #C4302F 100%),
+  'gradient-green': linear-gradient(180deg, #58B028 0%, #50743F 100%),
+  'gradient-blue': linear-gradient(180deg, #78D0F8 0%, #3078A8 100%),
+
+  // bars
+  'bar-red': #FC5C2C,
+  'bar-dark-red': #AF3437,
+  'bar-grey': #BABABA,
+  'bar-white': #FBF9FA,
+  'bar-green': #17C31F,
+  'bar-dark-green': #039204,
 );
 
 :root {
