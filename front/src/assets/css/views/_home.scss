@@ -2,6 +2,10 @@
 @use "../partials/functions";
 
 .home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 126px;
   background-image: url('../../../assets/imgs/cynthia-background.jpg');
   background-size: cover;
   background-position: top center;
@@ -37,5 +41,17 @@
     font-family: fonts.$power-clear;
     font-weight: 700;
     line-height: 0.77;
+  }
+
+  .battle-zone {
+    width: 460px;
+    height: 388px;
+  }
+
+  &__party {
+    display: flex;
+    align-items: center;
+    gap: 140px;
+    width: fit-content;
   }
 }

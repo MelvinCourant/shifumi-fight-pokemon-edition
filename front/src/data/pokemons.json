@@ -1,0 +1,132 @@
+[
+  {
+    "pokemonId": 57,
+    "name": "Colossinge",
+    "image": "primeape"
+  },
+  {
+    "pokemonId": 62,
+    "name": "Tartard",
+    "image": "poliwrath"
+  },
+  {
+    "pokemonId": 68,
+    "name": "Mackogneur",
+    "image": "machamp"
+  },
+  {
+    "pokemonId": 106,
+    "name": "Kicklee",
+    "image": "hitmonlee"
+  },
+  {
+    "pokemonId": 107,
+    "name": "Tygnon",
+    "image": "hitmonchan"
+  },
+  {
+    "pokemonId": 214,
+    "name": "Scarhino",
+    "image": "heracross"
+  },
+  {
+    "pokemonId": 237,
+    "name": "Kapoera",
+    "image": "hitmontop"
+  },
+  {
+    "pokemonId": 257,
+    "name": "Braségali",
+    "image": "blaziken"
+  },
+  {
+    "pokemonId": 286,
+    "name": "Chapignon",
+    "image": "breloom"
+  },
+  {
+    "pokemonId": 297,
+    "name": "Hariyama",
+    "image": "hariyama"
+  },
+  {
+    "pokemonId": 308,
+    "name": "Charmina",
+    "image": "medicham"
+  },
+  {
+    "pokemonId": 392,
+    "name": "Simiabraz",
+    "image": "infernape"
+  },
+  {
+    "pokemonId": 448,
+    "name": "Lucario",
+    "image": "lucario"
+  },
+  {
+    "pokemonId": 454,
+    "name": "Coatox",
+    "image": "toxicroak"
+  },
+  {
+    "pokemonId": 475,
+    "name": "Gallame",
+    "image": "gallade"
+  },
+  {
+    "pokemonId": 500,
+    "name": "Roitiflam",
+    "image": "emboar"
+  },
+  {
+    "pokemonId": 534,
+    "name": "Bétochef",
+    "image": "conkeldurr"
+  },
+  {
+    "pokemonId": 538,
+    "name": "Judokrak",
+    "image": "sawk"
+  },
+  {
+    "pokemonId": 539,
+    "name": "Karaclée",
+    "image": "throh"
+  },
+  {
+    "pokemonId": 560,
+    "name": "Bagaïd",
+    "image": "scrafty"
+  },
+  {
+    "pokemonId": 620,
+    "name": "Shaofouine",
+    "image": "mienshao"
+  },
+  {
+    "pokemonId": 638,
+    "name": "Cobaltium",
+    "image": "cobalion"
+  },
+  {
+    "pokemonId": 639,
+    "name": "Terrakium",
+    "image": "terrakion"
+  },
+  {
+    "pokemonId": 640,
+    "name": "Viridium",
+    "image": "virizion"
+  },
+  {
+    "pokemonId": 647,
+    "name": "Keldeo",
+    "image": "keldeo-resolute"
+  },
+  {
+    "pokemonId": 648,
+    "name": "Meloetta",
+    "image": "meloetta-pirouette"
+  }
+]
