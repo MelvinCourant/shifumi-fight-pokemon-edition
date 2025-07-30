@@ -14,13 +14,25 @@ defineProps({
     type: String,
     default: 'big'
   },
+  link: {
+    type: String,
+    default: ''
+  }
 })
 </script>
 
 <template>
   <button
+    v-if="!link"
     :class="`button button--${background} button--${size}`"
   >
     {{ text }}
   </button>
+  <a
+    v-else
+    :href="link"
+    :class="`button button--${background} button--${size}`"
+    >
+    {{ text }}
+  </a>
 </template>

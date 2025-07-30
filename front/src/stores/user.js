@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('user', () => {
+export const useUserStore = defineStore('sf-user', () => {
   let localStorageUser = null;
 
-  if (localStorage.getItem('user')) {
-    localStorageUser = JSON.parse(localStorage.getItem('user') || '{}');
+  if (localStorage.getItem('sf-user')) {
+    localStorageUser = JSON.parse(localStorage.getItem('sf-user') || '{}');
   }
 
   let pseudo = '';
@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user', () => {
       user.value[key] = newUser[key];
     }
 
-    localStorage.setItem('user', JSON.stringify(user.value));
+    localStorage.setItem('sf-user', JSON.stringify(user.value));
   }
 
   return {

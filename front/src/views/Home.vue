@@ -50,7 +50,7 @@ provide('pokemonSprite', pokemonSprite);
       </div>
       <div class="home__right">
         <Button text="Nouvelle partie" :background="'red'" size="big"/>
-        <Button text="Boîte PC" :background="'green'" size="big"/>
+        <Button text="Boîte PC" :background="'green'" size="big" link="/pc"/>
       </div>
     </section>
   </main>
