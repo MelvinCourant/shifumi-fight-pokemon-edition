@@ -1,0 +1,72 @@
+@use "../../partials/functions";
+@use "../../partials/mixins";
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  -webkit-text-stroke: functions.rem(6) var(--black);
+  padding: 0 functions.rem(15);
+  paint-order: stroke fill;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--black) 0 0) top left,
+      linear-gradient(var(--black) 0 0) top right,
+      linear-gradient(var(--black) 0 0) bottom left,
+      linear-gradient(var(--black) 0 0) bottom right;
+    background-repeat: no-repeat;
+  }
+
+  &--red {
+    @include mixins.resetButton(none, var(--gradient-red));
+
+    &:hover {
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--red);
+    }
+  }
+
+  &--green {
+    @include mixins.resetButton(none, var(--gradient-green));
+
+    &:hover {
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--green);
+    }
+  }
+
+  &--blue {
+    @include mixins.resetButton(none, var(--gradient-blue));
+
+    &:hover {
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--blue);
+    }
+  }
+
+  &--big {
+    width: functions.rem(265);
+    height: functions.rem(60);
+    font-size: functions.rem(20);
+    box-shadow: -4px 4px 0 0 var(--black), 4px 4px 0 0 var(--black), 4px -4px 0 0 var(--black), -4px -4px 0 0 var(--black), 8px 0 0 0 var(--black), -8px 0 0 0 var(--black), 0 -8px 0 0 var(--black), 0 8px 0 0 var(--black);
+
+    &:before {
+      background-size: 4px 4px;
+    }
+  }
+
+  &--small {
+    width: functions.rem(234);
+    height: functions.rem(53);
+    font-size: functions.rem(18);
+    box-shadow: -3.5px 3.5px 0 0 var(--black), 3.5px 3.5px 0 0 var(--black), 3.5px -3.5px 0 0 var(--black), -3.5px -3.5px 0 0 var(--black), 7px 0 0 0 var(--black), -7px 0 0 0 var(--black), 0 -7px 0 0 var(--black), 0 7px 0 0 var(--black);
+
+    &:before {
+      background-size: 3.5px 3.5px;
+    }
+  }
+}

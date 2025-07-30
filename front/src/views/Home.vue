@@ -1,14 +1,16 @@
 <script setup>
 import '../assets/css/views/_home.scss';
 import BattleZone from "../components/battle/BattleZone.vue";
-import { provide } from "vue";
+import {provide, ref} from "vue";
+import Button from "../components/inputs/Button.vue";
 
+const pokemonSelected = ref('');
 const pokemonSprite = {
-  pokemon: 'heracross',
+  pokemon: pokemonSelected.value,
   side: 'front',
-  shiny: true,
+  shiny: false,
 };
-const pseudo = 'Joueur';
+const pseudo = ref('Joueur');
 
 provide('pokemonSprite', pokemonSprite);
 </script>
@@ -32,7 +34,14 @@ provide('pokemonSprite', pokemonSprite);
       </svg>
     </header>
     <section class="home__party">
-      <BattleZone :pseudo="pseudo"/>
+      <div class="home__left">
+        <BattleZone :pseudo="pseudo"/>
+        <Button text="Historique" :background="'blue'" size="small"/>
+      </div>
+      <div class="home__right">
+        <Button text="Nouvelle partie" :background="'red'" size="big"/>
+        <Button text="Boîte PC" :background="'green'" size="big"/>
+      </div>
     </section>
   </main>
 </template>

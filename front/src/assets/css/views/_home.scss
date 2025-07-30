@@ -54,4 +54,21 @@
     gap: 140px;
     width: fit-content;
   }
+
+  &__left {
+    position: relative;
+
+    .button {
+      position: absolute;
+      left: 50%;
+      bottom: -30px;
+      transform: translate(-50%, 100%);
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: functions.rem(40);
+  }
 }
