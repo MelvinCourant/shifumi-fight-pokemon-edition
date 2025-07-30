@@ -11,6 +11,11 @@
     color: var(--white);
     font-size: functions.rem(28);
     text-shadow: 3px 3px 0 var(--text-shadow-grey), 0 3px 0 var(--text-shadow-grey), 3px 0 0 var(--text-shadow-grey);
+
+    @media screen and (max-width: 767px) {
+      font-size: functions.rem(20);
+      text-shadow: 2px 2px 0 var(--text-shadow-grey), 0 2px 0 var(--text-shadow-grey), 2px 0 0 var(--text-shadow-grey);
+    }
   }
 
   &__sprite {

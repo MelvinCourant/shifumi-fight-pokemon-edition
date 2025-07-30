@@ -4,23 +4,43 @@
 .home {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 126px;
   background-image: url('../../../assets/imgs/cynthia-background.jpg');
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
 
+  @media screen and (max-width: 991px) {
+    justify-content: center;
+    gap: 0;
+    padding-top: 75px;
+  }
+
   &__header {
+    position: fixed;
+    z-index: 9997;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
     width: 100%;
-    padding: 30px 40px;
+    padding: 30px 40px 0;
+
+    @media screen and (max-width: 767px) {
+      padding: 20px 20px 0;
+    }
 
     // TODO: to delete after component of settings and rules is done
     > svg {
       margin-top: 10px;
+
+      @media screen and (max-width: 767px) {
+        width: 30px;
+        margin-top: 0;
+      }
     }
   }
 
@@ -31,8 +51,18 @@
     max-width: 480px;
     text-shadow: functions.rem(3.72) functions.rem(3.72) 0 var(--text-shadow-grey), 0 functions.rem(3.72) 0 var(--text-shadow-grey), functions.rem(3.72) 0 0 var(--text-shadow-grey);
 
+    @media screen and (max-width: 767px) {
+      font-size: functions.rem(37);
+      text-shadow: functions.rem(2) functions.rem(2) 0 var(--text-shadow-grey), 0 functions.rem(2) 0 var(--text-shadow-grey), functions.rem(2) 0 0 var(--text-shadow-grey);
+      max-width: 240px;
+    }
+
     span {
       font-size: functions.rem(48);
+
+      @media screen and (max-width: 767px) {
+        font-size: functions.rem(24);
+      }
     }
   }
 
@@ -46,13 +76,30 @@
   .battle-zone {
     width: 460px;
     height: 388px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 767px) {
+      aspect-ratio: 460/388;
+      width: 80%;
+      height: auto;
+    }
   }
 
   &__party {
     display: flex;
     align-items: center;
-    gap: 140px;
+    gap: functions.rem(140);
     width: fit-content;
+
+    @media screen and (max-width: 991px) {
+      flex-direction: column;
+      gap: functions.rem(60);
+      padding: 0 functions.rem(20);
+    }
+
+    @media screen and (max-width: 767px) {
+      gap: functions.rem(40);
+    }
   }
 
   &__left {
@@ -63,6 +110,14 @@
       left: 50%;
       bottom: -30px;
       transform: translate(-50%, 100%);
+
+      @media screen and (max-width: 991px) {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        transform: none;
+        margin: functions.rem(20) auto 0;
+      }
     }
   }
 
@@ -70,5 +125,13 @@
     display: flex;
     flex-direction: column;
     gap: functions.rem(40);
+
+    @media screen and (max-width: 991px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 767px) {
+      gap: functions.rem(20);
+    }
   }
 }

@@ -1,0 +1,20 @@
+.rules {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 10px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 0;
+  }
+
+  &__icon {
+    position: relative;
+    z-index: 9999;
+    cursor: pointer;
+
+    @media screen and (max-width: 767px) {
+      width: 30px;
+    }
+  }
+}

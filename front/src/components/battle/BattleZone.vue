@@ -1,9 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import '../../assets/css/components/battle/_battle-zone.scss'
 import AnimatedSprite from "../pokemon/AnimatedSprite.vue";
-import {inject} from "vue";
-
-const pokemonSprite = inject('pokemonSprite');
+import {inject, ref} from "vue";
 
 defineProps({
   pseudo: {
@@ -11,13 +9,25 @@ defineProps({
     default: ''
   }
 })
+
+const pokemonSprite = inject('pokemonSprite');
+const battleWidth = ref(460);
+const pokemonWidth = ref('auto');
+
+function calculatePokemonRatio(width) {
+  const ratio = (width / battleWidth.value) * 100;
+  pokemonWidth.value = `${ratio}%`;
+}
 </script>
 
 <template>
   <div class="battle-zone">
     <div class="battle-zone__sprite">
       <p class="battle-zone__pseudo" v-if="pseudo">{{ pseudo }}</p>
-      <AnimatedSprite/>
+      <AnimatedSprite
+        :style="`width: ${pokemonWidth}`"
+        @imageSizeGot="calculatePokemonRatio($event)"
+      />
     </div>
     <img
       class="battle-zone__image"

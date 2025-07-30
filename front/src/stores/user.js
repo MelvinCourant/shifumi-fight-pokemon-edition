@@ -9,7 +9,10 @@ export const useUserStore = defineStore('user', () => {
   }
 
   let pseudo = '';
-  let pokemon = '';
+  let pokemon = {
+    pokemonName: '',
+    shiny: false
+  };
   const user = ref({});
 
   user.value = {
