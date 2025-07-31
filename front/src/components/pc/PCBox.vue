@@ -2,6 +2,7 @@
 import '../../assets/css/components/pc/_pc-box.scss';
 import PCSprite from '../sprites/PCSprite.vue';
 import { inject, nextTick, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 defineProps({
   pokemons: {
@@ -12,6 +13,7 @@ defineProps({
 
 const emit = defineEmits(['pokemonSelected']);
 
+const router = useRouter();
 const imagesLoaded = ref(false);
 const pokemonSelected = ref(inject('pokemonSelected'));
 const pokemonsPosition = ref([]);
@@ -74,10 +76,9 @@ onMounted(async () => {
   calculatePositions();
 });
 
-window.addEventListener('keydown', (event) => {
+async function moveInBox(event) {
   const pokemons = document.querySelectorAll('.pc-box__pokemon');
   const columnCount = 6;
-  const rowCount = 5;
   const currentIndex = pokemonsPosition.value.findIndex(
     (pokemon) => pokemon.pokemonName === pokemonSelected.value,
   );
@@ -94,6 +95,12 @@ window.addEventListener('keydown', (event) => {
     newIndex = currentIndex - 1;
   } else if (event.key === 'ArrowRight' && currentIndex < pokemons.length - 1) {
     newIndex = currentIndex + 1;
+  } else if (event.key === 'Enter') {
+    window.removeEventListener('keydown', moveInBox);
+
+    await router.push({
+      name: 'Home',
+    });
   }
 
   if (newIndex !== currentIndex) {
@@ -106,7 +113,9 @@ window.addEventListener('keydown', (event) => {
       }
     });
   }
-});
+}
+
+window.addEventListener('keydown', moveInBox);
 </script>
 
 <template>
