@@ -28,11 +28,11 @@ defineProps({
   >
     {{ text }}
   </button>
-  <a
+  <router-link
     v-else
-    :href="link"
+    :to="link"
     :class="`button button--${background} button--${size}`"
-    >
+  >
     {{ text }}
-  </a>
+  </router-link>
 </template>

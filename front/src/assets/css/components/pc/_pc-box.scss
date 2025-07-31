@@ -1,0 +1,48 @@
+@use "../../partials/mixins";
+
+.pc-box {
+  position: relative;
+  display: flex;
+  width: fit-content;
+
+  &__pokemons {
+    position: absolute;
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
+    height: 560px;
+  }
+
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  &__pokemon {
+    position: relative;
+    z-index: 2;
+    @include mixins.resetButton(none, transparent);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__hand,
+  &__hand-shadow {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &__hand {
+    z-index: 3;
+    transform: translate(-50%, calc(-100% - 78px - 35px));
+  }
+
+  &__hand-shadow {
+    z-index: 1;
+    transform: translate(-50%, -100%);
+  }
+}
