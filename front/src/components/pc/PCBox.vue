@@ -111,6 +111,7 @@ window.addEventListener('keydown', (event) => {
 
 <template>
   <div class="pc-box">
+    <h2 class="pc-box__title">Pokémons</h2>
     <div class="pc-box__pokemons">
       <div class="pc-box__grid">
         <button

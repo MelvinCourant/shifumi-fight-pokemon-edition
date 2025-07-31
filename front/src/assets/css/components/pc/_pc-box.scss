@@ -1,9 +1,22 @@
+@use "../../partials/functions";
 @use "../../partials/mixins";
 
 .pc-box {
   position: relative;
   display: flex;
   width: fit-content;
+
+  &__title {
+    position: absolute;
+    top: 19px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-dark-grey);
+    font-size: functions.rem(36);
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 4.5px 4.5px 0 var(--text-shadow-white), 0 4.5px 0 var(--text-shadow-white), 4.5px 0 0 var(--text-shadow-white);
+  }
 
   &__pokemons {
     position: absolute;
