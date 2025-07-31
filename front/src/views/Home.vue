@@ -1,22 +1,52 @@
 <script setup>
 import '../assets/css/views/_home.scss';
 import BattleZone from "../components/battle/BattleZone.vue";
-import {provide, ref} from "vue";
+import {provide, reactive, ref} from "vue";
 import Button from "../components/inputs/Button.vue";
 import {useUserStore} from "../stores/user.js";
 import Rules from "../components/home/Rules.vue";
+import PokemonsJson from '../data/pokemons.json';
 
 const userStore = useUserStore();
 const user = userStore.user;
-const pokemonSelected = ref(user.pokemon.pokemonName);
-const pokemonSprite = {
-  pokemon: pokemonSelected.value,
-  side: 'front',
-  shiny: user.pokemon.shiny,
-};
 const pseudo = ref(user.pseudo ? user.pseudo : 'Joueur');
+const pokemonSprite = ref({
+  pokemon: user.pokemon.pokemonName || '',
+  side: 'front',
+  shiny: user.pokemon.shiny || false,
+});
 
 provide('pokemonSprite', pokemonSprite);
+
+if(!user.pokemon.pokemonName) {
+  generateRandomPokemon();
+}
+
+async function generateRandomPokemon() {
+  const generatedPokemon = PokemonsJson[Math.floor(Math.random() * PokemonsJson.length)].image;
+
+  pokemonSprite.value = {
+    pokemon: generatedPokemon,
+    side: 'front',
+    shiny: await pokemonIsShinyOrNot(generatedPokemon)
+  };
+}
+
+async function pokemonIsShinyOrNot(pokemon) {
+  const shinyChance = Math.floor(Math.random() * (1096 - 1 + 1)) + 1;
+
+  if(shinyChance=== 1096) {
+    userStore.updateUser({
+      pseudo: pseudo.value,
+      pokemon: {
+        pokemonName: pokemon,
+        shiny: true
+      }
+    });
+  }
+
+  return shinyChance === 1096;
+}
 </script>
 
 <template>

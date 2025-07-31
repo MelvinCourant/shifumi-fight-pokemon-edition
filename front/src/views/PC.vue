@@ -1,6 +1,6 @@
 <script setup>
 import PokemonsJson from '../data/pokemons.json';
-import PCSprite from "../components/pokemon/PCSprite.vue";
+import PCSprite from "../components/sprites/PCSprite.vue";
 </script>
 
 <template>

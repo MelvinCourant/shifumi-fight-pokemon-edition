@@ -1,6 +1,6 @@
 <script setup>
 import '../../assets/css/components/battle/_battle-zone.scss'
-import AnimatedSprite from "../pokemon/AnimatedSprite.vue";
+import AnimatedSprite from "../sprites/AnimatedSprite.vue";
 import {inject, ref} from "vue";
 
 defineProps({
