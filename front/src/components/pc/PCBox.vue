@@ -21,9 +21,9 @@ const handPosition = ref({
 });
 
 function calculatePositions() {
+  const pokemons = document.querySelectorAll('.pc-box__pokemon');
   const grid = document.querySelector('.pc-box__grid');
   const gridRect = grid.getBoundingClientRect();
-  const pokemons = document.querySelectorAll('.pc-box__pokemon');
 
   pokemons.forEach((pokemon) => {
     const rect = pokemon.getBoundingClientRect();
@@ -72,6 +72,40 @@ onMounted(async () => {
   imagesLoaded.value = true;
 
   calculatePositions();
+});
+
+window.addEventListener('keydown', (event) => {
+  const pokemons = document.querySelectorAll('.pc-box__pokemon');
+  const columnCount = 6;
+  const rowCount = 5;
+  const currentIndex = pokemonsPosition.value.findIndex(
+    (pokemon) => pokemon.pokemonName === pokemonSelected.value,
+  );
+  let newIndex = currentIndex;
+
+  if (event.key === 'ArrowUp' && currentIndex > columnCount - 1) {
+    newIndex = currentIndex - columnCount;
+  } else if (
+    event.key === 'ArrowDown' &&
+    currentIndex < pokemons.length - columnCount
+  ) {
+    newIndex = currentIndex + columnCount;
+  } else if (event.key === 'ArrowLeft' && currentIndex > 0) {
+    newIndex = currentIndex - 1;
+  } else if (event.key === 'ArrowRight' && currentIndex < pokemons.length - 1) {
+    newIndex = currentIndex + 1;
+  }
+
+  if (newIndex !== currentIndex) {
+    pokemons.forEach((pokemon) => {
+      if (
+        pokemon.dataset.pokemonName ===
+        pokemonsPosition.value[newIndex].pokemonName
+      ) {
+        pokemon.focus();
+      }
+    });
+  }
 });
 </script>
 
