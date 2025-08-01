@@ -14,7 +14,7 @@
     font-size: functions.rem(37);
     font-weight: 400;
     text-transform: uppercase;
-    text-shadow: 4.5px 4.5px 0 var(--text-shadow-grey), 0 4.5px 0 var(--text-shadow-grey), 4.5px 0 0 var(--text-shadow-grey);
+    text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
   }
 
   &__pokedex-id {
@@ -25,7 +25,7 @@
     right: 26.72%; // 136px
 
     img {
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     p {
@@ -34,7 +34,7 @@
       font-size: functions.rem(38);
       letter-spacing: -3.43px;
       text-align: right;
-      text-shadow: 4.5px 4.5px 0 var(--text-shadow-grey), 0 4.5px 0 var(--text-shadow-grey), 4.5px 0 0 var(--text-shadow-grey);
+      text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
     }
   }
 
@@ -47,5 +47,32 @@
     align-items: center;
     width: 73.67%; // 375px
     height: 42.73%; // 370px
+  }
+
+  .input {
+    position: absolute;
+    left: 1.38%; // 7px
+    bottom: 24.83%; // 215px
+  }
+
+  &__level {
+    position: absolute;
+    left: 6.88%; // 35px
+    bottom: 19.86%; // 172px
+    display: flex;
+    align-items: flex-end;
+
+    img {
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: var(--white);
+      font-family: fonts.$pokemon-classic;
+      font-size: functions.rem(36);
+      letter-spacing: -3.43px;
+      text-align: right;
+      text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+    }
   }
 }

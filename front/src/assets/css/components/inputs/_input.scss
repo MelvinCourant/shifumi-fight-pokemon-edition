@@ -1,0 +1,16 @@
+@use "../../partials/functions";
+
+.input {
+  &__field {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-size: functions.rem(37);
+    font-weight: 400;
+    text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

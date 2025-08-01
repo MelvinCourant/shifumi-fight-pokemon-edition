@@ -13,6 +13,14 @@ const router = useRouter();
 const userStore = useUserStore();
 const user = userStore.user;
 const pseudo = ref(user.pseudo ? user.pseudo : 'Joueur');
+const pseudoInputAttributes = ref({
+  type: 'text',
+  placeholder: 'Pseudo',
+  value: pseudo.value,
+  maxlength: 12,
+  name: 'pseudo',
+  required: true,
+});
 const pokemonSelected = ref(user.pokemon.pokemonName || query.pokemon);
 const pokemonDetails = ref(
   PokemonsJson.find((p) => p.image === pokemonSelected.value)
@@ -31,6 +39,7 @@ const pokemonSprite = ref({
 
 provide('pokemonSelected', pokemonSelected.value);
 provide('pokemonSprite', pokemonSprite);
+provide('inputAttributes', pseudoInputAttributes);
 
 async function updatePokemonSelected(pokemonName) {
   pokemonSelected.value = pokemonName;
@@ -53,12 +62,20 @@ async function updatePokemonSelected(pokemonName) {
     query: { pokemon: pokemonName },
   });
 }
+
+function updatePseudo(newPseudo) {
+  pseudo.value = newPseudo;
+  userStore.updateUser({ pseudo: newPseudo });
+}
 </script>
 
 <template>
   <main class="pc">
     <div class="pc__system">
-      <PokemonDetails :pokemonDetails="pokemonDetails" :pseudo="pseudo" />
+      <PokemonDetails
+        :pokemonDetails="pokemonDetails"
+        @pseudoChanged="updatePseudo($event)"
+      />
       <PCBox
         :pokemons="PokemonsJson"
         @pokemonSelected="updatePokemonSelected($event)"
