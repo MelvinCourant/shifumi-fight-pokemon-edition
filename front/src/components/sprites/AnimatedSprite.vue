@@ -1,6 +1,6 @@
 <script setup>
-import {ref, watch} from 'vue';
-import '../../assets/css/components/pokemon/_animated-sprite.scss'
+import { ref, watch } from 'vue';
+import '../../assets/css/components/pokemon/_animated-sprite.scss';
 import { inject } from 'vue';
 
 const emit = defineEmits(['imageSizeGot']);
@@ -17,21 +17,33 @@ function generateImageSrc(pokemon, side, shiny) {
   return `src/assets/imgs/animated-sprites/${shiny ? 'shinies/' : ''}${pokemon}${side === 'front' ? '' : '-back'}.gif`;
 }
 
-if(pokemonSprite.value.pokemon) {
-  image.src = generateImageSrc(pokemonSprite.value.pokemon, pokemonSprite.value.side, pokemonSprite.value.shiny);
+if (pokemonSprite.value.pokemon) {
+  image.src = generateImageSrc(
+    pokemonSprite.value.pokemon,
+    pokemonSprite.value.side,
+    pokemonSprite.value.shiny,
+  );
   image.onload = () => {
     imageWidth.value = image.width;
     emit('imageSizeGot', imageWidth.value);
-  }
+  };
 }
 
-watch(() => pokemonSprite.value, (newValue) => {
-  image.src = generateImageSrc(newValue.pokemon, newValue.side, newValue.shiny);
-  image.onload = () => {
-    imageWidth.value = image.width;
-    emit('imageSizeGot', imageWidth.value);
-  }
-}, { immediate: true });
+watch(
+  () => pokemonSprite.value,
+  (newValue) => {
+    image.src = generateImageSrc(
+      newValue.pokemon,
+      newValue.side,
+      newValue.shiny,
+    );
+    image.onload = () => {
+      imageWidth.value = image.width;
+      emit('imageSizeGot', imageWidth.value);
+    };
+  },
+  { deep: true },
+);
 </script>
 
 <template>
@@ -40,5 +52,5 @@ watch(() => pokemonSprite.value, (newValue) => {
     class="animated-sprite"
     :src="image.src"
     :alt="`${capitalizeFirstLetter(pokemonSprite.pokemon)} sprite`"
-  >
+  />
 </template>

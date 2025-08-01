@@ -1,6 +1,10 @@
 .pc {
   display: flex;
-  justify-content: center;
   align-items: center;
   background: url("../../imgs/pc/pc-pattern.jpg") fixed;
+
+  &__system {
+    display: flex;
+    align-items: flex-end;
+  }
 }

@@ -1,0 +1,47 @@
+<script setup>
+import '../../assets/css/components/pc/_pokemon-details.scss';
+import AnimatedSprite from '../sprites/AnimatedSprite.vue';
+import { ref } from 'vue';
+
+defineProps({
+  pokemonDetails: {
+    type: Object,
+    required: true,
+  },
+  pseudo: {
+    type: String,
+    default: 'Joueur',
+  },
+});
+
+const previewWidth = ref(375);
+const pokemonWidth = ref('auto');
+
+function calculatePokemonRatio(width) {
+  const ratio = (width / previewWidth.value) * 100;
+  pokemonWidth.value = `${ratio}%`;
+}
+</script>
+
+<template>
+  <div class="pokemon-details">
+    <h2 v-if="pokemonDetails.name" class="pokemon-details__name">
+      {{ pokemonDetails.name }}
+    </h2>
+    <div v-if="pokemonDetails.pokedexId" class="pokemon-details__pokedex-id">
+      <img src="../../assets/imgs/pc/number.png" alt="N°" />
+      <p>{{ pokemonDetails.pokedexId }}</p>
+    </div>
+    <div class="pokemon-details__preview">
+      <AnimatedSprite
+        :style="`width: ${pokemonWidth}`"
+        @imageSizeGot="calculatePokemonRatio($event)"
+      />
+    </div>
+    <img
+      class="pokemon-details__background"
+      src="../../assets/imgs/pc/pokemon-details.png"
+      alt="Pokemon details background"
+    />
+  </div>
+</template>

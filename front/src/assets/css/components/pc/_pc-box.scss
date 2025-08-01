@@ -5,10 +5,12 @@
   position: relative;
   display: flex;
   width: fit-content;
+  margin-bottom: 148px;
+  transform: translateX(-9.33%); // 70px
 
   &__title {
     position: absolute;
-    top: 19px;
+    top: 2.77%; // 19px
     left: 50%;
     transform: translateX(-50%);
     color: var(--text-dark-grey);
@@ -20,10 +22,10 @@
 
   &__pokemons {
     position: absolute;
-    left: 9px;
-    right: 9px;
-    bottom: 9px;
-    height: 560px;
+    left: 1.2%; // 9px
+    right: 1.2%; // 9px
+    bottom: 1.31%; // 9px
+    height: 81.75%; // 580px
   }
 
   &__grid {
