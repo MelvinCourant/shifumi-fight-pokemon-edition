@@ -14,9 +14,9 @@ defineProps({
 const emit = defineEmits(['pokemonSelected']);
 
 const router = useRouter();
-const imagesLoaded = ref(false);
 const pokemonSelected = ref(inject('pokemonSelected'));
 const pokemonsPosition = ref([]);
+const handPositionInitialized = ref(false);
 const handPosition = ref({
   x: 0,
   y: 0,
@@ -27,7 +27,7 @@ function calculatePositions() {
   const grid = document.querySelector('.pc-box__grid');
   const gridRect = grid.getBoundingClientRect();
 
-  pokemons.forEach((pokemon) => {
+  for (let pokemon of pokemons) {
     const rect = pokemon.getBoundingClientRect();
 
     const relativePosition = {
@@ -43,7 +43,9 @@ function calculatePositions() {
     if (pokemonSelected.value === pokemon.dataset.pokemonName) {
       handPosition.value = relativePosition;
     }
-  });
+  }
+
+  handPositionInitialized.value = true;
 }
 
 function updatePokemonSelected(pokemonName) {
@@ -60,18 +62,30 @@ function updatePokemonSelected(pokemonName) {
 onMounted(async () => {
   await nextTick();
 
-  // Verify if images are loaded before calculating positions
+  // Verify if images loaded before calculating positions
   const images = document.querySelectorAll('.pc-box__pokemon img');
   const imagePromises = Array.from(images).map((img) => {
-    if (img.complete) return Promise.resolve();
     return new Promise((resolve) => {
-      img.onload = resolve;
-      img.onerror = resolve;
+      const checkDimensions = () => {
+        const rect = img.getBoundingClientRect();
+
+        if (rect.width > 0 && rect.height > 0) {
+          resolve();
+        } else {
+          setTimeout(checkDimensions, 10);
+        }
+      };
+
+      if (img.complete) {
+        checkDimensions();
+      } else {
+        img.onload = checkDimensions;
+        img.onerror = resolve;
+      }
     });
   });
 
   await Promise.all(imagePromises);
-  imagesLoaded.value = true;
 
   calculatePositions();
 });
@@ -137,7 +151,7 @@ window.addEventListener('keydown', moveInBox);
         </button>
 
         <div
-          v-if="imagesLoaded"
+          v-if="handPositionInitialized"
           class="pc-box__hand"
           :style="`top: ${handPosition.y}%; left: ${handPosition.x}%;`"
         >
@@ -145,7 +159,7 @@ window.addEventListener('keydown', moveInBox);
         </div>
 
         <div
-          v-if="imagesLoaded"
+          v-if="handPositionInitialized"
           class="pc-box__hand-shadow"
           :style="`top: ${handPosition.y}%; left: ${handPosition.x}%;`"
         >
