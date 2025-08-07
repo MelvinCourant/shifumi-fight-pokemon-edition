@@ -53,11 +53,13 @@
 
   &__hand {
     z-index: 3;
+    width: 10.93%; // 80px
     transform: translate(-50%, calc(-100% - 78px - 35px));
   }
 
   &__hand-shadow {
     z-index: 1;
+    width: 11.75%; // 86px
     transform: translate(-50%, -100%);
   }
 }
