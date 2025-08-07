@@ -1,11 +1,21 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { provide, ref, watch } from 'vue';
 import '../../assets/css/components/pokemon/_animated-sprite.scss';
 import { inject } from 'vue';
 
+const props = defineProps({
+  pokemonSprite: {
+    type: Object,
+    default: () => ({}),
+  },
+});
 const emit = defineEmits(['imageSizeGot']);
 
-const pokemonSprite = ref(inject('pokemonSprite'));
+const pokemonSprite = ref(
+  Object.keys(props.pokemonSprite).length > 0
+    ? props.pokemonSprite
+    : inject('pokemonSprite'),
+);
 const imageWidth = ref(0);
 let image = new Image();
 
@@ -49,7 +59,7 @@ watch(
 <template>
   <img
     v-if="pokemonSprite.pokemon"
-    class="animated-sprite"
+    :class="`animated-sprite animated-sprite--${pokemonSprite.side}`"
     :src="image.src"
     :alt="`${capitalizeFirstLetter(pokemonSprite.pokemon)} sprite`"
   />

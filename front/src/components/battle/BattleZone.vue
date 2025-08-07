@@ -1,18 +1,29 @@
 <script setup>
-import '../../assets/css/components/battle/_battle-zone.scss'
-import AnimatedSprite from "../sprites/AnimatedSprite.vue";
-import {inject, ref} from "vue";
+import '../../assets/css/components/battle/_battle-zone.scss';
+import AnimatedSprite from '../sprites/AnimatedSprite.vue';
+import { inject, provide, ref } from 'vue';
 
-defineProps({
+const props = defineProps({
+  pokemonSprite: {
+    type: Object,
+    default: () => ({}),
+  },
   pseudo: {
     type: String,
-    default: ''
-  }
-})
+    default: '',
+  },
+});
 
-const pokemonSprite = inject('pokemonSprite');
-const battleWidth = ref(460);
+const pokemonSprite =
+  Object.keys(props.pokemonSprite).length > 0
+    ? props.pokemonSprite
+    : inject('pokemonSprite');
+const battleWidth = ref(pokemonSprite.side === 'back' ? 1000 : 460);
 const pokemonWidth = ref('auto');
+
+if (props.pokemonSprite) {
+  provide('pokemonSprite', pokemonSprite);
+}
 
 function calculatePokemonRatio(width) {
   const ratio = (width / battleWidth.value) * 100;
@@ -21,7 +32,7 @@ function calculatePokemonRatio(width) {
 </script>
 
 <template>
-  <div class="battle-zone">
+  <div :class="`battle-zone battle-zone--${pokemonSprite.side}`">
     <div class="battle-zone__sprite">
       <p class="battle-zone__pseudo" v-if="pseudo">{{ pseudo }}</p>
       <AnimatedSprite
@@ -33,6 +44,6 @@ function calculatePokemonRatio(width) {
       class="battle-zone__image"
       :src="`src/assets/imgs/battle-zone-${pokemonSprite.side === 'front' ? '2' : '1'}.png`"
       alt="Battle Zone"
-    >
+    />
   </div>
 </template>

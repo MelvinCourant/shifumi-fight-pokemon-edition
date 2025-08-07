@@ -4,11 +4,13 @@ import BattleZone from '../components/battle/BattleZone.vue';
 import { provide, reactive, ref } from 'vue';
 import Button from '../components/inputs/Button.vue';
 import { useUserStore } from '../stores/user.js';
+import { useRouter } from 'vue-router';
 import Rules from '../components/home/Rules.vue';
 import PokemonsJson from '../data/pokemons.json';
 
 const userStore = useUserStore();
 const user = userStore.user;
+const router = useRouter();
 const pseudo = ref(user.pseudo ? user.pseudo : 'Joueur');
 const pokemonSprite = ref({
   pokemon: user.pokemon.pokemonName || '',
@@ -47,6 +49,22 @@ async function pokemonIsShinyOrNot(pokemon) {
   }
 
   return shinyChance === 1096;
+}
+
+async function newGame() {
+  if (!user.pseudo || !user.pokemon.pokemonName) {
+    userStore.updateUser({
+      pseudo: pseudo.value,
+      pokemon: {
+        pokemonName: pokemonSprite.value.pokemon,
+        shiny: pokemonSprite.value.shiny,
+      },
+    });
+  }
+
+  await router.push({
+    name: 'Fight',
+  });
 }
 </script>
 
@@ -115,7 +133,12 @@ async function pokemonIsShinyOrNot(pokemon) {
         <Button text="Historique" :background="'blue'" size="small" />
       </div>
       <div class="home__right">
-        <Button text="Nouvelle partie" :background="'red'" size="big" />
+        <Button
+          text="Nouvelle partie"
+          :background="'red'"
+          size="big"
+          @click="newGame"
+        />
         <Button
           text="Boîte PC"
           :background="'green'"

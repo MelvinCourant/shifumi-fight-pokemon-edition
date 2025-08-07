@@ -3,7 +3,7 @@ import '../assets/css/views/_pc.scss';
 import PokemonsJson from '../data/pokemons.json';
 import { useUserStore } from '../stores/user.js';
 import { usePcBoxStore } from '../stores/pc-box.js';
-import { onMounted, provide, reactive, ref, computed } from 'vue';
+import { onMounted, provide, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import PCBox from '../components/pc/PCBox.vue';
 import PokemonDetails from '../components/pc/PokemonDetails.vue';

@@ -1,0 +1,13 @@
+.fight {
+  position: relative;
+  background-image: url('../../../assets/imgs/cynthia-background.jpg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+
+  &__player {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}

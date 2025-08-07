@@ -7,6 +7,11 @@
   align-items: center;
   position: relative;
 
+  &--back {
+    transform: translateX(-80px);
+    overflow: hidden;
+  }
+
   &__pseudo {
     color: var(--white);
     font-size: functions.rem(28);

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import PC from '../views/PC.vue';
+import Fight from '../views/Fight.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/pc',
       name: 'PC',
       component: PC,
+    },
+    {
+      path: '/fight',
+      name: 'Fight',
+      component: Fight,
     },
   ],
 });
