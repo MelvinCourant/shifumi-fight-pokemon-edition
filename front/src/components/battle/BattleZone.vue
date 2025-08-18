@@ -29,6 +29,13 @@ function calculatePokemonRatio(width) {
   const ratio = (width / battleWidth.value) * 100;
   pokemonWidth.value = `${ratio}%`;
 }
+
+function generateImageSrc(side) {
+  return new URL(
+    `../../assets/imgs/battle-zone-${side === 'front' ? '2' : '1'}.png`,
+    import.meta.url,
+  ).href;
+}
 </script>
 
 <template>
@@ -42,7 +49,7 @@ function calculatePokemonRatio(width) {
     </div>
     <img
       class="battle-zone__image"
-      :src="`src/assets/imgs/battle-zone-${pokemonSprite.side === 'front' ? '2' : '1'}.png`"
+      :src="generateImageSrc(pokemonSprite.side)"
       alt="Battle Zone"
     />
   </div>

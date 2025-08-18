@@ -24,7 +24,10 @@ function capitalizeFirstLetter(val) {
 }
 
 function generateImageSrc(pokemon, side, shiny) {
-  return `src/assets/imgs/animated-sprites/${shiny ? 'shinies/' : ''}${pokemon}${side === 'front' ? '' : '-back'}.gif`;
+  return new URL(
+    `../../assets/imgs/animated-sprites/${shiny ? 'shinies/' : ''}${pokemon}${side === 'front' ? '' : '-back'}.gif`,
+    import.meta.url,
+  ).href;
 }
 
 if (pokemonSprite.value.pokemon) {
