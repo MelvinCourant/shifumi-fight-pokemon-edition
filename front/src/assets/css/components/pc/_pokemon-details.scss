@@ -6,6 +6,18 @@
   display: flex;
   width: fit-content;
 
+  @media screen and (max-width: 1799px) {
+    width: 28.28vw;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 39.52vw;
+  }
+
+  @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+    width: 51.63vh;
+  }
+
   &__name {
     position: absolute;
     top: 3.46%; // 30px
@@ -15,6 +27,21 @@
     font-weight: 400;
     text-transform: uppercase;
     text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+
+    @media screen and (max-width: 1799px) {
+      font-size: 2.06vw;
+      text-shadow: 0.25vw 0.25vw 0 var(--text-shadow-dark-grey), 0 0.25vw 0 var(--text-shadow-dark-grey), 0.25vw 0 0 var(--text-shadow-dark-grey);
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: 2.89vw;
+      text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
+    }
+
+    @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+      font-size: 4.19vh;
+      text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+    }
   }
 
   &__pokedex-id {
@@ -26,6 +53,21 @@
 
     img {
       margin-bottom: 5px;
+
+      @media screen and (max-width: 1799px) {
+        width: 2.78vw;
+        margin-bottom: 0.28vw;
+      }
+
+      @media screen and (max-width: 1024px) {
+        width: 3.89vw;
+        margin-bottom: 0.39vw;
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+        width: 4.88vh;
+        margin-bottom: 0.5vh;
+      }
     }
 
     p {
@@ -35,6 +77,24 @@
       letter-spacing: -3.43px;
       text-align: right;
       text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+
+      @media screen and (max-width: 1799px) {
+        font-size: 2.11vw;
+        letter-spacing: -0.19vw;
+        text-shadow: 0.25vw 0.25vw 0 var(--text-shadow-dark-grey), 0 0.25vw 0 var(--text-shadow-dark-grey), 0.25vw 0 0 var(--text-shadow-dark-grey);
+      }
+
+      @media screen and (max-width: 1024px) {
+        font-size: 2.94vw;
+        letter-spacing: -0.27vw;
+        text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+        font-size: 3.72vh;
+        letter-spacing: -0.35vh;
+        text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+      }
     }
   }
 
@@ -58,13 +118,28 @@
   &__level {
     position: absolute;
     left: 6.88%; // 35px
-    bottom: 19.86%; // 172px
+    bottom: 19.56%; // 167px
     display: flex;
     align-items: flex-end;
     pointer-events: none;
 
     img {
       margin-bottom: 5px;
+
+      @media screen and (max-width: 1799px) {
+        width: 2vw;
+        margin-bottom: 0.28vw;
+      }
+
+      @media screen and (max-width: 1024px) {
+        width: 2.78vw;
+        margin-bottom: 0.39vw;
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+        width: 3.49vh;
+        margin-bottom: 0.5vh;
+      }
     }
 
     p {
@@ -74,6 +149,27 @@
       letter-spacing: -3.43px;
       text-align: right;
       text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+      margin-left: 5px;
+
+      @media screen and (max-width: 1799px) {
+        font-size: 2.06vw;
+        letter-spacing: -0.19vw;
+        text-shadow: 0.25vw 0.25vw 0 var(--text-shadow-dark-grey), 0 0.25vw 0 var(--text-shadow-dark-grey), 0.25vw 0 0 var(--text-shadow-dark-grey);
+        margin-left: 0.28vw;
+      }
+
+      @media screen and (max-width: 1024px) {
+        font-size: 2.89vw;
+        letter-spacing: -0.27vw;
+        text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
+        margin-left: 0.39vw;
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+        font-size: 3.49vh;
+        letter-spacing: -0.35vh;
+        text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+      }
     }
   }
 }

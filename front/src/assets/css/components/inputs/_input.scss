@@ -2,12 +2,31 @@
 
 .input {
   &__field {
+    width: 380px;
     background: transparent;
     border: none;
     color: var(--white);
     font-size: functions.rem(37);
     font-weight: 400;
     text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+
+    @media screen and (max-width: 1799px) {
+      width: 21.11vw;
+      font-size: 2.06vw;
+      text-shadow: 0.25vw 0.25vw 0 var(--text-shadow-dark-grey), 0 0.25vw 0 var(--text-shadow-dark-grey), 0.25vw 0 0 var(--text-shadow-dark-grey);
+    }
+
+    @media screen and (max-width: 1024px) {
+      width: 29.44vw;
+      font-size: 2.89vw;
+      text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
+    }
+
+    @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+      width: 37.21vh;
+      font-size: 4.19vh;
+      text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+    }
 
     &:focus {
       outline: none;
