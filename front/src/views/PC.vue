@@ -7,6 +7,7 @@ import { onMounted, provide, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import PCBox from '../components/pc/PCBox.vue';
 import PokemonDetails from '../components/pc/PokemonDetails.vue';
+import Button from '../components/inputs/Button.vue';
 
 const route = useRoute();
 const query = route.query;
@@ -136,6 +137,7 @@ function updatePseudo(newPseudo) {
         :pokemons="pokemons"
         @pokemonSelected="updatePokemonSelected($event)"
       />
+      <Button text="CHOISIR" :background="'blue'" size="big" link="/" />
     </div>
     <div v-else class="pc__loading">Chargement des Pokémons...</div>
   </main>

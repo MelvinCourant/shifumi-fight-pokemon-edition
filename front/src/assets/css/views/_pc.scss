@@ -1,3 +1,5 @@
+@use "../partials/functions";
+
 .pc {
   position: relative;
   display: flex;
@@ -5,8 +7,67 @@
   background: url("../../imgs/pc/pc-pattern.jpg") fixed;
 
   &__system {
+    position: relative;
     display: flex;
     align-items: flex-end;
+
+    .button {
+      position: absolute;
+      right: calc(222px + 130px);
+      bottom: 0;
+      transform: translateY(-4px);
+      width: 410px;
+      height: 93px;
+      font-size: functions.rem(28);
+      -webkit-text-stroke: functions.rem(9) var(--black);
+      box-shadow: -6.2px 6.2px 0 0 var(--black), 6.2px 6.2px 0 0 var(--black), 6.2px -6.2px 0 0 var(--black), -6.2px -6.2px 0 0 var(--black), 0.65vw 0 0 0 var(--black), -0.65vw 0 0 0 var(--black), 0 -0.65vw 0 0 var(--black), 0 0.65vw 0 0 var(--black);
+
+      &:before {
+        background-size: 6.2px 6.2px;
+      }
+
+      @media screen and (max-width: 1799px) {
+        right: 18.33vw;
+        transform: translateY(-0.62vw);
+        width: 21.35vw;
+        height: 4.84vw;
+        font-size: 1.46vw;
+        -webkit-text-stroke: 0.47vw var(--black);
+        box-shadow: -0.32vw 0.32vw 0 0 var(--black), 0.32vw 0.32vw 0 0 var(--black), 0.32vw -0.32vw 0 0 var(--black), -0.32vw -0.32vw 0 0 var(--black), 0.65vw 0 0 0 var(--black), -0.65vw 0 0 0 var(--black), 0 -0.65vw 0 0 var(--black), 0 0.65vw 0 0 var(--black);
+
+        &:before {
+          background-size: 0.32vw 0.32vw;
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        right: 25.56vw;
+        transform: translateY(-0.86vw);
+        width: 29.81vw !important;
+        height: 6.75vw !important;
+        font-size: 2.03vw !important;
+        -webkit-text-stroke: 0.66vw var(--black);
+        box-shadow: -0.45vw 0.45vw 0 0 var(--black), 0.45vw 0.45vw 0 0 var(--black), 0.45vw -0.45vw 0 0 var(--black), -0.45vw -0.45vw 0 0 var(--black), 0.91vw 0 0 0 var(--black), -0.91vw 0 0 0 var(--black), 0 -0.91vw 0 0 var(--black), 0 0.91vw 0 0 var(--black) !important;
+
+        &:before {
+          background-size: 0.45vw 0.45vw;
+        }
+      }
+
+      @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+        right: 33.33vh;
+        transform: translateY(-1.12vh);
+        width: 38.84vh !important;
+        height: 8.81vh !important;
+        font-size: 2.65vh !important;
+        -webkit-text-stroke: 0.86vh var(--black);
+        box-shadow: -0.58vh 0.58vh 0 0 var(--black), 0.58vh 0.58vh 0 0 var(--black), 0.58vh -0.58vh 0 0 var(--black), -0.58vh -0.58vh 0 0 var(--black), 1.19vh 0 0 0 var(--black), -1.19vh 0 0 0 var(--black), 0 -1.19vh 0 0 var(--black), 0 1.19vh 0 0 var(--black) !important;
+
+        &:before {
+          background-size: 0.58vh 0.58vh;
+        }
+      }
+    }
   }
 
   &__loading {
