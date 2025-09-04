@@ -1,5 +1,5 @@
 <script setup>
-import { provide, ref, watch } from 'vue';
+import { computed, provide, ref, watch } from 'vue';
 import '../../assets/css/components/pokemon/_animated-sprite.scss';
 import { inject } from 'vue';
 
@@ -24,10 +24,11 @@ function capitalizeFirstLetter(val) {
 }
 
 function generateImageSrc(pokemon, side, shiny) {
-  return new URL(
-    `../../assets/imgs/animated-sprites/${shiny ? 'shinies/' : ''}${pokemon}${side === 'front' ? '' : '-back'}.gif`,
-    import.meta.url,
-  ).href;
+  const basePath = shiny
+    ? `../../assets/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.gif`
+    : `../../assets/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.gif`;
+
+  return new URL(basePath, import.meta.url).href;
 }
 
 if (pokemonSprite.value.pokemon) {
