@@ -1,4 +1,5 @@
 <script setup>
+import '../../assets/css/components/battle/_moves.scss';
 import { inject, ref } from 'vue';
 import Move from './Move.vue';
 

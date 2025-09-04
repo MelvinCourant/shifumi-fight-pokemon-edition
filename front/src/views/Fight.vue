@@ -14,10 +14,32 @@ const playerSprite = {
 };
 const moves = reactive([
   {
+    id: 0,
     title: 'Pierre',
     PP: 4,
     maxPP: 4,
     image: 'pierre',
+  },
+  {
+    id: 1,
+    title: 'Feuille',
+    PP: 4,
+    maxPP: 4,
+    image: 'feuille',
+  },
+  {
+    id: 2,
+    title: 'Ciseaux',
+    PP: 4,
+    maxPP: 4,
+    image: 'ciseaux',
+  },
+  {
+    id: 3,
+    title: 'Puits',
+    PP: 1,
+    maxPP: 1,
+    image: 'puits',
   },
 ]);
 
@@ -29,7 +51,7 @@ provide('moves', moves);
     <h1 class="hidden-title">Fight</h1>
     <div class="fight__player">
       <BattleZone :pokemonSprite="playerSprite" />
+      <Moves />
     </div>
-    <Moves />
   </main>
 </template>

@@ -1,0 +1,14 @@
+@use "../../partials/functions";
+
+.moves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: functions.rem(8);
+  width: 510px;
+  height: fit-content;
+  margin-bottom: functions.rem(25);
+
+  &__move {
+    width: 250px;
+  }
+}

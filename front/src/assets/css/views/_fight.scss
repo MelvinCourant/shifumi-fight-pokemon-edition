@@ -1,3 +1,5 @@
+@use "../partials/functions";
+
 .fight {
   position: relative;
   background-image: url('../../../assets/imgs/cynthia-background.jpg');
@@ -6,8 +8,13 @@
   background-repeat: no-repeat;
 
   &__player {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
+    padding-right: functions.rem(4);
   }
 }
