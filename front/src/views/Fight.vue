@@ -1,9 +1,10 @@
 <script setup>
 import '../assets/css/views/_fight.scss';
 import BattleZone from '../components/battle/BattleZone.vue';
-import Moves from '../components/battle/Moves.vue';
+import HUD from '../components/battle/HUD.vue';
 import { useUserStore } from '../stores/user.js';
 import { provide, reactive } from 'vue';
+import CharactersJson from '../data/characters.json';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -42,8 +43,23 @@ const moves = reactive([
     image: 'puits',
   },
 ]);
+const maxHP = 300;
+const player = reactive({
+  role: 'player',
+  pseudo: user.pseudo,
+  hp: maxHP,
+});
+const enemy = reactive({
+  role: 'enemy',
+  pseudo: generateEnemy(),
+});
 
 provide('moves', moves);
+provide('maxHP', maxHP);
+
+function generateEnemy() {
+  return CharactersJson[Math.floor(Math.random() * CharactersJson.length)].name;
+}
 </script>
 
 <template>
@@ -51,7 +67,7 @@ provide('moves', moves);
     <h1 class="hidden-title">Fight</h1>
     <div class="fight__player">
       <BattleZone :pokemonSprite="playerSprite" />
-      <Moves />
+      <HUD :player="player" />
     </div>
   </main>
 </template>
