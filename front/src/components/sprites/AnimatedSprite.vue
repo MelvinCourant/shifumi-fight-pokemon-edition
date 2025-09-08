@@ -61,13 +61,16 @@ watch(
 </script>
 
 <template>
-  <img
-    v-if="pokemonSprite.pokemon"
-    :class="[
-      `animated-sprite animated-sprite--${pokemonSprite.side}`,
-      { 'animated-sprite--damaged': pokemonSprite.receiveDamage },
-    ]"
-    :src="image.src"
-    :alt="`${capitalizeFirstLetter(pokemonSprite.pokemon)} sprite`"
-  />
+  <div class="animated-sprite__container">
+    <img
+      v-if="pokemonSprite.pokemon"
+      :class="[
+        `animated-sprite animated-sprite--${pokemonSprite.side}`,
+        { 'animated-sprite--damaged': pokemonSprite.receiveDamage },
+        { 'animated-sprite--ko': pokemonSprite.ko },
+      ]"
+      :src="image.src"
+      :alt="`${capitalizeFirstLetter(pokemonSprite.pokemon)} sprite`"
+    />
+  </div>
 </template>

@@ -14,32 +14,32 @@ const moves = reactive([
   {
     id: 0,
     name: 'Pierre',
-    PP: 4,
-    maxPP: 4,
+    pp: 4,
+    maxPp: 4,
     image: 'pierre',
     highlyEffective: [2],
   },
   {
     id: 1,
     name: 'Feuille',
-    PP: 4,
-    maxPP: 4,
+    pp: 4,
+    maxPp: 4,
     image: 'feuille',
     highlyEffective: [0, 3],
   },
   {
     id: 2,
     name: 'Ciseaux',
-    PP: 4,
-    maxPP: 4,
+    pp: 4,
+    maxPp: 4,
     image: 'ciseaux',
     highlyEffective: [1],
   },
   {
     id: 3,
     name: 'Puits',
-    PP: 1,
-    maxPP: 1,
+    pp: 1,
+    maxPp: 1,
     image: 'puits',
     highlyEffective: [0, 2],
   },
@@ -50,12 +50,14 @@ const playerSprite = ref({
   side: 'back',
   shiny: user.pokemon.shiny,
   receiveDamage: false,
+  ko: false,
 });
 const enemySprite = ref({
   pokemon: '',
   side: 'front',
   shiny: false,
   receiveDamage: false,
+  ko: false,
 });
 const player = reactive({
   role: 'player',
@@ -97,9 +99,9 @@ function attack(moveId) {
 
   const playerMove = moves.find((move) => move.id === moveId);
 
-  if (playerMove.PP === 0) return;
+  if (playerMove.pp === 0) return;
 
-  playerMove.PP -= 1;
+  playerMove.pp -= 1;
 
   const enemyMove = AIAttack();
   const dmgInfliged = 100;
@@ -165,6 +167,19 @@ function nextStep() {
 
   if (player.hp > 0 && enemy.hp > 0) {
     step.value = 'choice';
+  } else if (player.hp === 0 && enemy.hp === 0) {
+    playerSprite.value.ko = true;
+    enemySprite.value.ko = true;
+    step.value = 'draw';
+    dialog.value = `Vous et ${enemy.pseudo} êtes K.O. ! Match nul`;
+  } else if (player.hp === 0) {
+    playerSprite.value.ko = true;
+    step.value = 'enemy-win';
+    dialog.value = `Vous êtes K.O ! ${enemy.pseudo} a gagné !`;
+  } else if (enemy.hp === 0) {
+    enemySprite.value.ko = true;
+    step.value = 'player-win';
+    dialog.value = `${enemy.pseudo} est K.O. ! Vous avez gagné !`;
   }
 }
 </script>
@@ -185,7 +200,7 @@ function nextStep() {
       v-show="step === 'attack'"
       @click="nextStep"
     ></div>
-    <TextBox v-show="step === 'attack'">
+    <TextBox v-show="step !== 'choice'">
       <div>
         {{ dialog }}
       </div>
