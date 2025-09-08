@@ -9,6 +9,11 @@
   margin-bottom: functions.rem(25);
   margin-right: functions.rem(4);
 
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   &__move {
     width: 250px;
   }

@@ -14,7 +14,11 @@ function generateImageSrc(move) {
 </script>
 
 <template>
-  <div class="move" @click="$emit('moveSelected', move.id)">
+  <button
+    class="move"
+    @click="$emit('moveSelected', move.id)"
+    :disabled="move.PP === 0"
+  >
     <h3 class="move__title">{{ move.title }}</h3>
     <p class="move__pp">{{ move.PP }}/{{ move.maxPP }}</p>
     <img
@@ -22,5 +26,5 @@ function generateImageSrc(move) {
       :src="generateImageSrc(move.image)"
       :alt="move.title"
     />
-  </div>
+  </button>
 </template>

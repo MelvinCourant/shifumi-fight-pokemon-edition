@@ -1,8 +1,8 @@
 <script setup>
 import '../../assets/css/components/battle/_hp-bars.scss';
-import { computed, inject, ref } from 'vue';
+import { computed, inject, ref, watch } from 'vue';
 
-defineProps({
+const props = defineProps({
   player: {
     type: Object,
     required: true,
@@ -25,6 +25,10 @@ function generateImageSrc(role) {
     import.meta.url,
   ).href;
 }
+
+watch(props.player, () => {
+  HPLevel.value = (props.player.hp * 100) / maxHP;
+});
 </script>
 
 <template>
@@ -38,7 +42,7 @@ function generateImageSrc(role) {
     <div class="hp-bar__gauge">
       <span
         :class="['hp-bar__gauge-level', `hp-bar__gauge-level--${background}`]"
-        :style="{ width: `${HPLevel}%` }"
+        :style="{ transform: `scaleX(${HPLevel / 100})` }"
       ></span>
     </div>
     <img :src="generateImageSrc(player.role)" alt="HP bar" />

@@ -26,6 +26,7 @@ const moves = reactive([
     PP: 4,
     maxPP: 4,
     image: 'pierre',
+    highlyEffective: [2],
   },
   {
     id: 1,
@@ -33,6 +34,7 @@ const moves = reactive([
     PP: 4,
     maxPP: 4,
     image: 'feuille',
+    highlyEffective: [0, 3],
   },
   {
     id: 2,
@@ -40,6 +42,7 @@ const moves = reactive([
     PP: 4,
     maxPP: 4,
     image: 'ciseaux',
+    highlyEffective: [1],
   },
   {
     id: 3,
@@ -47,6 +50,7 @@ const moves = reactive([
     PP: 1,
     maxPP: 1,
     image: 'puits',
+    highlyEffective: [0, 2],
   },
 ]);
 const maxHP = 300;
@@ -58,10 +62,13 @@ const player = reactive({
 const enemy = reactive({
   role: 'enemy',
   pseudo: generateEnemy(),
+  hp: maxHP,
 });
+const step = ref('choice');
 
 provide('moves', moves);
 provide('maxHP', maxHP);
+provide('step', step);
 
 if (!enemySprite.pokemon) {
   generateRandomPokemon(user.pokemon.pokemonName);
@@ -80,6 +87,41 @@ function generateRandomPokemon(playerPokemon) {
       Math.floor(Math.random() * availablePokemons.length)
     ].image;
 }
+
+function attack(moveId) {
+  if (step.value !== 'choice') return;
+
+  const playerMove = moves.find((move) => move.id === moveId);
+  const enemyMove = AIAttack();
+  const dmgInfliged = 100;
+
+  if (playerMove.highlyEffective.includes(enemyMove.id)) {
+    if (!criticalHitOrNot()) {
+      enemy.hp -= dmgInfliged;
+    } else {
+      enemy.hp -= dmgInfliged * 2;
+    }
+  } else if (enemyMove.highlyEffective.includes(playerMove.id)) {
+    if (!criticalHitOrNot()) {
+      player.hp -= dmgInfliged;
+    } else {
+      player.hp -= dmgInfliged * 2;
+    }
+  } else {
+    player.hp -= dmgInfliged;
+    enemy.hp -= dmgInfliged;
+  }
+
+  step.value = 'attack';
+}
+
+function AIAttack() {
+  return moves[Math.floor(Math.random() * moves.length)];
+}
+
+function criticalHitOrNot() {
+  return Math.random() < 0.0417;
+}
 </script>
 
 <template>
@@ -91,7 +133,7 @@ function generateRandomPokemon(playerPokemon) {
     </div>
     <div class="fight__player">
       <BattleZone :pokemonSprite="playerSprite" />
-      <HUD :player="player" />
+      <HUD :player="player" @moveSelected="attack($event)" />
     </div>
   </main>
 </template>
