@@ -3,14 +3,20 @@ import '../assets/css/views/_fight.scss';
 import BattleZone from '../components/battle/BattleZone.vue';
 import HUD from '../components/battle/HUD.vue';
 import { useUserStore } from '../stores/user.js';
+import { useHistoryStore } from '../stores/history.js';
 import { provide, reactive, ref } from 'vue';
 import CharactersJson from '../data/characters.json';
 import PokemonsJson from '../data/pokemons.json';
 import TextBox from '../components/utils/TextBox.vue';
 import Button from '../components/inputs/Button.vue';
+import { v4 as uuidv4 } from 'uuid';
 
 const userStore = useUserStore();
 const user = userStore.user;
+const { addFightInHistory, updateFightInHistory, lastFightInProgress } =
+  useHistoryStore();
+const lastFight = lastFightInProgress();
+const fightUuid = ref('');
 const moves = reactive([
   {
     id: 0,
@@ -67,7 +73,7 @@ const player = reactive({
 });
 const enemy = reactive({
   role: 'enemy',
-  pseudo: generateEnemy(),
+  pseudo: '',
   hp: maxHp,
 });
 const step = ref('choice');
@@ -77,12 +83,30 @@ provide('moves', moves);
 provide('maxHp', maxHp);
 provide('step', step);
 
-if (!enemySprite.pokemon) {
+if (lastFight && lastFight.inProgress) {
+  fightUuid.value = lastFight.id;
+  player.hp = lastFight.playerHp;
+  enemySprite.value.pokemon = lastFight.enemyPokemon;
+  enemy.pseudo = lastFight.enemy;
+  enemy.hp = lastFight.enemyHp;
+} else {
   generateRandomPokemon(user.pokemon.pokemonName);
+  generateEnemy();
+  fightUuid.value = uuidv4();
+  addFightInHistory({
+    id: fightUuid.value,
+    player: player.pseudo,
+    playerHp: player.hp,
+    enemy: enemy.pseudo,
+    enemyHp: enemy.hp,
+    enemyPokemon: enemySprite.value.pokemon,
+    inProgress: true,
+  });
 }
 
 function generateEnemy() {
-  return CharactersJson[Math.floor(Math.random() * CharactersJson.length)].name;
+  enemy.pseudo =
+    CharactersJson[Math.floor(Math.random() * CharactersJson.length)].name;
 }
 
 function generateRandomPokemon(playerPokemon) {
@@ -118,6 +142,7 @@ function attack(moveId) {
         efficace ! Coup critique !`;
     }
 
+    sendFightInHistory();
     enemySprite.value.receiveDamage = true;
 
     setTimeout(() => {
@@ -134,6 +159,7 @@ function attack(moveId) {
         efficace ! Coup critique !`;
     }
 
+    sendFightInHistory();
     playerSprite.value.receiveDamage = true;
 
     setTimeout(() => {
@@ -143,6 +169,7 @@ function attack(moveId) {
     player.hp -= dmgInfliged;
     enemy.hp -= dmgInfliged;
     dialog.value = `Vous et ${enemy.pseudo} utilisez ${playerMove.name}, le choc vous infligent des dégâts ...`;
+    sendFightInHistory();
     playerSprite.value.receiveDamage = true;
     enemySprite.value.receiveDamage = true;
 
@@ -150,6 +177,40 @@ function attack(moveId) {
       playerSprite.value.receiveDamage = false;
       enemySprite.value.receiveDamage = false;
     }, 1000);
+  }
+
+  function sendFightInHistory() {
+    if (player.hp === 0 && enemy.hp === 0) {
+      updateFightInHistory({
+        id: fightUuid.value,
+        result: 'Egalité',
+        playerHp: player.hp,
+        enemyHp: enemy.hp,
+        inProgress: false,
+      });
+    } else if (player.hp === 0) {
+      updateFightInHistory({
+        id: fightUuid.value,
+        result: 'Défaite',
+        playerHp: player.hp,
+        enemyHp: enemy.hp,
+        inProgress: false,
+      });
+    } else if (enemy.hp === 0) {
+      updateFightInHistory({
+        id: fightUuid.value,
+        result: 'Victoire',
+        playerHp: player.hp,
+        enemyHp: enemy.hp,
+        inProgress: false,
+      });
+    } else {
+      updateFightInHistory({
+        id: fightUuid.value,
+        playerHp: player.hp,
+        enemyHp: enemy.hp,
+      });
+    }
   }
 
   step.value = 'attack';
@@ -189,6 +250,7 @@ function nextStep() {
 }
 
 function restart() {
+  fightUuid.value = uuidv4();
   moves.forEach((move) => {
     move.pp = move.maxPp;
   });
@@ -196,6 +258,15 @@ function restart() {
   enemy.hp = maxHp;
   playerSprite.value.ko = false;
   enemySprite.value.ko = false;
+  addFightInHistory({
+    id: fightUuid.value,
+    player: player.pseudo,
+    playerHp: player.hp,
+    enemy: enemy.pseudo,
+    enemyHp: enemy.hp,
+    enemyPokemon: enemySprite.value.pokemon,
+    inProgress: true,
+  });
   step.value = 'choice';
 }
 </script>

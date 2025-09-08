@@ -10,7 +10,7 @@ const props = defineProps({
 });
 
 const maxHp = inject('maxHp');
-const HPLevel = ref(100);
+const HPLevel = ref((props.player.hp * 100) / maxHp);
 const background = computed(() => {
   if (HPLevel.value < 50) {
     return 'red';

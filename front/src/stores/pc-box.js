@@ -5,7 +5,7 @@ export const usePcBoxStore = defineStore('sf-pc-box', () => {
   let localStorageBox = null;
 
   if (localStorage.getItem('sf-pc-box')) {
-    localStorageBox = JSON.parse(localStorage.getItem('sf-pc-box') || '{}');
+    localStorageBox = JSON.parse(localStorage.getItem('sf-pc-box') || '[]');
   }
 
   const box = ref([]);
