@@ -6,6 +6,7 @@ import { useUserStore } from '../stores/user.js';
 import { provide, reactive, ref } from 'vue';
 import CharactersJson from '../data/characters.json';
 import PokemonsJson from '../data/pokemons.json';
+import TextBox from '../components/utils/TextBox.vue';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -22,7 +23,7 @@ const enemySprite = ref({
 const moves = reactive([
   {
     id: 0,
-    title: 'Pierre',
+    name: 'Pierre',
     PP: 4,
     maxPP: 4,
     image: 'pierre',
@@ -30,7 +31,7 @@ const moves = reactive([
   },
   {
     id: 1,
-    title: 'Feuille',
+    name: 'Feuille',
     PP: 4,
     maxPP: 4,
     image: 'feuille',
@@ -38,7 +39,7 @@ const moves = reactive([
   },
   {
     id: 2,
-    title: 'Ciseaux',
+    name: 'Ciseaux',
     PP: 4,
     maxPP: 4,
     image: 'ciseaux',
@@ -46,7 +47,7 @@ const moves = reactive([
   },
   {
     id: 3,
-    title: 'Puits',
+    name: 'Puits',
     PP: 1,
     maxPP: 1,
     image: 'puits',
@@ -65,6 +66,7 @@ const enemy = reactive({
   hp: maxHP,
 });
 const step = ref('choice');
+const dialog = ref('');
 
 provide('moves', moves);
 provide('maxHP', maxHP);
@@ -98,18 +100,27 @@ function attack(moveId) {
   if (playerMove.highlyEffective.includes(enemyMove.id)) {
     if (!criticalHitOrNot()) {
       enemy.hp -= dmgInfliged;
+      dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
+        efficace !`;
     } else {
       enemy.hp -= dmgInfliged * 2;
+      dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
+        efficace ! Coup critique !`;
     }
   } else if (enemyMove.highlyEffective.includes(playerMove.id)) {
     if (!criticalHitOrNot()) {
       player.hp -= dmgInfliged;
+      dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
+        efficace !`;
     } else {
       player.hp -= dmgInfliged * 2;
+      dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
+        efficace ! Coup critique !`;
     }
   } else {
     player.hp -= dmgInfliged;
     enemy.hp -= dmgInfliged;
+    dialog.value = `Vous et ${enemy.pseudo} utilisez ${playerMove.name}, le choc vous infligent des dégâts ...`;
   }
 
   step.value = 'attack';
@@ -135,5 +146,10 @@ function criticalHitOrNot() {
       <BattleZone :pokemonSprite="playerSprite" />
       <HUD :player="player" @moveSelected="attack($event)" />
     </div>
+    <TextBox v-show="step === 'attack'">
+      <div>
+        {{ dialog }}
+      </div>
+    </TextBox>
   </main>
 </template>
