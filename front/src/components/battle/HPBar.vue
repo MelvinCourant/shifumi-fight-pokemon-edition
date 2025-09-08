@@ -30,7 +30,7 @@ function generateImageSrc(role) {
 <template>
   <div :class="['hp-bar', `hp-bar--${player.role}`]">
     <h2 class="hp-bar__pseudo">{{ player.pseudo }}</h2>
-    <div class="hp-bar__hp-number" v-if="player.hp">
+    <div class="hp-bar__hp-number" v-if="player.role === 'player'">
       <span>{{ player.hp }}</span
       ><span>{{ maxHP }}</span>
     </div>

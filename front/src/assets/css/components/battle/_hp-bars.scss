@@ -6,8 +6,6 @@
 
   &__pseudo {
     position: absolute;
-    top: 14.85%;
-    left: 18.8%;
     color: var(--dark-grey);
     font-size: functions.rem(31);
     text-shadow: 4px 4px 0 var(--hp-shadow-grey), 0 4px 0 var(--hp-shadow-grey), 4px 0 0 var(--hp-shadow-grey);
@@ -32,8 +30,6 @@
 
   &__level {
     position: absolute;
-    top: 14.53%;
-    right: 2.57%;
     font-family: fonts.$pokemon-classic;
     color: var(--dark-grey);
     font-size: functions.rem(32);
@@ -43,10 +39,6 @@
 
   &__gauge {
     position: absolute;
-    right: 6.25%;
-    bottom: 40.22%;
-    width: 37.51%;
-    height: 6.37%;
     background: var(--bar-white);
 
     &:before {
@@ -90,6 +82,48 @@
         &:before {
           background: var(--bar-dark-red);
         }
+      }
+    }
+  }
+
+  &--player {
+    .hp-bar {
+      &__pseudo {
+        top: 14.85%;
+        left: 18.8%;
+      }
+
+      &__level {
+        top: 14.53%;
+        right: 2.57%;
+      }
+
+      &__gauge {
+        right: 6.25%;
+        bottom: 40.22%;
+        width: 37.51%;
+        height: 6.37%;
+      }
+    }
+  }
+
+  &--enemy {
+    .hp-bar {
+      &__pseudo {
+        top: 17.15%;
+        left: 1.64%;
+      }
+
+      &__level {
+        top: 16.38%;
+        right: 16.63%;
+      }
+
+      &__gauge {
+        right: 19.7%;
+        bottom: 22.7%;
+        width: 39.4%;
+        height: 8.8%;
       }
     }
   }
