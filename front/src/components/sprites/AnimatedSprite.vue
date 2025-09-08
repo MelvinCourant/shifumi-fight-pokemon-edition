@@ -63,7 +63,10 @@ watch(
 <template>
   <img
     v-if="pokemonSprite.pokemon"
-    :class="`animated-sprite animated-sprite--${pokemonSprite.side}`"
+    :class="[
+      `animated-sprite animated-sprite--${pokemonSprite.side}`,
+      { 'animated-sprite--damaged': pokemonSprite.receiveDamage },
+    ]"
     :src="image.src"
     :alt="`${capitalizeFirstLetter(pokemonSprite.pokemon)} sprite`"
   />

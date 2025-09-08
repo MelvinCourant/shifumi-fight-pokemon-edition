@@ -2,4 +2,17 @@
   &--back {
     transform: translateY(18%);
   }
+
+  &--damaged {
+    animation: blinking 0.3s;
+
+    @keyframes blinking {
+      0%, 50%, 100% {
+        opacity: 1;
+      }
+      25%, 75% {
+        opacity: 0;
+      }
+    }
+  }
 }

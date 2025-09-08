@@ -10,16 +10,6 @@ import TextBox from '../components/utils/TextBox.vue';
 
 const userStore = useUserStore();
 const user = userStore.user;
-const playerSprite = {
-  pokemon: user.pokemon.pokemonName,
-  side: 'back',
-  shiny: user.pokemon.shiny,
-};
-const enemySprite = ref({
-  pokemon: '',
-  side: 'front',
-  shiny: false,
-});
 const moves = reactive([
   {
     id: 0,
@@ -55,6 +45,18 @@ const moves = reactive([
   },
 ]);
 const maxHP = 300;
+const playerSprite = ref({
+  pokemon: user.pokemon.pokemonName,
+  side: 'back',
+  shiny: user.pokemon.shiny,
+  receiveDamage: false,
+});
+const enemySprite = ref({
+  pokemon: '',
+  side: 'front',
+  shiny: false,
+  receiveDamage: false,
+});
 const player = reactive({
   role: 'player',
   pseudo: user.pseudo,
@@ -94,6 +96,11 @@ function attack(moveId) {
   if (step.value !== 'choice') return;
 
   const playerMove = moves.find((move) => move.id === moveId);
+
+  if (playerMove.PP === 0) return;
+
+  playerMove.PP -= 1;
+
   const enemyMove = AIAttack();
   const dmgInfliged = 100;
 
@@ -107,6 +114,12 @@ function attack(moveId) {
       dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
         efficace ! Coup critique !`;
     }
+
+    enemySprite.value.receiveDamage = true;
+
+    setTimeout(() => {
+      enemySprite.value.receiveDamage = false;
+    }, 1000);
   } else if (enemyMove.highlyEffective.includes(playerMove.id)) {
     if (!criticalHitOrNot()) {
       player.hp -= dmgInfliged;
@@ -117,10 +130,23 @@ function attack(moveId) {
       dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
         efficace ! Coup critique !`;
     }
+
+    playerSprite.value.receiveDamage = true;
+
+    setTimeout(() => {
+      playerSprite.value.receiveDamage = false;
+    }, 1000);
   } else {
     player.hp -= dmgInfliged;
     enemy.hp -= dmgInfliged;
     dialog.value = `Vous et ${enemy.pseudo} utilisez ${playerMove.name}, le choc vous infligent des dégâts ...`;
+    playerSprite.value.receiveDamage = true;
+    enemySprite.value.receiveDamage = true;
+
+    setTimeout(() => {
+      playerSprite.value.receiveDamage = false;
+      enemySprite.value.receiveDamage = false;
+    }, 1000);
   }
 
   step.value = 'attack';
@@ -132,6 +158,14 @@ function AIAttack() {
 
 function criticalHitOrNot() {
   return Math.random() < 0.0417;
+}
+
+function nextStep() {
+  if (step.value === 'choice') return;
+
+  if (player.hp > 0 && enemy.hp > 0) {
+    step.value = 'choice';
+  }
 }
 </script>
 
@@ -146,6 +180,11 @@ function criticalHitOrNot() {
       <BattleZone :pokemonSprite="playerSprite" />
       <HUD :player="player" @moveSelected="attack($event)" />
     </div>
+    <div
+      class="fight__overlay"
+      v-show="step === 'attack'"
+      @click="nextStep"
+    ></div>
     <TextBox v-show="step === 'attack'">
       <div>
         {{ dialog }}
