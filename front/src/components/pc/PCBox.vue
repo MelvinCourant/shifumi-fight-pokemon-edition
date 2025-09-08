@@ -1,7 +1,7 @@
 <script setup>
 import '../../assets/css/components/pc/_pc-box.scss';
 import PCSprite from '../sprites/PCSprite.vue';
-import { inject, nextTick, onMounted, ref } from 'vue';
+import { inject, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 defineProps({
@@ -88,6 +88,11 @@ onMounted(async () => {
   await Promise.all(imagePromises);
 
   calculatePositions();
+  window.addEventListener('keydown', moveInBox);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', moveInBox);
 });
 
 async function moveInBox(event) {
@@ -128,8 +133,6 @@ async function moveInBox(event) {
     });
   }
 }
-
-window.addEventListener('keydown', moveInBox);
 </script>
 
 <template>
