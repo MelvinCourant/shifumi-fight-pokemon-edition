@@ -5,4 +5,8 @@
   flex-direction: column;
   align-items: flex-end;
   gap: functions.rem(16);
+
+  &:has(.hp-bar--enemy) {
+    margin-top: 125px;
+  }
 }

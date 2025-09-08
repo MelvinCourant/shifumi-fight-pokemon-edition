@@ -10,7 +10,7 @@ defineProps({
 });
 
 const maxHP = inject('maxHP');
-const HPLevel = ref(10);
+const HPLevel = ref(100);
 const background = computed(() => {
   if (HPLevel.value < 50) {
     return 'red';
