@@ -9,7 +9,7 @@ const props = defineProps({
   },
 });
 
-const maxHP = inject('maxHP');
+const maxHp = inject('maxHp');
 const HPLevel = ref(100);
 const background = computed(() => {
   if (HPLevel.value < 50) {
@@ -27,7 +27,7 @@ function generateImageSrc(role) {
 }
 
 watch(props.player, () => {
-  HPLevel.value = (props.player.hp * 100) / maxHP;
+  HPLevel.value = (props.player.hp * 100) / maxHp;
 });
 </script>
 
@@ -36,7 +36,7 @@ watch(props.player, () => {
     <h2 class="hp-bar__pseudo">{{ player.pseudo }}</h2>
     <div class="hp-bar__hp-number" v-if="player.role === 'player'">
       <span>{{ player.hp }}</span
-      ><span>{{ maxHP }}</span>
+      ><span>{{ maxHp }}</span>
     </div>
     <p class="hp-bar__level">100</p>
     <div class="hp-bar__gauge">

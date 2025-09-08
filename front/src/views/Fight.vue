@@ -7,6 +7,7 @@ import { provide, reactive, ref } from 'vue';
 import CharactersJson from '../data/characters.json';
 import PokemonsJson from '../data/pokemons.json';
 import TextBox from '../components/utils/TextBox.vue';
+import Button from '../components/inputs/Button.vue';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -44,7 +45,7 @@ const moves = reactive([
     highlyEffective: [0, 2],
   },
 ]);
-const maxHP = 300;
+const maxHp = 300;
 const playerSprite = ref({
   pokemon: user.pokemon.pokemonName,
   side: 'back',
@@ -62,18 +63,18 @@ const enemySprite = ref({
 const player = reactive({
   role: 'player',
   pseudo: user.pseudo,
-  hp: maxHP,
+  hp: maxHp,
 });
 const enemy = reactive({
   role: 'enemy',
   pseudo: generateEnemy(),
-  hp: maxHP,
+  hp: maxHp,
 });
 const step = ref('choice');
 const dialog = ref('');
 
 provide('moves', moves);
-provide('maxHP', maxHP);
+provide('maxHp', maxHp);
 provide('step', step);
 
 if (!enemySprite.pokemon) {
@@ -170,17 +171,32 @@ function nextStep() {
   } else if (player.hp === 0 && enemy.hp === 0) {
     playerSprite.value.ko = true;
     enemySprite.value.ko = true;
-    step.value = 'draw';
+    step.value = 'fight-finished';
     dialog.value = `Vous et ${enemy.pseudo} êtes K.O. ! Match nul`;
   } else if (player.hp === 0) {
     playerSprite.value.ko = true;
-    step.value = 'enemy-win';
+    step.value = 'fight-finished';
     dialog.value = `Vous êtes K.O ! ${enemy.pseudo} a gagné !`;
   } else if (enemy.hp === 0) {
     enemySprite.value.ko = true;
-    step.value = 'player-win';
+    step.value = 'fight-finished';
     dialog.value = `${enemy.pseudo} est K.O. ! Vous avez gagné !`;
   }
+
+  if (step.value === 'fight-finished') {
+    step.value = 'end';
+  }
+}
+
+function restart() {
+  moves.forEach((move) => {
+    move.pp = move.maxPp;
+  });
+  player.hp = maxHp;
+  enemy.hp = maxHp;
+  playerSprite.value.ko = false;
+  enemySprite.value.ko = false;
+  step.value = 'choice';
 }
 </script>
 
@@ -205,5 +221,9 @@ function nextStep() {
         {{ dialog }}
       </div>
     </TextBox>
+    <div class="fight__buttons" v-if="step === 'end'">
+      <Button text="Rejouer" :background="'green'" @click="restart" />
+      <Button text="Quitter" :background="'red'" link="/" />
+    </div>
   </main>
 </template>
