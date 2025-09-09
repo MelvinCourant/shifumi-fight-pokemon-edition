@@ -11,6 +11,7 @@ import TextBox from '../components/utils/TextBox.vue';
 import Button from '../components/inputs/Button.vue';
 import { v4 as uuidv4 } from 'uuid';
 import router from '../router/index.js';
+import Settings from '../components/inputs/Settings.vue';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -348,5 +349,6 @@ function restart() {
       <Button text="Rejouer" :background="'green'" @click="restart" />
       <Button text="Quitter" :background="'red'" link="/" />
     </div>
+    <Settings />
   </main>
 </template>

@@ -11,7 +11,7 @@ const router = createRouter({
       name: 'Home',
       component: Home,
       meta: {
-        sound: 'elite-four',
+        sound: 'battle-tower',
       },
     },
     {
