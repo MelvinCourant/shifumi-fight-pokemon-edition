@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     open: true,
   },
-  assetsInclude: ['**/*.png', '**/*.gif', '**/*.jpg', '**/*.jpeg'],
+  assetsInclude: ['**/*.png', '**/*.gif', '**/*.jpg', '**/*.jpeg', '**/*.mp3'],
   build: {
     rollupOptions: {
       external: [],

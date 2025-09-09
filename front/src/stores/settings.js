@@ -4,12 +4,14 @@ import { defineStore } from 'pinia';
 export const useSettingsStore = defineStore('settings', () => {
   let localStorageSettings = null;
 
-  if (localStorage.getItem('settings')) {
-    localStorageSettings = JSON.parse(localStorage.getItem('settings') || '{}');
+  if (localStorage.getItem('sf-settings')) {
+    localStorageSettings = JSON.parse(
+      localStorage.getItem('sf-settings') || '{}',
+    );
   }
 
-  let musicVolume = 0;
-  let soundVolume = 0;
+  let musicVolume = 1;
+  let soundVolume = 1;
   const settings = ref({});
 
   settings.value = {
@@ -32,7 +34,7 @@ export const useSettingsStore = defineStore('settings', () => {
       settings.value[key] = newSettings[key];
     }
 
-    localStorage.setItem('settings', JSON.stringify(settings.value));
+    localStorage.setItem('sf-settings', JSON.stringify(settings.value));
   }
 
   return {

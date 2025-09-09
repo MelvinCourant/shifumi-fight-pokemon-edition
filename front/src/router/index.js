@@ -10,16 +10,25 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: Home,
+      meta: {
+        sound: '',
+      },
     },
     {
       path: '/pc',
       name: 'PC',
       component: PC,
+      meta: {
+        sound: '',
+      },
     },
     {
       path: '/fight',
       name: 'Fight',
       component: Fight,
+      meta: {
+        sound: 'cynthia-theme',
+      },
     },
   ],
 });
