@@ -11,7 +11,7 @@ const router = createRouter({
       name: 'Home',
       component: Home,
       meta: {
-        sound: '',
+        sound: 'elite-four',
       },
     },
     {
@@ -19,7 +19,7 @@ const router = createRouter({
       name: 'PC',
       component: PC,
       meta: {
-        sound: '',
+        sound: 'pokemon-center',
       },
     },
     {

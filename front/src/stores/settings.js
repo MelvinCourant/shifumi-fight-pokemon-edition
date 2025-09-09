@@ -10,8 +10,8 @@ export const useSettingsStore = defineStore('settings', () => {
     );
   }
 
-  let musicVolume = 1;
-  let soundVolume = 1;
+  let musicVolume = 0.05;
+  let soundVolume = 0.05;
   const settings = ref({});
 
   settings.value = {

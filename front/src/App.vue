@@ -12,7 +12,7 @@ const musicAttributes = reactive({
   loop: true,
   controls: true,
   volume: settings.musicVolume,
-  id: 'cynthia-theme',
+  id: 'music',
 });
 const sound = ref(route.meta.sound);
 const play = ref(false);
