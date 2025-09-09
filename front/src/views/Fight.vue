@@ -137,7 +137,11 @@ function attack(moveId) {
       dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
         efficace !`;
     } else {
-      enemy.hp -= dmgInfliged * 2;
+      if (enemy.hp - dmgInfliged * 2 < 0) {
+        enemy.hp = 0;
+      } else {
+        enemy.hp -= dmgInfliged * 2;
+      }
       dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
         efficace ! Coup critique !`;
     }
@@ -154,7 +158,12 @@ function attack(moveId) {
       dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
         efficace !`;
     } else {
-      player.hp -= dmgInfliged * 2;
+      if (player.hp - dmgInfliged * 2 < 0) {
+        player.hp = 0;
+      } else {
+        player.hp -= dmgInfliged * 2;
+      }
+
       dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
         efficace ! Coup critique !`;
     }
