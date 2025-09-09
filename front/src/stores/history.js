@@ -26,6 +26,7 @@ export const useHistoryStore = defineStore('sf-history', () => {
       enemyHp: fight.enemyHp,
       enemyPokemon: fight.enemyPokemon,
       inProgress: fight.inProgress,
+      datetime: fight.datetime,
     });
     localStorage.setItem('sf-history', JSON.stringify(history.value));
   }
@@ -47,7 +48,10 @@ export const useHistoryStore = defineStore('sf-history', () => {
   }
 
   function displayFightsFinished() {
-    return history.value.filter((fight) => !fight.inProgress);
+    let fightsFinished = history.value.filter((fight) => !fight.inProgress);
+    fightsFinished = fightsFinished.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+
+    return fightsFinished;
   }
 
   return {

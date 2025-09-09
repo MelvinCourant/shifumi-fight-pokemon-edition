@@ -11,10 +11,7 @@ function capitalizeFirstLetter(val) {
 }
 
 function generateImageSrc(pokemon) {
-  return new URL(
-    `../../assets/imgs/pc/pc-sprites/${pokemon}.png`,
-    import.meta.url,
-  ).href;
+  return `/imgs/pc/pc-sprites/${pokemon}.png`;
 }
 </script>
 

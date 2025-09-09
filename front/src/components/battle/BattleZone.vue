@@ -31,10 +31,7 @@ function calculatePokemonRatio(width) {
 }
 
 function generateImageSrc(side) {
-  return new URL(
-    `../../assets/imgs/battle-zone-${side === 'front' ? '2' : '1'}.png`,
-    import.meta.url,
-  ).href;
+  return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}.png`;
 }
 </script>
 

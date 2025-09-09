@@ -20,10 +20,7 @@ const background = computed(() => {
 });
 
 function generateImageSrc(role) {
-  return new URL(
-    `../../assets/imgs/hp-bars/hp-bar${role === 'enemy' ? '-enemy' : ''}.png`,
-    import.meta.url,
-  ).href;
+  return `/imgs/hp-bars/hp-bar${role === 'enemy' ? '-enemy' : ''}.png`;
 }
 
 watch(props.player, () => {

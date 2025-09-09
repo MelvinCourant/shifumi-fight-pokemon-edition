@@ -9,7 +9,7 @@ defineProps({
 defineEmits(['moveSelected']);
 
 function generateImageSrc(move) {
-  return new URL(`../../assets/imgs/moves/${move}.svg`, import.meta.url).href;
+  return `/imgs/moves/${move}.svg`;
 }
 </script>
 

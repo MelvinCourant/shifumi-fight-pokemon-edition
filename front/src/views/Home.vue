@@ -175,7 +175,7 @@ async function newGame() {
             </tr>
           </thead>
           <tbody>
-            <template v-for="fight in history.reverse()" :key="fight.id">
+            <template v-for="fight in history" :key="fight.id">
               <tr
                 :class="[
                   'history__fight',

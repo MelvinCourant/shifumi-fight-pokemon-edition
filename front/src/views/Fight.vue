@@ -10,6 +10,7 @@ import PokemonsJson from '../data/pokemons.json';
 import TextBox from '../components/utils/TextBox.vue';
 import Button from '../components/inputs/Button.vue';
 import { v4 as uuidv4 } from 'uuid';
+import router from '../router/index.js';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -105,6 +106,10 @@ provide('moves', moves);
 provide('maxHp', maxHp);
 provide('step', step);
 
+if (!user.pokemon.pokemonName) {
+  router.push('/');
+}
+
 if (lastFight && lastFight.inProgress) {
   fightUuid.value = lastFight.id;
   player.hp = lastFight.playerHp;
@@ -123,6 +128,7 @@ if (lastFight && lastFight.inProgress) {
     enemyHp: enemy.hp,
     enemyPokemon: enemySprite.value.pokemon,
     inProgress: true,
+    datetime: new Date(),
   });
 }
 
@@ -311,6 +317,7 @@ function restart() {
     enemyHp: enemy.hp,
     enemyPokemon: enemySprite.value.pokemon,
     inProgress: true,
+    datetime: new Date(),
   });
   step.value = 'choice';
 }

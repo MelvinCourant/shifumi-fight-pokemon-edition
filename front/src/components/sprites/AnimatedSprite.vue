@@ -25,8 +25,8 @@ function capitalizeFirstLetter(val) {
 
 function generateImageSrc(pokemon, side, shiny) {
   const basePath = shiny
-    ? `../../assets/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.gif`
-    : `../../assets/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.gif`;
+    ? `/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.gif`
+    : `/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.gif`;
 
   return new URL(basePath, import.meta.url).href;
 }
