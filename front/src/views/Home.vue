@@ -3,13 +3,17 @@ import '../assets/css/views/_home.scss';
 import BattleZone from '../components/battle/BattleZone.vue';
 import { provide, reactive, ref } from 'vue';
 import Button from '../components/inputs/Button.vue';
+import TextBox from '../components/utils/TextBox.vue';
 import { useUserStore } from '../stores/user.js';
+import { useHistoryStore } from '../stores/history.js';
 import { useRouter } from 'vue-router';
 import Rules from '../components/home/Rules.vue';
 import PokemonsJson from '../data/pokemons.json';
 
 const userStore = useUserStore();
 const user = userStore.user;
+const { displayFightsFinished } = useHistoryStore();
+const history = displayFightsFinished();
 const router = useRouter();
 const pseudo = ref(user.pseudo ? user.pseudo : 'Joueur');
 const pokemonSprite = ref({
@@ -17,6 +21,7 @@ const pokemonSprite = ref({
   side: 'front',
   shiny: user.pokemon.shiny || false,
 });
+const displayHistory = ref(false);
 
 provide('pokemonSprite', pokemonSprite);
 
@@ -130,7 +135,12 @@ async function newGame() {
     <section class="home__party">
       <div class="home__left">
         <BattleZone :pseudo="pseudo" />
-        <Button text="Historique" :background="'blue'" size="small" />
+        <Button
+          text="Historique"
+          :background="'blue'"
+          size="small"
+          @click="displayHistory = true"
+        />
       </div>
       <div class="home__right">
         <Button
@@ -147,5 +157,44 @@ async function newGame() {
         />
       </div>
     </section>
+    <TextBox
+      class="history"
+      side="middle"
+      v-show="displayHistory"
+      @click="displayHistory = false"
+    >
+      <h2>Historique</h2>
+      <div>
+        <table class="history__table" v-if="history.length > 0">
+          <thead>
+            <tr>
+              <td>Résultat</td>
+              <td>Adversaire</td>
+              <td>Vos PV</td>
+              <td>PV adverse</td>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="fight in history.reverse()" :key="fight.id">
+              <tr
+                :class="[
+                  'history__fight',
+                  { 'history__fight--win': fight.result === 'Victoire' },
+                  { 'history__fight--defeat': fight.result === 'Défaite' },
+                  { 'history__fight--draw': fight.result === 'Egalité' },
+                ]"
+                v-if="!fight.inProgress"
+              >
+                <td>{{ fight.result }}</td>
+                <td>{{ fight.enemy }}</td>
+                <td>{{ fight.playerHp }}</td>
+                <td>{{ fight.enemyHp }}</td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+        <p v-else>Aucun historique existant</p>
+      </div>
+    </TextBox>
   </main>
 </template>

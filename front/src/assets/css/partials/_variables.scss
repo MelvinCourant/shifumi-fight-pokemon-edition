@@ -18,7 +18,13 @@ $colors: (
   'blue': #78D0F8,
 
   // transparent colors
-  'dark-transparent': rgba(40, 36, 36, 0.90),
+  'dark-transparent': rgba(40, 36, 36, 0.9),
+  'red-transparent-20': rgba(221, 54, 53, 0.2),
+  'red-transparent-50': rgba(221, 54, 53, 0.5),
+  'green-transparent-20': rgba(88, 176, 40, 0.2),
+  'green-transparent-50': rgba(88, 176, 40, 0.5),
+  'blue-transparent-20': rgba(120, 208, 248, 0.2),
+  'blue-transparent-50': rgba(120, 208, 248, 0.5),
 
   // gradient colors
   'gradient-red': linear-gradient(180deg, #DD3635 0%, #C4302F 100%),
