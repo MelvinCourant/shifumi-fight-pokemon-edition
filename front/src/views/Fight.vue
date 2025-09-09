@@ -51,6 +51,28 @@ const moves = reactive([
     highlyEffective: [0, 2],
   },
 ]);
+const ppAI = reactive([
+  {
+    id: 0,
+    pp: 4,
+    maxPp: 4,
+  },
+  {
+    id: 1,
+    pp: 4,
+    maxPp: 4,
+  },
+  {
+    id: 2,
+    pp: 4,
+    maxPp: 4,
+  },
+  {
+    id: 3,
+    pp: 1,
+    maxPp: 1,
+  },
+]);
 const maxHp = 300;
 const playerSprite = ref({
   pokemon: user.pokemon.pokemonName,
@@ -226,7 +248,18 @@ function attack(moveId) {
 }
 
 function AIAttack() {
-  return moves[Math.floor(Math.random() * moves.length)];
+  const availableMoves = ppAI.filter((pp) => pp.pp > 0);
+
+  if (availableMoves.length === 0) {
+    return null;
+  }
+
+  const randomIndex = Math.floor(Math.random() * availableMoves.length);
+  const selectedMoveId = availableMoves[randomIndex].id;
+
+  ppAI.find((pp) => pp.id === selectedMoveId).pp -= 1;
+
+  return moves.find((move) => move.id === selectedMoveId);
 }
 
 function criticalHitOrNot() {
@@ -262,6 +295,9 @@ function restart() {
   fightUuid.value = uuidv4();
   moves.forEach((move) => {
     move.pp = move.maxPp;
+  });
+  ppAI.forEach((pp) => {
+    pp.pp = pp.maxPp;
   });
   player.hp = maxHp;
   enemy.hp = maxHp;
