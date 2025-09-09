@@ -1,6 +1,6 @@
 <script setup>
 import '../../assets/css/components/utils/_sound.scss';
-import { watch } from 'vue';
+import { nextTick, watch } from 'vue';
 
 const props = defineProps({
   sound: {
@@ -25,7 +25,9 @@ watch(
   () => props.play,
   (value) => {
     if (value) {
-      document.querySelector(`#${props.attributes.id}`).play();
+      const audio = document.querySelector(`#${props.attributes.id}`);
+      audio.currentTime = 0;
+      audio.play();
     }
   },
 );

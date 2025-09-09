@@ -11,7 +11,7 @@ const router = createRouter({
       name: 'Home',
       component: Home,
       meta: {
-        sound: 'battle-tower',
+        sound: 'musics/battle-tower',
       },
     },
     {
@@ -19,7 +19,7 @@ const router = createRouter({
       name: 'PC',
       component: PC,
       meta: {
-        sound: 'pokemon-center',
+        sound: 'musics/pokemon-center',
       },
     },
     {
@@ -27,7 +27,7 @@ const router = createRouter({
       name: 'Fight',
       component: Fight,
       meta: {
-        sound: 'cynthia-theme',
+        sound: 'musics/cynthia-theme',
       },
     },
   ],

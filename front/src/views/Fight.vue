@@ -4,14 +4,16 @@ import BattleZone from '../components/battle/BattleZone.vue';
 import HUD from '../components/battle/HUD.vue';
 import { useUserStore } from '../stores/user.js';
 import { useHistoryStore } from '../stores/history.js';
-import { provide, reactive, ref } from 'vue';
+import { onUnmounted, provide, reactive, ref } from 'vue';
 import CharactersJson from '../data/characters.json';
 import PokemonsJson from '../data/pokemons.json';
 import TextBox from '../components/utils/TextBox.vue';
 import Button from '../components/inputs/Button.vue';
+import Sound from '../components/utils/Sound.vue';
 import { v4 as uuidv4 } from 'uuid';
 import router from '../router/index.js';
 import Settings from '../components/inputs/Settings.vue';
+import { useSettingsStore } from '../stores/settings.js';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -102,6 +104,48 @@ const enemy = reactive({
 });
 const step = ref('choice');
 const dialog = ref('');
+const settingsStore = useSettingsStore();
+const { settings } = settingsStore;
+const soundsAttributes = reactive([
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'super-effective',
+  },
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'normal',
+  },
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'faint',
+  },
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'restore',
+  },
+]);
+const soundsPlay = reactive([
+  {
+    id: 'super-effective',
+    play: false,
+  },
+  {
+    id: 'normal',
+    play: false,
+  },
+  {
+    id: 'faint',
+    play: false,
+  },
+  {
+    id: 'restore',
+    play: false,
+  },
+]);
 
 provide('moves', moves);
 provide('maxHp', maxHp);
@@ -157,6 +201,12 @@ function attack(moveId) {
 
   playerMove.pp -= 1;
 
+  soundsPlay.forEach((sound) => {
+    if (sound.play === true) {
+      sound.play = false;
+    }
+  });
+
   const enemyMove = AIAttack();
   const dmgInfliged = 100;
 
@@ -176,6 +226,13 @@ function attack(moveId) {
     }
 
     sendFightInHistory();
+
+    soundsPlay.forEach((sound) => {
+      if (sound.id === 'super-effective') {
+        sound.play = true;
+      }
+    });
+
     enemySprite.value.receiveDamage = true;
 
     setTimeout(() => {
@@ -198,6 +255,13 @@ function attack(moveId) {
     }
 
     sendFightInHistory();
+
+    soundsPlay.forEach((sound) => {
+      if (sound.id === 'super-effective') {
+        sound.play = true;
+      }
+    });
+
     playerSprite.value.receiveDamage = true;
 
     setTimeout(() => {
@@ -208,6 +272,13 @@ function attack(moveId) {
     enemy.hp -= dmgInfliged;
     dialog.value = `Vous et ${enemy.pseudo} utilisez ${playerMove.name}, le choc vous infligent des dégâts ...`;
     sendFightInHistory();
+
+    soundsPlay.forEach((sound) => {
+      if (sound.id === 'normal') {
+        sound.play = true;
+      }
+    });
+
     playerSprite.value.receiveDamage = true;
     enemySprite.value.receiveDamage = true;
 
@@ -274,6 +345,12 @@ function criticalHitOrNot() {
 }
 
 function nextStep() {
+  soundsPlay.forEach((sound) => {
+    if (sound.play === true) {
+      sound.play = false;
+    }
+  });
+
   if (step.value === 'choice') return;
 
   if (player.hp > 0 && enemy.hp > 0) {
@@ -281,16 +358,23 @@ function nextStep() {
   } else if (player.hp === 0 && enemy.hp === 0) {
     playerSprite.value.ko = true;
     enemySprite.value.ko = true;
-    step.value = 'fight-finished';
     dialog.value = `Vous et ${enemy.pseudo} êtes K.O. ! Match nul`;
   } else if (player.hp === 0) {
     playerSprite.value.ko = true;
-    step.value = 'fight-finished';
     dialog.value = `Vous êtes K.O ! ${enemy.pseudo} a gagné !`;
   } else if (enemy.hp === 0) {
     enemySprite.value.ko = true;
-    step.value = 'fight-finished';
     dialog.value = `${enemy.pseudo} est K.O. ! Vous avez gagné !`;
+  }
+
+  if (player.hp === 0 || enemy.hp === 0) {
+    soundsPlay.forEach((sound) => {
+      if (sound.id === 'faint') {
+        sound.play = true;
+      }
+    });
+
+    step.value = 'fight-finished';
   }
 
   if (step.value === 'fight-finished') {
@@ -320,8 +404,23 @@ function restart() {
     inProgress: true,
     datetime: new Date(),
   });
+  soundsPlay.forEach((sound) => {
+    if (sound.id === 'restore') {
+      sound.play = true;
+    } else {
+      sound.play = false;
+    }
+  });
   step.value = 'choice';
 }
+
+onUnmounted(() => {
+  soundsPlay.forEach((sound) => {
+    if (sound.play === true) {
+      sound.play = false;
+    }
+  });
+});
 </script>
 
 <template>
@@ -350,5 +449,25 @@ function restart() {
       <Button text="Quitter" :background="'red'" link="/" />
     </div>
     <Settings />
+    <Sound
+      sound="fight/super-effective"
+      :attributes="soundsAttributes[0]"
+      :play="soundsPlay[0].play"
+    />
+    <Sound
+      sound="fight/normal"
+      :attributes="soundsAttributes[1]"
+      :play="soundsPlay[1].play"
+    />
+    <Sound
+      sound="fight/faint"
+      :attributes="soundsAttributes[2]"
+      :play="soundsPlay[2].play"
+    />
+    <Sound
+      sound="fight/restore"
+      :attributes="soundsAttributes[3]"
+      :play="soundsPlay[3].play"
+    />
   </main>
 </template>
