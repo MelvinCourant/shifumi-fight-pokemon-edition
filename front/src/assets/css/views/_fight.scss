@@ -6,6 +6,69 @@
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
+  overflow: hidden;
+
+  &--entering-animation {
+    .fight {
+      &__enemy {
+        .battle-zone {
+          animation: slideLeft 3s;
+
+          @keyframes slideLeft {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+        }
+
+        .hud {
+          transform: translateX(-100%);
+          animation: slideLeftHud 0.2s 3s;
+
+          @keyframes slideLeftHud {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+        }
+      }
+
+      &__player {
+        .battle-zone {
+          animation: slideRight 3s;
+
+          @keyframes slideRight {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(-80px);
+            }
+          }
+        }
+
+        .hud {
+          transform: translateX(100%);
+          animation: slideRightHud 0.2s 3s;
+
+          @keyframes slideRightHud {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+        }
+      }
+    }
+  }
 
   &__enemy,
   &__player {

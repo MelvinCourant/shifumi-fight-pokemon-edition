@@ -146,6 +146,7 @@ const soundsPlay = reactive([
     play: false,
   },
 ]);
+const enteringAnimation = ref(true);
 
 provide('moves', moves);
 provide('maxHp', maxHp);
@@ -176,6 +177,10 @@ if (lastFight && lastFight.inProgress) {
     datetime: new Date(),
   });
 }
+
+setTimeout(() => {
+  enteringAnimation.value = false;
+}, 3200);
 
 function generateEnemy() {
   enemy.pseudo =
@@ -424,7 +429,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main class="fight">
+  <main :class="['fight', { 'fight--entering-animation': enteringAnimation }]">
     <h1 class="hidden-title">Fight</h1>
     <div class="fight__enemy">
       <BattleZone :pokemonSprite="enemySprite" />
