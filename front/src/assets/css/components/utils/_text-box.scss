@@ -3,8 +3,6 @@
 .text-box {
   position: fixed;
   z-index: 9998;
-  flex-direction: column;
-  gap: functions.rem(40);
   left: 0;
   width: 100%;
   background: var(--dark-transparent);

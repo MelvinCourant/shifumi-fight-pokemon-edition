@@ -1,0 +1,27 @@
+@use "../../partials/fonts";
+@use "../../partials/functions";
+@use "../../partials/mixins";
+
+.credits {
+  position: absolute;
+  bottom: functions.rem(20);
+  @include mixins.resetButton(none, none);
+  font-family: fonts.$power-clear;
+  font-size: functions.rem(30);
+  color: var(--black);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+
+  &__popin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+  }
+
+  &__legal-notice {
+    font-size: functions.rem(12);
+  }
+}

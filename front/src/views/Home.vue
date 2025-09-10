@@ -10,6 +10,7 @@ import { useRouter } from 'vue-router';
 import Rules from '../components/home/Rules.vue';
 import PokemonsJson from '../data/pokemons.json';
 import Settings from '../components/inputs/Settings.vue';
+import Credits from '../components/home/Credits.vue';
 
 const userStore = useUserStore();
 const user = userStore.user;
@@ -185,5 +186,14 @@ async function newGame() {
         <p v-else>Aucun historique existant</p>
       </div>
     </TextBox>
+    <a
+      class="developer"
+      href="https://melvincourant.fr"
+      target="_blank"
+      title="Aller sur le site du développeur: Melvin Courant"
+    >
+      <img src="../assets/imgs/logo.jpg" alt="Logo Melvin Courant" />
+    </a>
+    <Credits />
   </main>
 </template>

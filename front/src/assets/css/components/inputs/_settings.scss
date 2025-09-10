@@ -4,6 +4,12 @@
 .settings {
   @include mixins.resetButton(none, none);
   z-index: 10001;
+  margin-top: 10px;
+
+  @media screen and (max-width: 767px) {
+    width: 30px;
+    margin-top: 0;
+  }
 
   &__popin {
     z-index: 10000;
