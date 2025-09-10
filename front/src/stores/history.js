@@ -22,9 +22,11 @@ export const useHistoryStore = defineStore('sf-history', () => {
       result: fight.result,
       player: fight.player,
       playerHp: fight.playerHp,
+      playerPp: fight.playerPp,
       enemy: fight.enemy,
       enemyHp: fight.enemyHp,
       enemyPokemon: fight.enemyPokemon,
+      enemyPp: fight.enemyPp,
       inProgress: fight.inProgress,
       datetime: fight.datetime,
     });
@@ -49,7 +51,9 @@ export const useHistoryStore = defineStore('sf-history', () => {
 
   function displayFightsFinished() {
     let fightsFinished = history.value.filter((fight) => !fight.inProgress);
-    fightsFinished = fightsFinished.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+    fightsFinished = fightsFinished.sort(
+      (a, b) => new Date(b.datetime) - new Date(a.datetime),
+    );
 
     return fightsFinished;
   }

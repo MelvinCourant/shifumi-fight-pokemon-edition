@@ -162,6 +162,20 @@ if (lastFight && lastFight.inProgress) {
   enemySprite.value.pokemon = lastFight.enemyPokemon;
   enemy.pseudo = lastFight.enemy;
   enemy.hp = lastFight.enemyHp;
+  lastFight.playerPp.forEach((lastFightMove) => {
+    moves.forEach((move) => {
+      if (lastFightMove.id === move.id) {
+        move.pp = lastFightMove.pp;
+      }
+    });
+  });
+  lastFight.enemyPp.forEach((lastFightMove) => {
+    ppAI.forEach((move) => {
+      if (lastFightMove.id === move.id) {
+        move.pp = lastFightMove.pp;
+      }
+    });
+  });
 } else {
   generateRandomPokemon(user.pokemon.pokemonName);
   generateEnemy();
@@ -170,9 +184,11 @@ if (lastFight && lastFight.inProgress) {
     id: fightUuid.value,
     player: player.pseudo,
     playerHp: player.hp,
+    playerPp: filterPpForHistory(moves),
     enemy: enemy.pseudo,
     enemyHp: enemy.hp,
     enemyPokemon: enemySprite.value.pokemon,
+    enemyPp: filterPpForHistory(ppAI),
     inProgress: true,
     datetime: new Date(),
   });
@@ -181,6 +197,10 @@ if (lastFight && lastFight.inProgress) {
 setTimeout(() => {
   enteringAnimation.value = false;
 }, 3200);
+
+function filterPpForHistory(moves) {
+  return moves.map(({ id, pp }) => ({ id, pp }));
+}
 
 function generateEnemy() {
   enemy.pseudo =
@@ -299,7 +319,9 @@ function attack(moveId) {
         id: fightUuid.value,
         result: 'Egalité',
         playerHp: player.hp,
+        playerPp: filterPpForHistory(moves),
         enemyHp: enemy.hp,
+        enemyPp: filterPpForHistory(ppAI),
         inProgress: false,
       });
     } else if (player.hp === 0) {
@@ -307,7 +329,9 @@ function attack(moveId) {
         id: fightUuid.value,
         result: 'Défaite',
         playerHp: player.hp,
+        playerPp: filterPpForHistory(moves),
         enemyHp: enemy.hp,
+        enemyPp: filterPpForHistory(ppAI),
         inProgress: false,
       });
     } else if (enemy.hp === 0) {
@@ -315,14 +339,18 @@ function attack(moveId) {
         id: fightUuid.value,
         result: 'Victoire',
         playerHp: player.hp,
+        playerPp: filterPpForHistory(moves),
         enemyHp: enemy.hp,
+        enemyPp: filterPpForHistory(ppAI),
         inProgress: false,
       });
     } else {
       updateFightInHistory({
         id: fightUuid.value,
         playerHp: player.hp,
+        playerPp: filterPpForHistory(moves),
         enemyHp: enemy.hp,
+        enemyPp: filterPpForHistory(ppAI),
       });
     }
   }
