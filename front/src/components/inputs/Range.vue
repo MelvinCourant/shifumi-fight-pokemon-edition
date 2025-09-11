@@ -17,10 +17,22 @@ const linearGradient = ref(
   `linear-gradient(to right, var(--bar-green) ${props.attributes.value - props.attributes.min}%, var(--bar-white) ${props.attributes.value}%)`,
 );
 
+if (props.attributes.value < 7) {
+  linearGradient.value = `linear-gradient(to right, var(--bar-green) calc(${props.attributes.value - props.attributes.min}% + 10px), var(--bar-white) calc(${props.attributes.value}% + 10px))`;
+} else if (props.attributes.value > 90) {
+  linearGradient.value = `linear-gradient(to right, var(--bar-green) calc(${props.attributes.value - props.attributes.min}% - 10px), var(--bar-white) calc(${props.attributes.value}% - 10px))`;
+}
+
 watch(
   () => props.attributes.value,
   (value) => {
-    linearGradient.value = `linear-gradient(to right, var(--bar-green) calc(${value - props.attributes.min}% + 10px), var(--bar-white) calc(${value + 10}% + 10px))`;
+    if (value < 7) {
+      linearGradient.value = `linear-gradient(to right, var(--bar-green) calc(${value - props.attributes.min}% + 10px), var(--bar-white) calc(${value}% + 10px))`;
+    } else if (value > 90) {
+      linearGradient.value = `linear-gradient(to right, var(--bar-green) calc(${value - props.attributes.min}% - 10px), var(--bar-white) calc(${value}% - 10px))`;
+    } else {
+      linearGradient.value = `linear-gradient(to right, var(--bar-green) ${value - props.attributes.min}%, var(--bar-white) ${value}%)`;
+    }
   },
 );
 
