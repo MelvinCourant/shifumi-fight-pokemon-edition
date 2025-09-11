@@ -31,7 +31,8 @@
   &--red {
     @include mixins.resetButton(none, var(--gradient-red));
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--red);
     }
   }
@@ -39,7 +40,8 @@
   &--green {
     @include mixins.resetButton(none, var(--gradient-green));
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--green);
     }
   }
@@ -47,7 +49,8 @@
   &--blue {
     @include mixins.resetButton(none, var(--gradient-blue));
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--blue);
     }
   }

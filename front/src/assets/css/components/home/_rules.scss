@@ -1,17 +1,30 @@
+@use "../../partials/functions";
+@use "../../partials/mixins";
+
 .rules {
   display: flex;
   width: fit-content;
   height: fit-content;
-  margin-top: 10px;
+  margin-top: functions.rem(10);
 
   @media screen and (max-width: 767px) {
     margin-top: 0;
   }
 
-  &__icon {
+  &__button {
     position: relative;
-    z-index: 9999;
-    cursor: pointer;
+    z-index: 9997;
+    @include mixins.resetButton(none, none);
+    transition: transform 0.2s;
+
+    &:hover,
+    &:focus {
+      transform: scale(0.8);
+    }
+
+    &:focus {
+      outline: none;
+    }
 
     @media screen and (max-width: 767px) {
       width: 30px;

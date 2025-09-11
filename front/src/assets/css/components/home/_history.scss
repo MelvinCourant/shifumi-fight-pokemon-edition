@@ -1,0 +1,47 @@
+@use "../../partials/functions";
+
+.history {
+  &__table {
+    border-spacing: 0;
+
+    thead {
+      td {
+        padding: functions.rem(8) functions.rem(12) functions.rem(24);;
+      }
+    }
+
+    tbody {
+      overflow: auto;
+    }
+  }
+
+  &__fight {
+    &--win {
+      background: var(--green-transparent-20);
+
+      &:hover {
+        background: var(--green-transparent-50)
+      }
+    }
+
+    &--defeat {
+      background: var(--red-transparent-20);
+
+      &:hover {
+        background: var(--red-transparent-50);
+      }
+    }
+
+    &--draw {
+      background: var(--blue-transparent-20);
+
+      &:hover {
+        background: var(--blue-transparent-50);
+      }
+    }
+
+    td {
+      padding: functions.rem(8) functions.rem(12);
+    }
+  }
+}

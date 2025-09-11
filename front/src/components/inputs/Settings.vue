@@ -3,7 +3,7 @@ import '../../assets/css/components/inputs/_settings.scss';
 import Range from './Range.vue';
 import { reactive, ref, watch } from 'vue';
 import { useSettingsStore } from '../../stores/settings.js';
-import TextBox from '../utils/TextBox.vue';
+import Popin from '../utils/Popin.vue';
 
 defineEmits(['updateInteractionSound']);
 
@@ -21,7 +21,7 @@ const musicAttributes = reactive({
   step: 1,
   value: settings.musicVolume * 100,
 });
-const display = ref(false);
+const isDisplayed = ref(false);
 
 function updateSound(value) {
   soundAttributes.value = value;
@@ -47,12 +47,11 @@ watch(settings, (value) => {
     class="settings"
     @mousedown="$emit('updateInteractionSound', false)"
     @click="
-      display = !display;
+      isDisplayed = true;
       $emit('updateInteractionSound', true);
     "
   >
     <svg
-      class="settings"
       width="50"
       height="50"
       viewBox="0 0 50 50"
@@ -65,7 +64,12 @@ watch(settings, (value) => {
       />
     </svg>
   </button>
-  <TextBox class="settings__popin" side="middle" v-show="display">
+  <Popin
+    class="settings__popin"
+    :isDisplayed="isDisplayed"
+    @closePopin="isDisplayed = false"
+    @updateInteractionSound="$emit('updateInteractionSound', $event)"
+  >
     <h2>Paramètres</h2>
     <div>
       <ul class="settings__list">
@@ -109,5 +113,5 @@ watch(settings, (value) => {
         </li>
       </ul>
     </div>
-  </TextBox>
+  </Popin>
 </template>

@@ -1,0 +1,25 @@
+@use '../../partials/functions';
+@use '../../partials/mixins';
+
+.popin {
+  position: fixed;
+  z-index: 9998;
+
+  &__button {
+    position: fixed;
+    z-index: 9999;
+    @include mixins.resetButton(none, none);
+    top: functions.rem(40);
+    right: functions.rem(40);
+    transition: transform 0.2s;
+
+    &:hover,
+    &:focus {
+      transform: scale(0.8);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

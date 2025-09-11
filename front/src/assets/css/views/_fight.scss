@@ -121,7 +121,7 @@
 
   .settings {
     position: fixed;
-    top: 40px;
-    right: 40px;
+    top: functions.rem(40);
+    right: functions.rem(40);
   }
 }

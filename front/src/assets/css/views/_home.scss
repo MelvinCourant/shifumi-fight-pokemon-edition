@@ -14,7 +14,7 @@
   @media screen and (max-width: 991px) {
     justify-content: center;
     gap: 0;
-    padding-top: 75px;
+    padding-top: functions.rem(75);
   }
 
   &__header {
@@ -27,10 +27,10 @@
     align-items: flex-start;
     flex-wrap: wrap;
     width: 100%;
-    padding: 30px 40px 0;
+    padding: functions.rem(30) functions.rem(40) 0;
 
     @media screen and (max-width: 767px) {
-      padding: 20px 20px 0;
+      padding: functions.rem(20) functions.rem(20) 0;
     }
   }
 
@@ -61,6 +61,14 @@
     font-family: fonts.$power-clear;
     font-weight: 700;
     line-height: 0.77;
+  }
+
+  .settings {
+    margin-top: functions.rem(10);
+
+    @media screen and (max-width: 767px) {
+      margin-top: 0;
+    }
   }
 
   .battle-zone {
@@ -125,52 +133,6 @@
     }
   }
 
-  .history {
-    &__table {
-      border-spacing: 0;
-
-      thead {
-        td {
-          padding: functions.rem(8) functions.rem(12) functions.rem(24);;
-        }
-      }
-
-      tbody {
-        overflow: auto;
-      }
-    }
-
-    &__fight {
-      &--win {
-        background: var(--green-transparent-20);
-
-        &:hover {
-          background: var(--green-transparent-50)
-        }
-      }
-
-      &--defeat {
-        background: var(--red-transparent-20);
-
-        &:hover {
-          background: var(--red-transparent-50);
-        }
-      }
-
-      &--draw {
-        background: var(--blue-transparent-20);
-
-        &:hover {
-          background: var(--blue-transparent-50);
-        }
-      }
-
-      td {
-        padding: functions.rem(8) functions.rem(12);
-      }
-    }
-  }
-
   .developer {
     position: absolute;
     right: functions.rem(20);
@@ -198,8 +160,13 @@
       bottom: functions.rem(10);
     }
 
-    &:hover {
-      transform: scale(0.9);
+    &:hover,
+    &:focus {
+      transform: scale(0.8);
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 }

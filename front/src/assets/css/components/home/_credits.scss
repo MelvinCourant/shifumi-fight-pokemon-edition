@@ -11,14 +11,21 @@
   color: var(--black);
   transition: transform 0.2s;
 
-  &:hover {
-    transform: scale(0.9);
+  &:hover,
+  &:focus {
+    transform: scale(0.8);
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &__popin {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between !important;
+    .text-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between !important;
+    }
   }
 
   &__legal-notice {

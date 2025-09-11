@@ -2,32 +2,29 @@
 import '../../assets/css/components/home/_credits.scss';
 import TextBox from '../utils/TextBox.vue';
 import { ref } from 'vue';
+import Popin from '../utils/Popin.vue';
 
 defineEmits(['updateInteractionSound']);
 
-const displayCredits = ref(false);
+const isDisplayed = ref(false);
 </script>
 
 <template>
   <input
     @mousedown="$emit('updateInteractionSound', false)"
     @click="
-      displayCredits = true;
+      isDisplayed = true;
       $emit('updateInteractionSound', true);
     "
     class="credits"
     type="button"
     value="Crédits"
   />
-  <TextBox
-    @mousedown="$emit('updateInteractionSound', false)"
-    @click="
-      displayCredits = false;
-      $emit('updateInteractionSound', true);
-    "
+  <Popin
+    :isDisplayed="isDisplayed"
+    @closePopin="isDisplayed = false"
+    @updateInteractionSound="$emit('updateInteractionSound', $event)"
     class="credits__popin"
-    side="middle"
-    v-show="displayCredits"
   >
     <div class="credits__content">
       <h2>Crédits</h2>
@@ -47,5 +44,5 @@ const displayCredits = ref(false);
       cas affilié ou approuvé par les ayants droit. Tous les droits réservés à
       leurs propriétaires respectifs.
     </p>
-  </TextBox>
+  </Popin>
 </template>

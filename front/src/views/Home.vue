@@ -1,9 +1,8 @@
 <script setup>
 import '../assets/css/views/_home.scss';
 import BattleZone from '../components/battle/BattleZone.vue';
-import { provide, reactive, ref } from 'vue';
+import { provide, ref } from 'vue';
 import Button from '../components/inputs/Button.vue';
-import TextBox from '../components/utils/TextBox.vue';
 import { useUserStore } from '../stores/user.js';
 import { useHistoryStore } from '../stores/history.js';
 import { useRouter } from 'vue-router';
@@ -11,6 +10,7 @@ import Rules from '../components/home/Rules.vue';
 import PokemonsJson from '../data/pokemons.json';
 import Settings from '../components/inputs/Settings.vue';
 import Credits from '../components/home/Credits.vue';
+import History from '../components/home/History.vue';
 
 defineEmits(['updateInteractionSound']);
 
@@ -129,11 +129,8 @@ async function newGame() {
     <section class="home__party">
       <div class="home__left">
         <BattleZone :pseudo="pseudo" />
-        <Button
-          text="Historique"
-          :background="'blue'"
-          size="small"
-          @click="displayHistory = true"
+        <History
+          :history="history"
           @updateInteractionSound="$emit('updateInteractionSound', $event)"
         />
       </div>
@@ -154,49 +151,6 @@ async function newGame() {
         />
       </div>
     </section>
-    <TextBox
-      class="history"
-      side="middle"
-      v-show="displayHistory"
-      @mousedown="$emit('updateInteractionSound', false)"
-      @click="
-        displayHistory = false;
-        $emit('updateInteractionSound', true);
-      "
-    >
-      <h2>Historique</h2>
-      <div>
-        <table class="history__table" v-if="history.length > 0">
-          <thead>
-            <tr>
-              <td>Résultat</td>
-              <td>Adversaire</td>
-              <td>Vos PV</td>
-              <td>PV adverse</td>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-for="fight in history" :key="fight.id">
-              <tr
-                :class="[
-                  'history__fight',
-                  { 'history__fight--win': fight.result === 'Victoire' },
-                  { 'history__fight--defeat': fight.result === 'Défaite' },
-                  { 'history__fight--draw': fight.result === 'Egalité' },
-                ]"
-                v-if="!fight.inProgress"
-              >
-                <td>{{ fight.result }}</td>
-                <td>{{ fight.enemy }}</td>
-                <td>{{ fight.playerHp }}</td>
-                <td>{{ fight.enemyHp }}</td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-        <p v-else>Aucun historique existant</p>
-      </div>
-    </TextBox>
     <a
       class="developer"
       href="https://melvincourant.fr"

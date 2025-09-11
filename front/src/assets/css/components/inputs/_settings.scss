@@ -3,17 +3,23 @@
 
 .settings {
   @include mixins.resetButton(none, none);
-  z-index: 10001;
-  margin-top: 10px;
+  z-index: 9997;
+  transition: transform 0.2s;
+
+  &:hover,
+  &:focus {
+    transform: scale(0.8);
+  }
+
+  &:focus {
+    outline: none;
+  }
 
   @media screen and (max-width: 767px) {
     width: 30px;
-    margin-top: 0;
   }
 
   &__popin {
-    z-index: 10000;
-
     ul {
       display: flex;
       flex-direction: column;
