@@ -1,12 +1,23 @@
 @use "../../partials/functions";
 
 .hud {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: functions.rem(16);
 
   &:has(.hp-bar--enemy) {
-    margin-top: 125px;
+    top: 125px;
+    left: 0;
+
+    @media screen and (max-width: 1439px) {
+      top: 8.68vw; // 125px in 1440px
+    }
+  }
+
+  &:has(.hp-bar--player) {
+    right: 0;
+    bottom: 0;
   }
 }

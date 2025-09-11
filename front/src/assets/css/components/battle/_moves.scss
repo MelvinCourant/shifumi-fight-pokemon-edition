@@ -9,6 +9,13 @@
   margin-bottom: functions.rem(25);
   margin-right: functions.rem(4);
 
+  @media screen and (max-width: 1439px) {
+    gap: 0.56vw; // 8px in 1440px
+    width: 35.42vw; // 510px in 1440px
+    margin-bottom: 1.74vw; // 25px in 1440px
+    margin-right: 0.28vw; // 4px in 1440px
+  }
+
   &--hidden {
     opacity: 0;
     pointer-events: none;
@@ -16,5 +23,9 @@
 
   &__move {
     width: 250px;
+
+    @media screen and (max-width: 1439px)  {
+      width: 17.36vw; // 250px in 1440px
+    }
   }
 }

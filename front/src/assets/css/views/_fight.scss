@@ -73,24 +73,36 @@
   &__enemy,
   &__player {
     display: flex;
-    justify-content: space-between;
   }
 
   &__enemy {
     flex-direction: row-reverse;
     height: 568px;
 
+    @media screen and (max-width: 1439px) {
+      height: 39.44vw; // 568px in 1440px
+    }
+
     .battle-zone {
       width: 700px;
+
+      @media screen and (max-width: 1439px) {
+        width: 48.61vw; // 700px in 1440px
+      }
     }
   }
 
   &__player {
-    align-items: flex-end;
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
+
+    .battle-zone {
+      @media screen and (max-width: 1439px) {
+        width: 69.44vw; // 1000px in 1440px
+      }
+    }
   }
 
   &__overlay {

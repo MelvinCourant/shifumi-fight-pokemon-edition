@@ -8,7 +8,12 @@
     position: absolute;
     color: var(--dark-grey);
     font-size: functions.rem(31);
-    text-shadow: 4px 4px 0 var(--hp-shadow-grey), 0 4px 0 var(--hp-shadow-grey), 4px 0 0 var(--hp-shadow-grey);
+    text-shadow: functions.rem(4) functions.rem(4) 0 var(--hp-shadow-grey), 0 functions.rem(4) 0 var(--hp-shadow-grey), functions.rem(4) 0 0 var(--hp-shadow-grey);
+
+    @media screen and (max-width: 1439px) {
+      font-size: 2.15vw; // 31px in 1440px
+      text-shadow: 0.28vw 0.28vw 0 var(--hp-shadow-grey), 0 0.28vw 0 var(--hp-shadow-grey), 0.28vw 0 0 var(--hp-shadow-grey);
+    }
   }
 
   &__hp-number {
@@ -24,7 +29,12 @@
       font-size: functions.rem(32);
       text-align: right;
       letter-spacing: -0.28em;
-      text-shadow: 4px 4px 0 var(--hp-shadow-grey), 0 4px 0 var(--hp-shadow-grey), 4px 0 0 var(--hp-shadow-grey);
+      text-shadow: functions.rem(4) functions.rem(4) 0 var(--hp-shadow-grey), 0 functions.rem(4) 0 var(--hp-shadow-grey), functions.rem(4) 0 0 var(--hp-shadow-grey);
+
+      @media screen and (max-width: 1439px) {
+        font-size: 2.22vw; // 32px in 1440px
+        text-shadow: 0.28vw 0.28vw 0 var(--hp-shadow-grey), 0 0.28vw 0 var(--hp-shadow-grey), 0.28vw 0 0 var(--hp-shadow-grey);
+      }
     }
   }
 
@@ -34,7 +44,12 @@
     color: var(--dark-grey);
     font-size: functions.rem(32);
     letter-spacing: -0.28em;
-    text-shadow: 4px 4px 0 var(--hp-shadow-grey), 0 4px 0 var(--hp-shadow-grey), 4px 0 0 var(--hp-shadow-grey);
+    text-shadow: functions.rem(4) functions.rem(4) 0 var(--hp-shadow-grey), 0 functions.rem(4) 0 var(--hp-shadow-grey), functions.rem(4) 0 0 var(--hp-shadow-grey);
+
+    @media screen and (max-width: 1439px) {
+      font-size: 2.22vw; // 32px in 1440px
+      text-shadow: 0.28vw 0.28vw 0 var(--hp-shadow-grey), 0 0.28vw 0 var(--hp-shadow-grey), 0.28vw 0 0 var(--hp-shadow-grey);
+    }
   }
 
   &__gauge {
@@ -90,6 +105,10 @@
   }
 
   &--player {
+    @media screen and (max-width: 1439px) {
+      width: 34.72vw; // 500px in 1440px
+    }
+
     .hp-bar {
       &__pseudo {
         top: 14.85%;
@@ -111,6 +130,10 @@
   }
 
   &--enemy {
+    @media screen and (max-width: 1439px) {
+      width: 33.13vw; // 477px in 1440px
+    }
+
     .hp-bar {
       &__pseudo {
         top: 17.15%;

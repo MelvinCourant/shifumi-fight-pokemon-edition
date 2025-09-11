@@ -27,6 +27,14 @@
     bottom: 0;
     width: 100%;
     padding: functions.rem(52) functions.rem(100);
+
+    @media screen and (max-width: 1280px) {
+      padding: functions.rem(46) functions.rem(40);
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: functions.rem(40) functions.rem(20);
+    }
   }
 
   h2 {
