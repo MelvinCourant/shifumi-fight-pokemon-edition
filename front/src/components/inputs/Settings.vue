@@ -1,11 +1,11 @@
 <script setup>
 import '../../assets/css/components/inputs/_settings.scss';
 import Range from './Range.vue';
-import { reactive, ref, watch } from 'vue';
+import { nextTick, reactive, ref, watch } from 'vue';
 import { useSettingsStore } from '../../stores/settings.js';
 import Popin from '../utils/Popin.vue';
 
-defineEmits(['updateInteractionSound']);
+const emit = defineEmits(['updateInteractionSound']);
 
 const settingsStore = useSettingsStore();
 const { settings, updateSettings } = settingsStore;
@@ -23,9 +23,12 @@ const musicAttributes = reactive({
 });
 const isDisplayed = ref(false);
 
-function updateSound(value) {
+async function updateSound(value) {
+  emit('updateInteractionSound', false);
   soundAttributes.value = value;
   updateSettings({ soundVolume: value / 100 });
+  await nextTick();
+  emit('updateInteractionSound', true);
 }
 
 function updateMusic(value) {

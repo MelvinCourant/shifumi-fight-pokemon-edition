@@ -20,7 +20,7 @@ const linearGradient = ref(
 watch(
   () => props.attributes.value,
   (value) => {
-    linearGradient.value = `linear-gradient(to right, var(--bar-green) ${value - props.attributes.min}%, var(--bar-white) ${value}%)`;
+    linearGradient.value = `linear-gradient(to right, var(--bar-green) calc(${value - props.attributes.min}% + 10px), var(--bar-white) calc(${value + 10}% + 10px))`;
   },
 );
 

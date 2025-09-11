@@ -38,6 +38,7 @@ function activeMusic() {
 
 watch(settings, (value) => {
   musicAttributes.volume = value.musicVolume;
+  soundAttributes.volume = value.soundVolume;
 });
 
 watch(route, (value) => {
