@@ -3,11 +3,15 @@ import '../assets/css/views/_pc.scss';
 import PokemonsJson from '../data/pokemons.json';
 import { useUserStore } from '../stores/user.js';
 import { usePcBoxStore } from '../stores/pc-box.js';
-import { onMounted, provide, ref, computed } from 'vue';
+import { onMounted, provide, ref, computed, nextTick, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import PCBox from '../components/pc/PCBox.vue';
 import PokemonDetails from '../components/pc/PokemonDetails.vue';
 import Button from '../components/inputs/Button.vue';
+import Sound from '../components/utils/Sound.vue';
+import { useSettingsStore } from '../stores/settings.js';
+
+const emit = defineEmits(['updateInteractionSound']);
 
 const route = useRoute();
 const query = route.query;
@@ -93,6 +97,8 @@ async function pokemonIsShinyOrNot() {
 }
 
 async function updatePokemonSelected(pokemonName) {
+  emit('updateInteractionSound', false);
+
   pokemonSelected.value = pokemonName;
   const selectedPokemon = pokemons.value.find((p) => p.image === pokemonName);
 
@@ -118,6 +124,8 @@ async function updatePokemonSelected(pokemonName) {
     path: '/pc',
     query: { pokemon: pokemonName },
   });
+
+  emit('updateInteractionSound', true);
 }
 
 function updatePseudo(newPseudo) {
@@ -136,8 +144,15 @@ function updatePseudo(newPseudo) {
       <PCBox
         :pokemons="pokemons"
         @pokemonSelected="updatePokemonSelected($event)"
+        @updateInteractionSound="$emit('updateInteractionSound', $event)"
       />
-      <Button text="CHOISIR" :background="'blue'" size="big" link="/" />
+      <Button
+        text="CHOISIR"
+        :background="'blue'"
+        size="big"
+        link="/"
+        @updateInteractionSound="$emit('updateInteractionSound', $event)"
+      />
     </div>
     <div v-else class="pc__loading">Chargement des Pokémons...</div>
   </main>

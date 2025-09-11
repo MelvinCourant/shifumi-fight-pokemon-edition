@@ -11,7 +11,7 @@ defineProps({
   },
 });
 
-const emit = defineEmits(['pokemonSelected']);
+const emit = defineEmits(['pokemonSelected', 'updateInteractionSound']);
 
 const router = useRouter();
 const pokemonSelected = ref(inject('pokemonSelected'));
@@ -115,7 +115,11 @@ async function moveInBox(event) {
   } else if (event.key === 'ArrowRight' && currentIndex < pokemons.length - 1) {
     newIndex = currentIndex + 1;
   } else if (event.key === 'Enter') {
+    emit('updateInteractionSound', false);
     window.removeEventListener('keydown', moveInBox);
+
+    await nextTick();
+    emit('updateInteractionSound', true);
 
     await router.push({
       name: 'Home',

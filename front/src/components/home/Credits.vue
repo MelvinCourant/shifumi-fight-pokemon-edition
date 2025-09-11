@@ -3,18 +3,28 @@ import '../../assets/css/components/home/_credits.scss';
 import TextBox from '../utils/TextBox.vue';
 import { ref } from 'vue';
 
+defineEmits(['updateInteractionSound']);
+
 const displayCredits = ref(false);
 </script>
 
 <template>
   <input
-    @click="displayCredits = true"
+    @mousedown="$emit('updateInteractionSound', false)"
+    @click="
+      displayCredits = true;
+      $emit('updateInteractionSound', true);
+    "
     class="credits"
     type="button"
     value="Crédits"
   />
   <TextBox
-    @click="displayCredits = false"
+    @mousedown="$emit('updateInteractionSound', false)"
+    @click="
+      displayCredits = false;
+      $emit('updateInteractionSound', true);
+    "
     class="credits__popin"
     side="middle"
     v-show="displayCredits"

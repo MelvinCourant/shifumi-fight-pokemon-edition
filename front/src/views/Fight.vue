@@ -15,6 +15,8 @@ import router from '../router/index.js';
 import Settings from '../components/inputs/Settings.vue';
 import { useSettingsStore } from '../stores/settings.js';
 
+defineEmits(['updateInteractionSound']);
+
 const userStore = useUserStore();
 const user = userStore.user;
 const { addFightInHistory, updateFightInHistory, lastFightInProgress } =
@@ -238,16 +240,16 @@ function attack(moveId) {
   if (playerMove.highlyEffective.includes(enemyMove.id)) {
     if (!criticalHitOrNot()) {
       enemy.hp -= dmgInfliged;
-      dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
-        efficace !`;
+      dialog.value = `${enemy.pseudo} utilise ${enemyMove.name}... mais vous utilisez ${playerMove.name}, c’est super
+        efficace!`;
     } else {
       if (enemy.hp - dmgInfliged * 2 < 0) {
         enemy.hp = 0;
       } else {
         enemy.hp -= dmgInfliged * 2;
       }
-      dialog.value = `${enemy.pseudo} utilise ${enemyMove.name} ... mais vous utilisez ${playerMove.name}, c’est super
-        efficace ! Coup critique !`;
+      dialog.value = `${enemy.pseudo} utilise ${enemyMove.name}... mais vous utilisez ${playerMove.name}, c’est super
+        efficace! Coup critique!`;
     }
 
     sendFightInHistory();
@@ -266,8 +268,8 @@ function attack(moveId) {
   } else if (enemyMove.highlyEffective.includes(playerMove.id)) {
     if (!criticalHitOrNot()) {
       player.hp -= dmgInfliged;
-      dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
-        efficace !`;
+      dialog.value = `Vous utilisez ${playerMove.name}... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
+        efficace!`;
     } else {
       if (player.hp - dmgInfliged * 2 < 0) {
         player.hp = 0;
@@ -275,8 +277,8 @@ function attack(moveId) {
         player.hp -= dmgInfliged * 2;
       }
 
-      dialog.value = `Vous utilisez ${playerMove.name} ... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
-        efficace ! Coup critique !`;
+      dialog.value = `Vous utilisez ${playerMove.name}... mais ${enemy.pseudo} utilise ${enemyMove.name}, c’est super
+        efficace! Coup critique!`;
     }
 
     sendFightInHistory();
@@ -295,7 +297,7 @@ function attack(moveId) {
   } else {
     player.hp -= dmgInfliged;
     enemy.hp -= dmgInfliged;
-    dialog.value = `Vous et ${enemy.pseudo} utilisez ${playerMove.name}, le choc vous infligent des dégâts ...`;
+    dialog.value = `Vous et ${enemy.pseudo} utilisez ${playerMove.name}, le choc vous infligent des dégâts...`;
     sendFightInHistory();
 
     soundsPlay.forEach((sound) => {
@@ -391,13 +393,13 @@ function nextStep() {
   } else if (player.hp === 0 && enemy.hp === 0) {
     playerSprite.value.ko = true;
     enemySprite.value.ko = true;
-    dialog.value = `Vous et ${enemy.pseudo} êtes K.O. ! Match nul`;
+    dialog.value = `Vous et ${enemy.pseudo} êtes K.O.! Match nul`;
   } else if (player.hp === 0) {
     playerSprite.value.ko = true;
-    dialog.value = `Vous êtes K.O ! ${enemy.pseudo} a gagné !`;
+    dialog.value = `Vous êtes K.O! ${enemy.pseudo} a gagné!`;
   } else if (enemy.hp === 0) {
     enemySprite.value.ko = true;
-    dialog.value = `${enemy.pseudo} est K.O. ! Vous avez gagné !`;
+    dialog.value = `${enemy.pseudo} est K.O.! Vous avez gagné!`;
   }
 
   if (player.hp === 0 || enemy.hp === 0) {
@@ -480,8 +482,18 @@ onUnmounted(() => {
       </div>
     </TextBox>
     <div class="fight__buttons" v-if="step === 'end'">
-      <Button text="Rejouer" :background="'green'" @click="restart" />
-      <Button text="Quitter" :background="'red'" link="/" />
+      <Button
+        text="Rejouer"
+        :background="'green'"
+        @click="restart"
+        @updateInteractionSound="$emit('updateInteractionSound', $event)"
+      />
+      <Button
+        text="Quitter"
+        :background="'red'"
+        link="/"
+        @updateInteractionSound="$emit('updateInteractionSound', $event)"
+      />
     </div>
     <Settings />
     <Sound

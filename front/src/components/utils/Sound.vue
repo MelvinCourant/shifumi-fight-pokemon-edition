@@ -1,6 +1,6 @@
 <script setup>
 import '../../assets/css/components/utils/_sound.scss';
-import { nextTick, watch } from 'vue';
+import { watch } from 'vue';
 
 const props = defineProps({
   sound: {

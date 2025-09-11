@@ -16,6 +16,16 @@ const musicAttributes = reactive({
 });
 const sound = ref(route.meta.sound);
 const play = ref(false);
+const soundAttributes = reactive({
+  controls: true,
+  volume: settings.soundVolume,
+  id: 'interaction',
+});
+const interactionSoundPlay = ref(false);
+
+function handleInteractionSoundUpdate(value) {
+  interactionSoundPlay.value = value;
+}
 
 function activeMusic() {
   if (!play.value) {
@@ -23,6 +33,7 @@ function activeMusic() {
   }
 
   document.body.removeEventListener('click', activeMusic);
+  document.body.removeEventListener('keydown', activeMusic);
 }
 
 watch(settings, (value) => {
@@ -47,12 +58,21 @@ watch(route, (value) => {
 
 onMounted(() => {
   document.body.addEventListener('click', activeMusic);
+  document.body.addEventListener('keydown', activeMusic);
 });
 </script>
 
 <template>
   <router-view v-slot="{ Component }">
-    <component :is="Component" />
+    <component
+      :is="Component"
+      @updateInteractionSound="handleInteractionSoundUpdate"
+    />
   </router-view>
   <Sound :sound="sound" :attributes="musicAttributes" :play="play" />
+  <Sound
+    :attributes="soundAttributes"
+    sound="interaction"
+    :play="interactionSoundPlay"
+  />
 </template>

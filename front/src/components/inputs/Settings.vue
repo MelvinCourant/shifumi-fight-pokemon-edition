@@ -5,6 +5,8 @@ import { reactive, ref, watch } from 'vue';
 import { useSettingsStore } from '../../stores/settings.js';
 import TextBox from '../utils/TextBox.vue';
 
+defineEmits(['updateInteractionSound']);
+
 const settingsStore = useSettingsStore();
 const { settings, updateSettings } = settingsStore;
 const soundAttributes = reactive({
@@ -41,7 +43,14 @@ watch(settings, (value) => {
 </script>
 
 <template>
-  <button class="settings" @click="display = !display">
+  <button
+    class="settings"
+    @mousedown="$emit('updateInteractionSound', false)"
+    @click="
+      display = !display;
+      $emit('updateInteractionSound', true);
+    "
+  >
     <svg
       class="settings"
       width="50"

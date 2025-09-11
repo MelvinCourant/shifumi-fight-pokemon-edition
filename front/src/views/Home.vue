@@ -12,6 +12,8 @@ import PokemonsJson from '../data/pokemons.json';
 import Settings from '../components/inputs/Settings.vue';
 import Credits from '../components/home/Credits.vue';
 
+defineEmits(['updateInteractionSound']);
+
 const userStore = useUserStore();
 const user = userStore.user;
 const { displayFightsFinished } = useHistoryStore();
@@ -78,7 +80,7 @@ async function newGame() {
 <template>
   <main class="home">
     <header class="home__header">
-      <Rules>
+      <Rules @updateInteractionSound="$emit('updateInteractionSound', $event)">
         <h2>Règles du jeu</h2>
         <div>
           <p>
@@ -120,7 +122,9 @@ async function newGame() {
         </div>
       </Rules>
       <h1 class="home__title">Shifumi Fight <span>Pokémon Edition</span></h1>
-      <Settings />
+      <Settings
+        @updateInteractionSound="$emit('updateInteractionSound', $event)"
+      />
     </header>
     <section class="home__party">
       <div class="home__left">
@@ -130,6 +134,7 @@ async function newGame() {
           :background="'blue'"
           size="small"
           @click="displayHistory = true"
+          @updateInteractionSound="$emit('updateInteractionSound', $event)"
         />
       </div>
       <div class="home__right">
@@ -138,12 +143,14 @@ async function newGame() {
           :background="'red'"
           size="big"
           @click="newGame"
+          @updateInteractionSound="$emit('updateInteractionSound', $event)"
         />
         <Button
           text="Boîte PC"
           :background="'green'"
           size="big"
           :link="`/pc?pokemon=${pokemonSprite.pokemon}`"
+          @updateInteractionSound="$emit('updateInteractionSound', $event)"
         />
       </div>
     </section>
@@ -151,7 +158,11 @@ async function newGame() {
       class="history"
       side="middle"
       v-show="displayHistory"
-      @click="displayHistory = false"
+      @mousedown="$emit('updateInteractionSound', false)"
+      @click="
+        displayHistory = false;
+        $emit('updateInteractionSound', true);
+      "
     >
       <h2>Historique</h2>
       <div>
@@ -194,6 +205,8 @@ async function newGame() {
     >
       <img src="../assets/imgs/logo.jpg" alt="Logo Melvin Courant" />
     </a>
-    <Credits />
+    <Credits
+      @updateInteractionSound="$emit('updateInteractionSound', $event)"
+    />
   </main>
 </template>
