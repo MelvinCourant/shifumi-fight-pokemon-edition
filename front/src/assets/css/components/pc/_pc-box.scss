@@ -32,7 +32,7 @@
     font-size: functions.rem(36);
     font-weight: 400;
     text-transform: uppercase;
-    text-shadow: 4.5px 4.5px 0 var(--text-shadow-white), 0 4.5px 0 var(--text-shadow-white), 4.5px 0 0 var(--text-shadow-white);
+    text-shadow: functions.rem(4.5) functions.rem(4.5) 0 var(--text-shadow-white), 0 functions.rem(4.5) 0 var(--text-shadow-white), functions.rem(4.5) 0 0 var(--text-shadow-white);
 
     @media screen and (max-width: 1799px) {
       font-size: 2.03vw;
