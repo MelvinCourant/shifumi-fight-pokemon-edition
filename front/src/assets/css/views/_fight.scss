@@ -91,6 +91,7 @@
 
         .hud {
           transform: translateX(100%);
+          animation: slideRightHud 0.2s 3s;
 
           @media screen and (max-width: 1024px) and (orientation: portrait) {
             animation: none;
@@ -213,6 +214,13 @@
     @media screen and (max-width: 767px) {
       top: functions.rem(30);
       right: functions.rem(30);
+    }
+
+    .popin {
+      @media screen and (max-width: 767px) {
+        top: functions.rem(20);
+        right: functions.rem(20);
+      }
     }
   }
 }

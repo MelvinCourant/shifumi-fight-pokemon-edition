@@ -17,6 +17,10 @@
     padding-top: functions.rem(75);
   }
 
+  @media screen and (max-width: 767px) {
+    padding-top: 0;
+  }
+
   &__header {
     position: fixed;
     z-index: 9997;
@@ -91,12 +95,8 @@
 
     @media screen and (max-width: 991px) {
       flex-direction: column;
-      gap: functions.rem(60);
-      padding: 0 functions.rem(20);
-    }
-
-    @media screen and (max-width: 767px) {
       gap: functions.rem(40);
+      padding: 0 functions.rem(20);
     }
   }
 
@@ -126,19 +126,16 @@
 
     @media screen and (max-width: 991px) {
       width: 100%;
-    }
-
-    @media screen and (max-width: 767px) {
       gap: functions.rem(20);
     }
   }
 
   .developer {
     position: absolute;
-    right: functions.rem(20);
-    bottom: functions.rem(20);
+    right: 20px;
+    bottom: 20px;
     width: 60px;
-    box-shadow: -4px 4px 0 0 var(--black), 4px 4px 0 0 var(--black), 4px -4px 0 0 var(--black), -4px -4px 0 0 var(--black), 8px 0 0 0 var(--black), -8px 0 0 0 var(--black), 0 -8px 0 0 var(--black), 0 8px 0 0 var(--black);
+    box-shadow: functions.rem(-4) functions.rem(4) 0 0 var(--black), functions.rem(4) functions.rem(4) 0 0 var(--black), functions.rem(4) functions.rem(-4) 0 0 var(--black), functions.rem(-4) functions.rem(-4) 0 0 var(--black), 8px 0 0 0 var(--black), -8px 0 0 0 var(--black), 0 -8px 0 0 var(--black), 0 8px 0 0 var(--black);
     transition: transform 0.2s;
 
     &:before {
@@ -147,17 +144,23 @@
       inset: 0;
       pointer-events: none;
       background:
-              linear-gradient(var(--black) 0 0) top left,
-              linear-gradient(var(--black) 0 0) top right,
-              linear-gradient(var(--black) 0 0) bottom left,
-              linear-gradient(var(--black) 0 0) bottom right;
+        linear-gradient(var(--black) 0 0) top left,
+        linear-gradient(var(--black) 0 0) top right,
+        linear-gradient(var(--black) 0 0) bottom left,
+        linear-gradient(var(--black) 0 0) bottom right;
       background-repeat: no-repeat;
-      background-size: 4px 4px;
+      background-size: functions.rem(4) functions.rem(4);
     }
 
     @media screen and (max-width: 767px) {
       right: functions.rem(10);
       bottom: functions.rem(10);
+      width: 40px;
+      box-shadow: functions.rem(-2.5) functions.rem(2.5) 0 0 var(--black), functions.rem(2.5) functions.rem(2.5) 0 0 var(--black), functions.rem(2.5) functions.rem(-2.5) 0 0 var(--black), functions.rem(-2.5) functions.rem(-2.5) 0 0 var(--black), 5px 0 0 0 var(--black), -5px 0 0 0 var(--black), 0 -5px 0 0 var(--black), 0 5px 0 0 var(--black);
+
+      &:before {
+        background-size: functions.rem(2.5) functions.rem(2.5);
+      }
     }
 
     &:hover,
