@@ -194,6 +194,11 @@
     justify-content: center;
     align-items: center;
     gap: functions.rem(40);
+
+    @media screen and (max-width: 991px) {
+      width: 250px;
+      gap: functions.rem(20);
+    }
   }
 
   .text-box:not(.settings__popin) {
