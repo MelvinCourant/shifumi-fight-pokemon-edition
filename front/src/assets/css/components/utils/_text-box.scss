@@ -43,18 +43,12 @@
     font-weight: 400;
     margin-bottom: functions.rem(40);
 
-    @media screen and (max-width: 1280px) {
-      margin-bottom: functions.rem(30);
-    }
-
     @media screen and (max-width: 991px) {
       font-size: functions.rem(24);
-      margin-bottom: functions.rem(20);
     }
 
     @media screen and (max-width: 767px) {
       font-size: functions.rem(20);
-      margin-bottom: functions.rem(10);
     }
   }
 

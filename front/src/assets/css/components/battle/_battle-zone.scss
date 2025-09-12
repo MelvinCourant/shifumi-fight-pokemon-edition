@@ -10,6 +10,10 @@
   &--back {
     transform: translateX(-8%);
     overflow: hidden;
+
+    @media screen and (max-width: 991px) {
+      transform: translateX(-16%);
+    }
   }
 
   &__pseudo {

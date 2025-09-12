@@ -4,6 +4,14 @@
 .hp-bar {
   position: relative;
 
+  @media screen and (max-width: 767px) {
+    width: 100% !important;
+
+    img {
+      width: 100%;
+    }
+  }
+
   &__pseudo {
     position: absolute;
     color: var(--dark-grey);
@@ -23,6 +31,14 @@
     display: flex;
     gap: functions.rem(30);
 
+    @media screen and (max-width: 1439px) {
+      gap: 2.08vw; // 30px in 1440px
+    }
+
+    @media screen and (max-width: 767px) {
+      gap: 3vw;
+    }
+
     span {
       font-family: fonts.$pokemon-classic;
       color: var(--dark-grey);
@@ -34,6 +50,11 @@
       @media screen and (max-width: 1439px) {
         font-size: 2.22vw; // 32px in 1440px
         text-shadow: 0.28vw 0.28vw 0 var(--hp-shadow-grey), 0 0.28vw 0 var(--hp-shadow-grey), 0.28vw 0 0 var(--hp-shadow-grey);
+      }
+
+      @media screen and (max-width: 767px) {
+        font-size: 3.2vw; // 2.22vw * 1.44 (ratio 50vw/34.72vw)
+        text-shadow: 0.4vw 0.4vw 0 var(--hp-shadow-grey), 0 0.4vw 0 var(--hp-shadow-grey), 0.4vw 0 0 var(--hp-shadow-grey);
       }
     }
   }
@@ -113,11 +134,21 @@
       &__pseudo {
         top: 14.85%;
         left: 18.8%;
+
+        @media screen and (max-width: 767px) {
+          font-size: 3.1vw; // 2.15vw * 1.44 (ratio 50vw/34.72vw)
+          text-shadow: 0.4vw 0.4vw 0 var(--hp-shadow-grey), 0 0.4vw 0 var(--hp-shadow-grey), 0.4vw 0 0 var(--hp-shadow-grey);
+        }
       }
 
       &__level {
         top: 14.53%;
         right: 3.27%;
+
+        @media screen and (max-width: 767px) {
+          font-size: 3.2vw; // 2.22vw * 1.44 (ratio 50vw/34.72vw)
+          text-shadow: 0.4vw 0.4vw 0 var(--hp-shadow-grey), 0 0.4vw 0 var(--hp-shadow-grey), 0.4vw 0 0 var(--hp-shadow-grey);
+        }
       }
 
       &__gauge {
@@ -138,11 +169,21 @@
       &__pseudo {
         top: 17.15%;
         left: 1.64%;
+
+        @media screen and (max-width: 767px) {
+          font-size: 2.9vw; // 2.15vw * 1.36 (ratio 45vw/33.13vw)
+          text-shadow: 0.38vw 0.38vw 0 var(--hp-shadow-grey), 0 0.38vw 0 var(--hp-shadow-grey), 0.38vw 0 0 var(--hp-shadow-grey);
+        }
       }
 
       &__level {
         top: 16.38%;
         right: 16.63%;
+
+        @media screen and (max-width: 767px) {
+          font-size: 3.0vw; // 2.22vw * 1.36 (ratio 45vw/33.13vw)
+          text-shadow: 0.38vw 0.38vw 0 var(--hp-shadow-grey), 0 0.38vw 0 var(--hp-shadow-grey), 0.38vw 0 0 var(--hp-shadow-grey);
+        }
       }
 
       &__gauge {

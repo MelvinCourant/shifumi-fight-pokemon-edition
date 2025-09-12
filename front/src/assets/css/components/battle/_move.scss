@@ -4,6 +4,7 @@
 .move {
   position: relative;
   @include mixins.resetButton(none, none);
+  width: 100%;
 
   &:disabled {
     opacity: 0.3 !important;
@@ -44,12 +45,25 @@
         -0.13vw 0 0 var(--grey),
         0.13vw 0 0 var(--grey);
     }
+
+    @media screen and (max-width: 1024px) and (orientation: portrait) {
+      font-size: 2.6vw;
+      text-shadow:
+        -0.26vw -0.26vw 0 var(--grey),
+        0.26vw -0.26vw 0 var(--grey),
+        -0.26vw 0.26vw 0 var(--grey),
+        0.26vw 0.26vw 0 var(--grey),
+        0 -0.26vw 0 var(--grey),
+        0 0.26vw 0 var(--grey),
+        -0.26vw 0 0 var(--grey),
+        0.26vw 0 0 var(--grey);
+    }
   }
 
   &__pp {
     position: absolute;
     right: 25.2%;
-    bottom: 25.07%;
+    bottom: 24.47%;
     font-size: functions.rem(16);
     color: var(--pp-black);
     text-shadow: 1px 2px 0 var(--pp-shadow), 0 2px 0 var(--pp-shadow), 1px 0 0 var(--pp-shadow);
@@ -58,11 +72,24 @@
       font-size: 1.11vw; // 16px in 1440px
       text-shadow: 0.07vw 0.14vw 0 var(--pp-shadow), 0 0.14vw 0 var(--pp-shadow), 0.07vw 0 0 var(--pp-shadow);
     }
+
+    @media screen and (max-width: 1024px) and (orientation: portrait) {
+      font-size: 2.6vw;
+      text-shadow: 0.18vw 0.32vw 0 var(--pp-shadow), 0 0.32vw 0 var(--pp-shadow), 0.18vw 0 0 var(--pp-shadow);
+    }
   }
 
   &__background {
+    width: 100%;
+
     &::selection {
       background: none;
+    }
+  }
+
+  &:last-child {
+    .move__pp {
+      bottom: 26%;
     }
   }
 }

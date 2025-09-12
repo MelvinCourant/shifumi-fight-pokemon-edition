@@ -14,10 +14,26 @@
     @media screen and (max-width: 1439px) {
       top: 8.68vw; // 125px in 1440px
     }
+
+    @media screen and (max-width: 767px) {
+      width: 45vw;
+    }
   }
 
   &:has(.hp-bar--player) {
     right: 0;
     bottom: 0;
+
+    @media screen and (max-width: 1024px) and (orientation: portrait) {
+      bottom: 8.68vw; // 125px in 1440px
+
+      .moves {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 50vw;
+    }
   }
 }

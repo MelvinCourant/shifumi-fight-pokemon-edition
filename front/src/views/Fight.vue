@@ -2,6 +2,7 @@
 import '../assets/css/views/_fight.scss';
 import BattleZone from '../components/battle/BattleZone.vue';
 import HUD from '../components/battle/HUD.vue';
+import Moves from '../components/battle/Moves.vue';
 import { useUserStore } from '../stores/user.js';
 import { useHistoryStore } from '../stores/history.js';
 import { onUnmounted, provide, reactive, ref } from 'vue';
@@ -463,24 +464,27 @@ onUnmounted(() => {
 <template>
   <main :class="['fight', { 'fight--entering-animation': enteringAnimation }]">
     <h1 class="hidden-title">Fight</h1>
-    <div class="fight__enemy">
-      <BattleZone :pokemonSprite="enemySprite" />
-      <HUD :player="enemy" />
-    </div>
-    <div class="fight__player">
-      <BattleZone :pokemonSprite="playerSprite" />
-      <HUD :player="player" @moveSelected="attack($event)" />
-    </div>
-    <div
-      class="fight__overlay"
-      v-show="step === 'attack'"
-      @click="nextStep"
-    ></div>
-    <TextBox v-show="step !== 'choice'">
-      <div>
-        {{ dialog }}
+    <div class="fight__container">
+      <div class="fight__enemy">
+        <BattleZone :pokemonSprite="enemySprite" />
+        <HUD :player="enemy" />
       </div>
-    </TextBox>
+      <div class="fight__player">
+        <BattleZone :pokemonSprite="playerSprite" />
+        <HUD :player="player" @moveSelected="attack($event)" />
+      </div>
+      <div
+        class="fight__overlay"
+        v-show="step === 'attack'"
+        @click="nextStep"
+      ></div>
+      <TextBox v-show="step !== 'choice'">
+        <div>
+          {{ dialog }}
+        </div>
+      </TextBox>
+      <Settings />
+    </div>
     <div class="fight__buttons" v-if="step === 'end'">
       <Button
         text="Rejouer"
@@ -495,7 +499,9 @@ onUnmounted(() => {
         @updateInteractionSound="$emit('updateInteractionSound', $event)"
       />
     </div>
-    <Settings />
+    <div class="fight__moves-mobile">
+      <Moves @moveSelected="attack($event)" />
+    </div>
     <Sound
       sound="fight/super-effective"
       :attributes="soundsAttributes[0]"
