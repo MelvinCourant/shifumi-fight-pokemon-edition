@@ -87,6 +87,19 @@
               transform: translateX(-8%);
             }
           }
+
+          @media screen and (max-width: 991px) {
+            animation: slideRightMobile 3s;
+
+            @keyframes slideRightMobile {
+              0% {
+                transform: translateX(-100%);
+              }
+              100% {
+                transform: translateX(-16%);
+              }
+            }
+          }
         }
 
         .hud {
@@ -214,13 +227,6 @@
     @media screen and (max-width: 767px) {
       top: functions.rem(30);
       right: functions.rem(30);
-    }
-
-    .popin {
-      @media screen and (max-width: 767px) {
-        top: functions.rem(20);
-        right: functions.rem(20);
-      }
     }
   }
 }
