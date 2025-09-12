@@ -74,7 +74,7 @@
     }
 
     @media screen and (max-width: 1024px) and (orientation: portrait) {
-      font-size: 2.6vw;
+      font-size: 2.4vw;
       text-shadow: 0.18vw 0.32vw 0 var(--pp-shadow), 0 0.32vw 0 var(--pp-shadow), 0.18vw 0 0 var(--pp-shadow);
     }
   }
@@ -86,10 +86,10 @@
       background: none;
     }
   }
+}
 
-  &:last-child {
-    .move__pp {
-      bottom: 26%;
-    }
+.moves__move:last-child {
+  .move__pp {
+    bottom: 26%;
   }
 }
