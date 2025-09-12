@@ -1,10 +1,11 @@
 @use "../partials/functions";
 
 .pc {
-  position: relative;
   display: flex;
   align-items: center;
+  width: 100svw;
   background: url("../../imgs/pc/pc-pattern.jpg") fixed;
+  overflow: hidden;
 
   &__system {
     position: relative;
@@ -41,30 +42,30 @@
       }
 
       @media screen and (max-width: 1024px) {
-        right: 25.56vw;
-        transform: translateY(-0.86vw);
-        width: 29.81vw !important;
-        height: 6.75vw !important;
-        font-size: 2.03vw !important;
-        -webkit-text-stroke: 0.66vw var(--black);
-        box-shadow: -0.45vw 0.45vw 0 0 var(--black), 0.45vw 0.45vw 0 0 var(--black), 0.45vw -0.45vw 0 0 var(--black), -0.45vw -0.45vw 0 0 var(--black), 0.91vw 0 0 0 var(--black), -0.91vw 0 0 0 var(--black), 0 -0.91vw 0 0 var(--black), 0 0.91vw 0 0 var(--black) !important;
+        right: 23vw;
+        transform: translateY(-0.95vw);
+        width: 34vw !important;
+        height: 7.6vw !important;
+        font-size: 2.2vw !important;
+        -webkit-text-stroke: 0.65vw var(--black);
+        box-shadow: -0.47vw 0.47vw 0 0 var(--black), 0.47vw 0.47vw 0 0 var(--black), 0.47vw -0.47vw 0 0 var(--black), -0.47vw -0.47vw 0 0 var(--black), 0.95vw 0 0 0 var(--black), -0.95vw 0 0 0 var(--black), 0 -0.95vw 0 0 var(--black), 0 0.95vw 0 0 var(--black) !important;
 
         &:before {
-          background-size: 0.45vw 0.45vw;
+          background-size: 0.47vw 0.47vw;
         }
       }
 
       @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-        right: 33.33vh;
-        transform: translateY(-1.12vh);
-        width: 38.84vh !important;
-        height: 8.81vh !important;
-        font-size: 2.65vh !important;
-        -webkit-text-stroke: 0.86vh var(--black);
-        box-shadow: -0.58vh 0.58vh 0 0 var(--black), 0.58vh 0.58vh 0 0 var(--black), 0.58vh -0.58vh 0 0 var(--black), -0.58vh -0.58vh 0 0 var(--black), 1.19vh 0 0 0 var(--black), -1.19vh 0 0 0 var(--black), 0 -1.19vh 0 0 var(--black), 0 1.19vh 0 0 var(--black) !important;
+        right: 29svh;
+        transform: translateY(-1.3svh);
+        width: 47svh !important;
+        height: 10.5svh !important;
+        font-size: 2.9svh !important;
+        -webkit-text-stroke: 0.95svh var(--black);
+        box-shadow: -0.68svh 0.68svh 0 0 var(--black), 0.68svh 0.68svh 0 0 var(--black), 0.68svh -0.68svh 0 0 var(--black), -0.68svh -0.68svh 0 0 var(--black), 1.25svh 0 0 0 var(--black), -1.25svh 0 0 0 var(--black), 0 -1.25svh 0 0 var(--black), 0 1.25svh 0 0 var(--black) !important;
 
         &:before {
-          background-size: 0.58vh 0.58vh;
+          background-size: 0.68svh 0.68svh;
         }
       }
     }

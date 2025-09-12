@@ -14,13 +14,13 @@
   }
 
   @media screen and (max-width: 1024px) {
-    width: 58.06vw;
-    margin-bottom: 11.49vw;
+    width: 62vw;
+    margin-bottom: 11.5vw;
   }
 
   @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-    width: 75.81vh;
-    margin-bottom: 15.12vh  ;
+    width: 85svh;
+    margin-bottom: 16.5svh;
   }
 
   &__title {
@@ -40,13 +40,13 @@
     }
 
     @media screen and (max-width: 1024px) {
-      font-size: 2.85vw;
-      text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-white), 0 0.35vw 0 var(--text-shadow-white), 0.35vw 0 0 var(--text-shadow-white);
+      font-size: 3.1vw;
+      text-shadow: 0.36vw 0.36vw 0 var(--text-shadow-white), 0 0.36vw 0 var(--text-shadow-white), 0.36vw 0 0 var(--text-shadow-white);
     }
 
     @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-      font-size: 3.72vh;
-      text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-white), 0 0.5vh 0 var(--text-shadow-white), 0.5vh 0 0 var(--text-shadow-white);
+      font-size: 4.2svh;
+      text-shadow: 0.52svh 0.52svh 0 var(--text-shadow-white), 0 0.52svh 0 var(--text-shadow-white), 0.52svh 0 0 var(--text-shadow-white);
     }
   }
 
@@ -91,11 +91,11 @@
     }
 
     @media screen and (max-width: 1024px) {
-      transform: translate(-50%, calc(-100% - 6.11vw - 2.78vw));
+      transform: translate(-50%, calc(-100% - 7.5vw - 3.5vw));
     }
 
     @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-      transform: translate(-50%, calc(-100% - 7.91vh - 3.49vh));
+      transform: translate(-50%, calc(-100% - 8.8svh - 3.9svh));
     }
   }
 
