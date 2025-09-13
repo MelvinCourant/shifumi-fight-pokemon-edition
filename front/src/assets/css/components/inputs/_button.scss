@@ -13,11 +13,11 @@
   white-space: nowrap;
 
   @media screen and (max-width: 767px) {
-    -webkit-text-stroke: functions.rem(5) var(--black);
+    -webkit-text-stroke: functions.rem(3) var(--black);
   }
 
   @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-    -webkit-text-stroke: 0.6svh var(--black);
+    -webkit-text-stroke: 0.8svh var(--black);
   }
 
   &:before {
@@ -69,17 +69,17 @@
     @media screen and (max-width: 767px) {
       height: functions.rem(44) !important;
       font-size: functions.rem(32) !important;
-      box-shadow: -2px 2px 0 0 var(--black), 2px 2px 0 0 var(--black), 2px -2px 0 0 var(--black), -2px -2px 0 0 var(--black), 4px 0 0 0 var(--black), -4px 0 0 0 var(--black), 0 -4px 0 0 var(--black), 0 4px 0 0 var(--black) !important;
+      box-shadow: functions.rem(-2) functions.rem(2) 0 0 var(--black), functions.rem(2) functions.rem(2) 0 0 var(--black), functions.rem(2) functions.rem(-2) 0 0 var(--black), functions.rem(-2) functions.rem(-2) 0 0 var(--black), functions.rem(4) 0 0 0 var(--black), functions.rem(-4) 0 0 0 var(--black), 0 functions.rem(-4) 0 0 var(--black), 0 functions.rem(4) 0 0 var(--black) !important;
 
       &:before {
-        background-size: 2px 2px !important;
+        background-size: functions.rem(2) functions.rem(2) !important;
       }
     }
 
     @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
       width: 36svh !important;
       height: 8svh !important;
-      font-size: 2.8svh !important;
+      font-size: 5.6svh !important;
       box-shadow: -0.55svh 0.55svh 0 0 var(--black), 0.55svh 0.55svh 0 0 var(--black), 0.55svh -0.55svh 0 0 var(--black), -0.55svh -0.55svh 0 0 var(--black), 1.1svh 0 0 0 var(--black), -1.1svh 0 0 0 var(--black), 0 -1.1svh 0 0 var(--black), 0 1.1svh 0 0 var(--black) !important;
 
       &:before {
@@ -92,10 +92,10 @@
     width: functions.rem(265);
     height: functions.rem(60);
     font-size: functions.rem(40);
-    box-shadow: -4px 4px 0 0 var(--black), 4px 4px 0 0 var(--black), 4px -4px 0 0 var(--black), -4px -4px 0 0 var(--black), 8px 0 0 0 var(--black), -8px 0 0 0 var(--black), 0 -8px 0 0 var(--black), 0 8px 0 0 var(--black);
+    box-shadow: functions.rem(-4) functions.rem(4) 0 0 var(--black), functions.rem(4) functions.rem(4) 0 0 var(--black), functions.rem(4) functions.rem(-4) 0 0 var(--black), functions.rem(-4) functions.rem(-4) 0 0 var(--black), 8px 0 0 0 var(--black), -8px 0 0 0 var(--black), 0 -8px 0 0 var(--black), 0 8px 0 0 var(--black);
 
     &:before {
-      background-size: 4px 4px;
+      background-size: functions.rem(4) functions.rem(4);
     }
 
     @media screen and (max-width: 991px) {
@@ -111,7 +111,7 @@
     @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
       width: 40svh;
       height: 8.5svh;
-      font-size: 3svh;
+      font-size: 6svh;
       box-shadow: -0.6svh 0.6svh 0 0 var(--black), 0.6svh 0.6svh 0 0 var(--black), 0.6svh -0.6svh 0 0 var(--black), -0.6svh -0.6svh 0 0 var(--black), 1.2svh 0 0 0 var(--black), -1.2svh 0 0 0 var(--black), 0 -1.2svh 0 0 var(--black), 0 1.2svh 0 0 var(--black);
 
       &:before {
