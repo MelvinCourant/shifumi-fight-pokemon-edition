@@ -34,10 +34,10 @@
   }
 
   &__legal-notice {
-    font-size: functions.rem(12);
+    font-size: functions.rem(24);
 
     @media screen and (max-width: 767px) {
-      font-size: functions.rem(10);
+      font-size: functions.rem(20);
     }
   }
 }

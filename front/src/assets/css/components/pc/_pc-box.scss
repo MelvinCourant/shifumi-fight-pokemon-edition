@@ -25,22 +25,23 @@
 
   &__title {
     position: absolute;
-    top: 2.77%; // 19px
+    top: 2.47%; // 19px
     left: 50%;
     transform: translateX(-50%);
     color: var(--text-dark-grey);
-    font-size: functions.rem(36);
+    font-size: functions.rem(72);
     font-weight: 400;
     text-transform: uppercase;
+    line-height: 1;
     text-shadow: functions.rem(4.5) functions.rem(4.5) 0 var(--text-shadow-white), 0 functions.rem(4.5) 0 var(--text-shadow-white), functions.rem(4.5) 0 0 var(--text-shadow-white);
 
     @media screen and (max-width: 1799px) {
-      font-size: 2.03vw;
+      font-size: 4.06vw;
       text-shadow: 0.25vw 0.25vw 0 var(--text-shadow-white), 0 0.25vw 0 var(--text-shadow-white), 0.25vw 0 0 var(--text-shadow-white);
     }
 
     @media screen and (max-width: 1024px) {
-      font-size: 3.1vw;
+      font-size: 6.2vw;
       text-shadow: 0.36vw 0.36vw 0 var(--text-shadow-white), 0 0.36vw 0 var(--text-shadow-white), 0.36vw 0 0 var(--text-shadow-white);
     }
 

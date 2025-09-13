@@ -23,23 +23,24 @@
     top: 3.46%; // 30px
     left: 1.38%; // 7px
     color: var(--white);
-    font-size: functions.rem(37);
+    font-size: functions.rem(74);
+    line-height: 1;
     font-weight: 400;
     text-transform: uppercase;
-    text-shadow: 4.5px 4.5px 0 var(--text-shadow-dark-grey), 0 4.5px 0 var(--text-shadow-dark-grey), 4.5px 0 0 var(--text-shadow-dark-grey);
+    text-shadow: functions.rem(4.5) functions.rem(4.5) 0 var(--text-shadow-dark-grey), 0 functions.rem(4.5) 0 var(--text-shadow-dark-grey), functions.rem(4.5) 0 0 var(--text-shadow-dark-grey);
 
     @media screen and (max-width: 1799px) {
-      font-size: 2.06vw;
+      font-size: 4.12vw;
       text-shadow: 0.25vw 0.25vw 0 var(--text-shadow-dark-grey), 0 0.25vw 0 var(--text-shadow-dark-grey), 0.25vw 0 0 var(--text-shadow-dark-grey);
     }
 
     @media screen and (max-width: 1024px) {
-      font-size: 3.1vw;
+      font-size: 6.2vw;
       text-shadow: 0.36vw 0.36vw 0 var(--text-shadow-dark-grey), 0 0.36vw 0 var(--text-shadow-dark-grey), 0.36vw 0 0 var(--text-shadow-dark-grey);
     }
 
     @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-      font-size: 4.6svh;
+      font-size: 9.2svh;
       text-shadow: 0.57svh 0.57svh 0 var(--text-shadow-dark-grey), 0 0.57svh 0 var(--text-shadow-dark-grey), 0.57svh 0 0 var(--text-shadow-dark-grey);
     }
   }

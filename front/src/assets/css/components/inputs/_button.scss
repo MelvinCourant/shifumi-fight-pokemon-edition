@@ -68,7 +68,7 @@
 
     @media screen and (max-width: 767px) {
       height: functions.rem(44) !important;
-      font-size: functions.rem(16) !important;
+      font-size: functions.rem(32) !important;
       box-shadow: -2px 2px 0 0 var(--black), 2px 2px 0 0 var(--black), 2px -2px 0 0 var(--black), -2px -2px 0 0 var(--black), 4px 0 0 0 var(--black), -4px 0 0 0 var(--black), 0 -4px 0 0 var(--black), 0 4px 0 0 var(--black) !important;
 
       &:before {
@@ -91,7 +91,7 @@
   &--big {
     width: functions.rem(265);
     height: functions.rem(60);
-    font-size: functions.rem(20);
+    font-size: functions.rem(40);
     box-shadow: -4px 4px 0 0 var(--black), 4px 4px 0 0 var(--black), 4px -4px 0 0 var(--black), -4px -4px 0 0 var(--black), 8px 0 0 0 var(--black), -8px 0 0 0 var(--black), 0 -8px 0 0 var(--black), 0 8px 0 0 var(--black);
 
     &:before {
@@ -100,7 +100,7 @@
 
     @media screen and (max-width: 991px) {
       height: functions.rem(53);
-      font-size: functions.rem(18);
+      font-size: functions.rem(36);
       box-shadow: -3.5px 3.5px 0 0 var(--black), 3.5px 3.5px 0 0 var(--black), 3.5px -3.5px 0 0 var(--black), -3.5px -3.5px 0 0 var(--black), 7px 0 0 0 var(--black), -7px 0 0 0 var(--black), 0 -7px 0 0 var(--black), 0 7px 0 0 var(--black);
 
       &:before {
@@ -123,7 +123,7 @@
   &--small {
     width: functions.rem(234);
     height: functions.rem(53);
-    font-size: functions.rem(18);
+    font-size: functions.rem(36);
     box-shadow: -3.5px 3.5px 0 0 var(--black), 3.5px 3.5px 0 0 var(--black), 3.5px -3.5px 0 0 var(--black), -3.5px -3.5px 0 0 var(--black), 7px 0 0 0 var(--black), -7px 0 0 0 var(--black), 0 -7px 0 0 var(--black), 0 7px 0 0 var(--black);
 
     &:before {

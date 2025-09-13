@@ -18,12 +18,12 @@
 
   &__pseudo {
     color: var(--white);
-    font-size: functions.rem(28);
-    text-shadow: 3px 3px 0 var(--text-shadow-grey), 0 3px 0 var(--text-shadow-grey), 3px 0 0 var(--text-shadow-grey);
+    font-size: functions.rem(56);
+    text-shadow: functions.rem(3) functions.rem(3) 0 var(--text-shadow-grey), 0 functions.rem(3) 0 var(--text-shadow-grey), functions.rem(3) 0 0 var(--text-shadow-grey);
 
     @media screen and (max-width: 767px) {
-      font-size: functions.rem(20);
-      text-shadow: 2px 2px 0 var(--text-shadow-grey), 0 2px 0 var(--text-shadow-grey), 2px 0 0 var(--text-shadow-grey);
+      font-size: functions.rem(40);
+      text-shadow: functions.rem(2) functions.rem(2) 0 var(--text-shadow-grey), 0 functions.rem(2) 0 var(--text-shadow-grey), functions.rem(2) 0 0 var(--text-shadow-grey);
     }
   }
 

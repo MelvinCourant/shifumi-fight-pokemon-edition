@@ -41,12 +41,12 @@
       align-items: center;
       flex: 1;
       padding: 3.91vw;
-      max-height: calc(50vh - 60px);
+      max-height: calc(50svh - 60px);
     }
 
     @media screen and (max-width: 767px) {
       aspect-ratio: 256/192;
-      max-height: calc(50vh - 40px);
+      max-height: calc(50svh - 40px);
       flex: initial;
     }
 

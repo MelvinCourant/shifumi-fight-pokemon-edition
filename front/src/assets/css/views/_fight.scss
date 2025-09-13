@@ -20,17 +20,17 @@
     background-position: top center;
     background-repeat: no-repeat;
     overflow: hidden;
-    height: 100vh;
+    height: 100svh;
 
     @media screen and (max-width: 1024px) and (orientation: portrait) {
-      height: 50vh;
+      height: 50svh;
       border: 8px solid var(--black);
     }
 
     @media screen and (max-width: 767px) {
       aspect-ratio: 256/192;
       height: auto;
-      max-height: 50vh;
+      max-height: 50svh;
     }
   }
 

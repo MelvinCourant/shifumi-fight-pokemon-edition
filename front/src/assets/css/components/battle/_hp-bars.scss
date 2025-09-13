@@ -15,11 +15,12 @@
   &__pseudo {
     position: absolute;
     color: var(--dark-grey);
-    font-size: functions.rem(31);
+    font-size: functions.rem(62);
+    line-height: 0.89;
     text-shadow: functions.rem(4) functions.rem(4) 0 var(--hp-shadow-grey), 0 functions.rem(4) 0 var(--hp-shadow-grey), functions.rem(4) 0 0 var(--hp-shadow-grey);
 
     @media screen and (max-width: 1439px) {
-      font-size: 2.15vw; // 31px in 1440px
+      font-size: 4.30vw; // 62px in 1440px
       text-shadow: 0.28vw 0.28vw 0 var(--hp-shadow-grey), 0 0.28vw 0 var(--hp-shadow-grey), 0.28vw 0 0 var(--hp-shadow-grey);
     }
   }
@@ -136,7 +137,7 @@
         left: 18.8%;
 
         @media screen and (max-width: 767px) {
-          font-size: 3.1vw; // 2.15vw * 1.44 (ratio 50vw/34.72vw)
+          font-size: 6.2vw; // 4.30vw * 1.44 (ratio 50vw/34.72vw)
           text-shadow: 0.4vw 0.4vw 0 var(--hp-shadow-grey), 0 0.4vw 0 var(--hp-shadow-grey), 0.4vw 0 0 var(--hp-shadow-grey);
         }
       }
@@ -167,11 +168,11 @@
 
     .hp-bar {
       &__pseudo {
-        top: 17.15%;
+        top: 15.65%;
         left: 1.64%;
 
         @media screen and (max-width: 767px) {
-          font-size: 2.9vw; // 2.15vw * 1.36 (ratio 45vw/33.13vw)
+          font-size: 5.8vw; // 4.30vw * 1.36 (ratio 45vw/33.13vw)
           text-shadow: 0.38vw 0.38vw 0 var(--hp-shadow-grey), 0 0.38vw 0 var(--hp-shadow-grey), 0.38vw 0 0 var(--hp-shadow-grey);
         }
       }
