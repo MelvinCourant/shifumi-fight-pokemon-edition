@@ -16,8 +16,9 @@ defineEmits(['updateInteractionSound']);
 
 const userStore = useUserStore();
 const user = userStore.user;
-const { displayFightsFinished } = useHistoryStore();
+const { displayFightsFinished, lastFightInProgress } = useHistoryStore();
 const history = displayFightsFinished();
+const lastFight = lastFightInProgress();
 const router = useRouter();
 const pseudo = ref(user.pseudo ? user.pseudo : 'Joueur');
 const pokemonSprite = ref({
@@ -25,7 +26,6 @@ const pokemonSprite = ref({
   side: 'front',
   shiny: user.pokemon.shiny || false,
 });
-const displayHistory = ref(false);
 
 provide('pokemonSprite', pokemonSprite);
 
@@ -136,7 +136,9 @@ async function newGame() {
       </div>
       <div class="home__right">
         <Button
-          text="Nouvelle partie"
+          :text="
+            lastFight && lastFight.inProgress ? 'Reprendre' : 'Nouvelle partie'
+          "
           :background="'red'"
           size="big"
           @click="newGame"
