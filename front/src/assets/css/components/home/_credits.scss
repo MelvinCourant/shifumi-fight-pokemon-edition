@@ -35,5 +35,9 @@
 
   &__legal-notice {
     font-size: functions.rem(12);
+
+    @media screen and (max-width: 767px) {
+      font-size: functions.rem(10);
+    }
   }
 }

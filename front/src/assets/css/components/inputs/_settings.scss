@@ -26,6 +26,10 @@
       align-items: center;
       gap: functions.rem(32);
 
+      @media screen and (max-width: 767px) {
+        gap: functions.rem(16);
+      }
+
       li {
         display: flex;
         align-items: center;

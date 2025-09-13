@@ -11,11 +11,11 @@
   }
 
   @media screen and (max-width: 1024px) {
-    width: 39.52vw;
+    width: 42vw;
   }
 
   @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-    width: 51.63vh;
+    width: 58svh;
   }
 
   &__name {
@@ -34,13 +34,13 @@
     }
 
     @media screen and (max-width: 1024px) {
-      font-size: 2.89vw;
-      text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
+      font-size: 3.1vw;
+      text-shadow: 0.36vw 0.36vw 0 var(--text-shadow-dark-grey), 0 0.36vw 0 var(--text-shadow-dark-grey), 0.36vw 0 0 var(--text-shadow-dark-grey);
     }
 
     @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-      font-size: 4.19vh;
-      text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+      font-size: 4.6svh;
+      text-shadow: 0.57svh 0.57svh 0 var(--text-shadow-dark-grey), 0 0.57svh 0 var(--text-shadow-dark-grey), 0.57svh 0 0 var(--text-shadow-dark-grey);
     }
   }
 
@@ -60,13 +60,13 @@
       }
 
       @media screen and (max-width: 1024px) {
-        width: 3.89vw;
-        margin-bottom: 0.39vw;
+        width: 4vw;
+        margin-bottom: 0.42vw;
       }
 
       @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-        width: 4.88vh;
-        margin-bottom: 0.5vh;
+        width: 5.4svh;
+        margin-bottom: 0.57svh;
       }
     }
 
@@ -85,15 +85,15 @@
       }
 
       @media screen and (max-width: 1024px) {
-        font-size: 2.94vw;
-        letter-spacing: -0.27vw;
-        text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
+        font-size: 3.2vw;
+        letter-spacing: -0.28vw;
+        text-shadow: 0.36vw 0.36vw 0 var(--text-shadow-dark-grey), 0 0.36vw 0 var(--text-shadow-dark-grey), 0.36vw 0 0 var(--text-shadow-dark-grey);
       }
 
       @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-        font-size: 3.72vh;
-        letter-spacing: -0.35vh;
-        text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+        font-size: 4.3svh;
+        letter-spacing: -0.39svh;
+        text-shadow: 0.57svh 0.57svh 0 var(--text-shadow-dark-grey), 0 0.57svh 0 var(--text-shadow-dark-grey), 0.57svh 0 0 var(--text-shadow-dark-grey);
       }
     }
   }
@@ -132,13 +132,13 @@
       }
 
       @media screen and (max-width: 1024px) {
-        width: 2.78vw;
-        margin-bottom: 0.39vw;
+        width: 3.1vw;
+        margin-bottom: 0.42vw;
       }
 
       @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-        width: 3.49vh;
-        margin-bottom: 0.5vh;
+        width: 4svh;
+        margin-bottom: 0.57svh;
       }
     }
 
@@ -159,16 +159,16 @@
       }
 
       @media screen and (max-width: 1024px) {
-        font-size: 2.89vw;
-        letter-spacing: -0.27vw;
-        text-shadow: 0.35vw 0.35vw 0 var(--text-shadow-dark-grey), 0 0.35vw 0 var(--text-shadow-dark-grey), 0.35vw 0 0 var(--text-shadow-dark-grey);
-        margin-left: 0.39vw;
+        font-size: 3.1vw;
+        letter-spacing: -0.28vw;
+        text-shadow: 0.36vw 0.36vw 0 var(--text-shadow-dark-grey), 0 0.36vw 0 var(--text-shadow-dark-grey), 0.36vw 0 0 var(--text-shadow-dark-grey);
+        margin-left: 0.42vw;
       }
 
       @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
-        font-size: 3.49vh;
-        letter-spacing: -0.35vh;
-        text-shadow: 0.5vh 0.5vh 0 var(--text-shadow-dark-grey), 0 0.5vh 0 var(--text-shadow-dark-grey), 0.5vh 0 0 var(--text-shadow-dark-grey);
+        font-size: 4svh;
+        letter-spacing: -0.39svh;
+        text-shadow: 0.57svh 0.57svh 0 var(--text-shadow-dark-grey), 0 0.57svh 0 var(--text-shadow-dark-grey), 0.57svh 0 0 var(--text-shadow-dark-grey);
       }
     }
   }

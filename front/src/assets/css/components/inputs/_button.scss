@@ -10,9 +10,14 @@
   -webkit-text-stroke: functions.rem(6) var(--black);
   padding: 0 functions.rem(15);
   paint-order: stroke fill;
+  white-space: nowrap;
 
   @media screen and (max-width: 767px) {
     -webkit-text-stroke: functions.rem(5) var(--black);
+  }
+
+  @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+    -webkit-text-stroke: 0.6svh var(--black);
   }
 
   &:before {
@@ -70,6 +75,17 @@
         background-size: 2px 2px !important;
       }
     }
+
+    @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+      width: 36svh !important;
+      height: 8svh !important;
+      font-size: 2.8svh !important;
+      box-shadow: -0.55svh 0.55svh 0 0 var(--black), 0.55svh 0.55svh 0 0 var(--black), 0.55svh -0.55svh 0 0 var(--black), -0.55svh -0.55svh 0 0 var(--black), 1.1svh 0 0 0 var(--black), -1.1svh 0 0 0 var(--black), 0 -1.1svh 0 0 var(--black), 0 1.1svh 0 0 var(--black) !important;
+
+      &:before {
+        background-size: 0.55svh 0.55svh !important;
+      }
+    }
   }
 
   &--big {
@@ -91,6 +107,17 @@
         background-size: 3.5px 3.5px;
       }
     }
+
+    @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+      width: 40svh;
+      height: 8.5svh;
+      font-size: 3svh;
+      box-shadow: -0.6svh 0.6svh 0 0 var(--black), 0.6svh 0.6svh 0 0 var(--black), 0.6svh -0.6svh 0 0 var(--black), -0.6svh -0.6svh 0 0 var(--black), 1.2svh 0 0 0 var(--black), -1.2svh 0 0 0 var(--black), 0 -1.2svh 0 0 var(--black), 0 1.2svh 0 0 var(--black);
+
+      &:before {
+        background-size: 0.6svh 0.6svh;
+      }
+    }
   }
 
   &--small {
@@ -101,6 +128,17 @@
 
     &:before {
       background-size: 3.5px 3.5px;
+    }
+
+    @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+      width: 35svh;
+      height: 8svh;
+      font-size: 2.7svh;
+      box-shadow: -0.55svh 0.55svh 0 0 var(--black), 0.55svh 0.55svh 0 0 var(--black), 0.55svh -0.55svh 0 0 var(--black), -0.55svh -0.55svh 0 0 var(--black), 1.1svh 0 0 0 var(--black), -1.1svh 0 0 0 var(--black), 0 -1.1svh 0 0 var(--black), 0 1.1svh 0 0 var(--black);
+
+      &:before {
+        background-size: 0.55svh 0.55svh;
+      }
     }
   }
 }
