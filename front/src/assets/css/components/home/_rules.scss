@@ -7,6 +7,10 @@
   height: fit-content;
   margin-top: functions.rem(10);
 
+  @media screen and (max-width: 991px) and (orientation: landscape) {
+    margin-top: 0;
+  }
+
   @media screen and (max-width: 767px) {
     margin-top: 0;
   }
@@ -24,6 +28,10 @@
 
     &:focus {
       outline: none;
+    }
+
+    @media screen and (max-width: 991px) and (orientation: landscape) {
+      width: 30px;
     }
 
     @media screen and (max-width: 767px) {

@@ -15,6 +15,10 @@
     outline: none;
   }
 
+  @media screen and (max-width: 991px) and (orientation: landscape) {
+    width: 30px;
+  }
+
   @media screen and (max-width: 767px) {
     width: 30px;
   }

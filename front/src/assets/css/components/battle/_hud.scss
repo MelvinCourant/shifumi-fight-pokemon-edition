@@ -15,7 +15,12 @@
       top: 8.68vw; // 125px in 1440px
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) and (orientation: landscape) {
+      top: 4.86vw; // 70px in 1440px
+      width: 29vw;
+    }
+
+    @media screen and (max-width: 767px) and (orientation: portrait) {
       width: 45vw;
     }
   }
@@ -32,7 +37,16 @@
       }
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) and (orientation: landscape) {
+      bottom: 4.86vw; // 70px in 1440px
+      width: 30vw;
+
+      .moves {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 767px) and (orientation: portrait) {
       width: 50vw;
     }
   }

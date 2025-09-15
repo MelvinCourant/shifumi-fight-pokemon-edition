@@ -60,12 +60,12 @@
         transform: translateY(-1.3svh);
         width: 47svh !important;
         height: 10.5svh !important;
-        font-size: 5.8svh !important;
+        font-size: 7.8svh !important;
         -webkit-text-stroke: 0.95svh var(--black);
-        box-shadow: -0.68svh 0.68svh 0 0 var(--black), 0.68svh 0.68svh 0 0 var(--black), 0.68svh -0.68svh 0 0 var(--black), -0.68svh -0.68svh 0 0 var(--black), 1.25svh 0 0 0 var(--black), -1.25svh 0 0 0 var(--black), 0 -1.25svh 0 0 var(--black), 0 1.25svh 0 0 var(--black) !important;
+        box-shadow: -0.88svh 0.88svh 0 0 var(--black), 0.88svh 0.88svh 0 0 var(--black), 0.88svh -0.88svh 0 0 var(--black), -0.88svh -0.88svh 0 0 var(--black), 1.25svh 0 0 0 var(--black), -1.25svh 0 0 0 var(--black), 0 -1.25svh 0 0 var(--black), 0 1.25svh 0 0 var(--black) !important;
 
         &:before {
-          background-size: 0.68svh 0.68svh;
+          background-size: 0.88svh 0.88svh;
         }
       }
     }

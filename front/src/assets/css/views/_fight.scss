@@ -7,10 +7,17 @@
     gap: 20px;
     background: var(--dark-grey);
     padding: 20px;
+  }
 
-    @media screen and (max-width: 767px) {
-      padding: 10px;
-    }
+  @media screen and (max-width: 991px) and (orientation: landscape) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    background: var(--dark-grey);
+  }
+
+  @media screen and (max-width: 767px) and (orientation: portrait) {
+    padding: 10px;
   }
 
   &__container {
@@ -27,7 +34,12 @@
       border: 8px solid var(--black);
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) and (orientation: landscape) {
+      width: 60%;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 767px) and (orientation: portrait) {
       aspect-ratio: 256/192;
       height: auto;
       max-height: 50svh;
@@ -155,12 +167,17 @@
         width: 48.61vw; // 700px in 1440px
       }
 
+      @media screen and (max-width: 991px) and (orientation: landscape) {
+        width: 26vw !important;
+        justify-content: flex-start !important;
+      }
+
       @media screen and (max-width: 991px) {
         width: 37vw;
         justify-content: center;
       }
 
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 767px) and (orientation: portrait) {
         width: 48.61vw; // 700px in 1440px
       }
     }
@@ -178,11 +195,15 @@
         width: 69.44vw; // 1000px in 1440px
       }
 
+      @media screen and (max-width: 991px) and (orientation: landscape) {
+        width: 40vw !important;
+      }
+
       @media screen and (max-width: 991px) {
         width: 58vw;
       }
 
-      @media screen and (max-width: 767px) {
+      @media screen and (max-width: 767px) and (orientation: portrait) {
         width: 69.44vw; // 1000px in 1440px
       }
     }
@@ -224,7 +245,12 @@
     top: functions.rem(40);
     right: functions.rem(40);
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 991px) and (orientation: landscape) {
+      top: functions.rem(10);
+      right: functions.rem(10);
+    }
+
+    @media screen and (max-width: 991px) and (orientation: portrait) {
       top: functions.rem(30);
       right: functions.rem(30);
     }

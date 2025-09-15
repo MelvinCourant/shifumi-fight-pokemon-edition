@@ -11,6 +11,12 @@
   color: var(--black);
   transition: transform 0.2s;
 
+  @media screen and (max-width: 991px) and (orientation: landscape) {
+    left: functions.rem(20);
+    bottom: functions.rem(15);
+    font-size: functions.rem(20);
+  }
+
   @media screen and (max-width: 767px) {
     bottom: functions.rem(15);
     font-size: functions.rem(20);
