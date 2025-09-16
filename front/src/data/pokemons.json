@@ -2,131 +2,261 @@
   {
     "pokedexId": 57,
     "name": "Colossinge",
-    "image": "primeape"
+    "image": "primeape",
+    "ratios": {
+      "pokemonDetails": 72.53333333333333,
+      "battleFront": 59.130434782608695,
+      "battleBack": 74.3
+    }
   },
   {
     "pokedexId": 62,
     "name": "Tartard",
-    "image": "poliwrath"
+    "image": "poliwrath",
+    "ratios": {
+      "pokemonDetails": 89.06666666666668,
+      "battleFront": 72.60869565217392,
+      "battleBack": 72.6
+    }
   },
   {
     "pokedexId": 68,
     "name": "Mackogneur",
-    "image": "machamp"
+    "image": "machamp",
+    "ratios": {
+      "pokemonDetails": 70.39999999999999,
+      "battleFront": 57.391304347826086,
+      "battleBack": 69.19999999999999
+    }
   },
   {
     "pokedexId": 106,
     "name": "Kicklee",
-    "image": "hitmonlee"
+    "image": "hitmonlee",
+    "ratios": {
+      "pokemonDetails": 74.66666666666667,
+      "battleFront": 60.86956521739131,
+      "battleBack": 64
+    }
   },
   {
     "pokedexId": 107,
     "name": "Tygnon",
-    "image": "hitmonchan"
+    "image": "hitmonchan",
+    "ratios": {
+      "pokemonDetails": 37.333333333333336,
+      "battleFront": 30.434782608695656,
+      "battleBack": 47.5
+    }
   },
   {
     "pokedexId": 214,
     "name": "Scarhino",
-    "image": "heracross"
+    "image": "heracross",
+    "ratios": {
+      "pokemonDetails": 67.2,
+      "battleFront": 54.78260869565217,
+      "battleBack": 70.19999999999999
+    }
   },
   {
     "pokedexId": 237,
     "name": "Kapoera",
-    "image": "hitmontop"
+    "image": "hitmontop",
+    "ratios": {
+      "pokemonDetails": 91.2,
+      "battleFront": 74.34782608695653,
+      "battleBack": 67.10000000000001
+    }
   },
   {
     "pokedexId": 257,
     "name": "Braségali",
-    "image": "blaziken"
+    "image": "blaziken",
+    "ratios": {
+      "pokemonDetails": 64.8,
+      "battleFront": 52.826086956521735,
+      "battleBack": 76.4
+    }
   },
   {
     "pokedexId": 286,
     "name": "Chapignon",
-    "image": "breloom"
+    "image": "breloom",
+    "ratios": {
+      "pokemonDetails": 62.66666666666667,
+      "battleFront": 51.08695652173913,
+      "battleBack": 53.7
+    }
   },
   {
     "pokedexId": 297,
     "name": "Hariyama",
-    "image": "hariyama"
+    "image": "hariyama",
+    "ratios": {
+      "pokemonDetails": 96.8,
+      "battleFront": 78.91304347826087,
+      "battleBack": 81.5
+    }
   },
   {
     "pokedexId": 308,
     "name": "Charmina",
-    "image": "medicham"
+    "image": "medicham",
+    "ratios": {
+      "pokemonDetails": 49.6,
+      "battleFront": 40.43478260869565,
+      "battleBack": 44.4
+    }
   },
   {
     "pokedexId": 392,
     "name": "Simiabraz",
-    "image": "infernape"
+    "image": "infernape",
+    "ratios": {
+      "pokemonDetails": 88,
+      "battleFront": 71.73913043478261,
+      "battleBack": 85.7
+    }
   },
   {
     "pokedexId": 448,
     "name": "Lucario",
-    "image": "lucario"
+    "image": "lucario",
+    "ratios": {
+      "pokemonDetails": 52.800000000000004,
+      "battleFront": 43.04347826086957,
+      "battleBack": 50.6
+    }
   },
   {
     "pokedexId": 454,
     "name": "Coatox",
-    "image": "toxicroak"
+    "image": "toxicroak",
+    "ratios": {
+      "pokemonDetails": 73.6,
+      "battleFront": 60,
+      "battleBack": 73.3
+    }
   },
   {
     "pokedexId": 475,
     "name": "Gallame",
-    "image": "gallade"
+    "image": "gallade",
+    "ratios": {
+      "pokemonDetails": 63.733333333333334,
+      "battleFront": 51.95652173913044,
+      "battleBack": 53.7
+    }
   },
   {
     "pokedexId": 500,
     "name": "Roitiflam",
-    "image": "emboar"
+    "image": "emboar",
+    "ratios": {
+      "pokemonDetails": 97.86666666666667,
+      "battleFront": 79.78260869565217,
+      "battleBack": 96
+    }
   },
   {
     "pokedexId": 534,
     "name": "Bétochef",
-    "image": "conkeldurr"
+    "image": "conkeldurr",
+    "ratios": {
+      "pokemonDetails": 112.26666666666667,
+      "battleFront": 91.52173913043478,
+      "battleBack": 83.6
+    }
   },
   {
     "pokedexId": 538,
     "name": "Judokrak",
-    "image": "sawk"
+    "image": "sawk",
+    "ratios": {
+      "pokemonDetails": 63.733333333333334,
+      "battleFront": 51.95652173913044,
+      "battleBack": 57.8
+    }
   },
   {
     "pokedexId": 539,
     "name": "Karaclée",
-    "image": "throh"
+    "image": "throh",
+    "ratios": {
+      "pokemonDetails": 82.39999999999999,
+      "battleFront": 67.17391304347827,
+      "battleBack": 67.10000000000001
+    }
   },
   {
     "pokedexId": 560,
     "name": "Bagaïd",
-    "image": "scrafty"
+    "image": "scrafty",
+    "ratios": {
+      "pokemonDetails": 53.86666666666666,
+      "battleFront": 43.913043478260875,
+      "battleBack": 49.6
+    }
   },
   {
     "pokedexId": 620,
     "name": "Shaofouine",
-    "image": "mienshao"
+    "image": "mienshao",
+    "ratios": {
+      "pokemonDetails": 96.8,
+      "battleFront": 78.91304347826087,
+      "battleBack": 82.6
+    }
   },
   {
     "pokedexId": 638,
     "name": "Cobaltium",
-    "image": "cobalion"
+    "image": "cobalion",
+    "ratios": {
+      "pokemonDetails": 62.66666666666667,
+      "battleFront": 51.08695652173913,
+      "battleBack": 63
+    }
   },
   {
     "pokedexId": 639,
     "name": "Terrakium",
-    "image": "terrakion"
+    "image": "terrakion",
+    "ratios": {
+      "pokemonDetails": 89.06666666666668,
+      "battleFront": 72.60869565217392,
+      "battleBack": 88.8
+    }
   },
   {
     "pokedexId": 640,
     "name": "Viridium",
-    "image": "virizion"
+    "image": "virizion",
+    "ratios": {
+      "pokemonDetails": 67.2,
+      "battleFront": 54.78260869565217,
+      "battleBack": 60.9
+    }
   },
   {
     "pokedexId": 647,
     "name": "Keldeo",
-    "image": "keldeo-resolute"
+    "image": "keldeo-resolute",
+    "ratios": {
+      "pokemonDetails": 83.46666666666667,
+      "battleFront": 68.04347826086956,
+      "battleBack": 79.5
+    }
   },
   {
     "pokedexId": 648,
     "name": "Meloetta",
-    "image": "meloetta-pirouette"
+    "image": "meloetta-pirouette",
+    "ratios": {
+      "pokemonDetails": 51.733333333333334,
+      "battleFront": 42.173913043478265,
+      "battleBack": 41.3
+    }
   }
 ]

@@ -87,6 +87,9 @@ const playerSprite = ref({
   shiny: user.pokemon.shiny,
   receiveDamage: false,
   ko: false,
+  ratio: PokemonsJson.find(
+    (pokemon) => pokemon.image === user.pokemon.pokemonName,
+  ).ratios.battleBack,
 });
 const enemySprite = ref({
   pokemon: '',
@@ -94,6 +97,7 @@ const enemySprite = ref({
   shiny: false,
   receiveDamage: false,
   ko: false,
+  ratio: 0,
 });
 const player = reactive({
   role: 'player',
@@ -163,6 +167,9 @@ if (lastFight && lastFight.inProgress) {
   fightUuid.value = lastFight.id;
   player.hp = lastFight.playerHp;
   enemySprite.value.pokemon = lastFight.enemyPokemon;
+  enemySprite.value.ratio = PokemonsJson.find(
+    (pokemon) => pokemon.image === lastFight.enemyPokemon,
+  ).ratios.battleFront;
   enemy.pseudo = lastFight.enemy;
   enemy.hp = lastFight.enemyHp;
   lastFight.playerPp.forEach((lastFightMove) => {
@@ -214,10 +221,12 @@ function generateRandomPokemon(playerPokemon) {
   const availablePokemons = PokemonsJson.filter(
     (pokemon) => pokemon.image !== playerPokemon,
   );
-  enemySprite.value.pokemon =
-    availablePokemons[
-      Math.floor(Math.random() * availablePokemons.length)
-    ].image;
+  const generatedPokemon =
+    availablePokemons[Math.floor(Math.random() * availablePokemons.length)];
+  enemySprite.value.pokemon = generatedPokemon.image;
+  enemySprite.value.ratio = PokemonsJson.find(
+    (pokemon) => pokemon.image === generatedPokemon.image,
+  ).ratios.battleFront;
 }
 
 function attack(moveId) {

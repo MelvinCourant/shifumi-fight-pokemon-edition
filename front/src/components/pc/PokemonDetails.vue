@@ -1,7 +1,6 @@
 <script setup>
 import '../../assets/css/components/pc/_pokemon-details.scss';
 import AnimatedSprite from '../sprites/AnimatedSprite.vue';
-import { ref } from 'vue';
 import Input from '../inputs/Input.vue';
 
 defineProps({
@@ -15,14 +14,6 @@ defineProps({
   },
 });
 defineEmits(['pseudoChanged']);
-
-const previewWidth = ref(375);
-const pokemonWidth = ref('auto');
-
-function calculatePokemonRatio(width) {
-  const ratio = (width / previewWidth.value) * 100;
-  pokemonWidth.value = `${ratio}%`;
-}
 </script>
 
 <template>
@@ -35,10 +26,7 @@ function calculatePokemonRatio(width) {
       <p>{{ pokemonDetails.pokedexId }}</p>
     </div>
     <div class="pokemon-details__preview">
-      <AnimatedSprite
-        :style="`width: ${pokemonWidth}`"
-        @imageSizeGot="calculatePokemonRatio($event)"
-      />
+      <AnimatedSprite :ratio="pokemonDetails.ratio" />
     </div>
     <Input @input="$emit('pseudoChanged', $event)" />
     <div class="pokemon-details__level">

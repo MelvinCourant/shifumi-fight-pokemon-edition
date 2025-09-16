@@ -3,13 +3,11 @@ import '../assets/css/views/_pc.scss';
 import PokemonsJson from '../data/pokemons.json';
 import { useUserStore } from '../stores/user.js';
 import { usePcBoxStore } from '../stores/pc-box.js';
-import { onMounted, provide, ref, computed, nextTick, reactive } from 'vue';
+import { onMounted, provide, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import PCBox from '../components/pc/PCBox.vue';
 import PokemonDetails from '../components/pc/PokemonDetails.vue';
 import Button from '../components/inputs/Button.vue';
-import Sound from '../components/utils/Sound.vue';
-import { useSettingsStore } from '../stores/settings.js';
 
 const emit = defineEmits(['updateInteractionSound']);
 
@@ -36,6 +34,8 @@ const pokemonDetails = ref(
         pokedexId: PokemonsJson.find((p) => p.image === pokemonSelected.value)
           .pokedexId,
         name: PokemonsJson.find((p) => p.image === pokemonSelected.value).name,
+        ratio: PokemonsJson.find((p) => p.image === pokemonSelected.value)
+          .ratios.pokemonDetails,
       }
     : {},
 );
@@ -111,6 +111,7 @@ async function updatePokemonSelected(pokemonName) {
   pokemonDetails.value = {
     pokedexId: selectedPokemon.pokedexId,
     name: selectedPokemon.name,
+    ratio: selectedPokemon.ratios.pokemonDetails,
   };
 
   userStore.updateUser({

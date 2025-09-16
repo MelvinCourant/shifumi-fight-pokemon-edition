@@ -25,6 +25,10 @@ const pokemonSprite = ref({
   pokemon: user.pokemon.pokemonName || '',
   side: 'front',
   shiny: user.pokemon.shiny || false,
+  ratio: user.pokemon.pokemonName
+    ? PokemonsJson.find((pokemon) => pokemon.image === user.pokemon.pokemonName)
+        .ratios.battleFront
+    : 0,
 });
 
 provide('pokemonSprite', pokemonSprite);
@@ -35,12 +39,13 @@ if (!user.pokemon.pokemonName) {
 
 async function generateRandomPokemon() {
   const generatedPokemon =
-    PokemonsJson[Math.floor(Math.random() * PokemonsJson.length)].image;
+    PokemonsJson[Math.floor(Math.random() * PokemonsJson.length)];
 
   pokemonSprite.value = {
-    pokemon: generatedPokemon,
+    pokemon: generatedPokemon.image,
     side: 'front',
-    shiny: await pokemonIsShinyOrNot(generatedPokemon),
+    shiny: await pokemonIsShinyOrNot(generatedPokemon.image),
+    ratio: generatedPokemon.ratios.battleFront,
   };
 }
 

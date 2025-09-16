@@ -8,15 +8,17 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  ratio: {
+    type: Number,
+    default: 0,
+  },
 });
-const emit = defineEmits(['imageSizeGot']);
 
 const pokemonSprite = ref(
   Object.keys(props.pokemonSprite).length > 0
     ? props.pokemonSprite
     : inject('pokemonSprite'),
 );
-const imageWidth = ref(0);
 let image = new Image();
 
 function capitalizeFirstLetter(val) {
@@ -37,10 +39,6 @@ if (pokemonSprite.value.pokemon) {
     pokemonSprite.value.side,
     pokemonSprite.value.shiny,
   );
-  image.onload = () => {
-    imageWidth.value = image.width;
-    emit('imageSizeGot', imageWidth.value);
-  };
 }
 
 watch(
@@ -51,17 +49,13 @@ watch(
       newValue.side,
       newValue.shiny,
     );
-    image.onload = () => {
-      imageWidth.value = image.width;
-      emit('imageSizeGot', imageWidth.value);
-    };
   },
   { deep: true },
 );
 </script>
 
 <template>
-  <div class="animated-sprite__container">
+  <div class="animated-sprite__container" :style="{ width: `${ratio}%` }">
     <img
       v-if="pokemonSprite.pokemon"
       :class="[
