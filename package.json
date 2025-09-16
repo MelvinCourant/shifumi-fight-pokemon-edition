@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preview": "pnpm recursive run preview",
     "dev": "pnpm recursive run dev",
     "build": "pnpm recursive run build",
     "calcule-ratio": "node calculate-ratios.js",
@@ -14,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cwebp": "^3.2.0",
+    "fluent-ffmpeg": "^2.1.3",
     "uuid": "^12.0.0"
   }
 }

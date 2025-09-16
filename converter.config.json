@@ -1,8 +1,10 @@
 {
   "directories": [
+    "front/src/assets/imgs/animated-sprites",
+    "front/src/assets/imgs/animated-sprites/shinies",
     "front/src/assets/imgs/hp-bars",
     "front/src/assets/imgs/pc",
     "front/src/assets/imgs/pc/pc-sprites"
   ],
-  "formats": ["png", "jpg"]
+  "formats": ["png", "jpg", "gif"]
 }

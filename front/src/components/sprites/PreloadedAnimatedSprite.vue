@@ -23,8 +23,8 @@ function capitalizeFirstLetter(val) {
 
 function generateImageSrc(pokemon, side, shiny) {
   const basePath = shiny
-    ? `/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.gif`
-    : `/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.gif`;
+    ? `/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.webm`
+    : `/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.webm`;
 
   return new URL(basePath, import.meta.url).href;
 }
@@ -120,14 +120,16 @@ onMounted(async () => {
       class="animated-sprite__skeleton"
     ></div>
     <template v-else v-for="[key, img] in preloadedImages" :key="key">
-      <img
+      <video
+        loop
+        autoplay
+        muted
         :class="[
           `animated-sprite animated-sprite--${pokemonSprite?.side}`,
           { 'animated-sprite--damaged': pokemonSprite?.receiveDamage },
           { 'animated-sprite--ko': pokemonSprite?.ko },
         ]"
         :src="img.src"
-        :alt="`${capitalizeFirstLetter(key.split('-')[0])} sprite`"
         :style="{
           display: currentPokemonKey === key ? 'block' : 'none',
         }"

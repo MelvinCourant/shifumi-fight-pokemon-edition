@@ -1,5 +1,6 @@
 const {CWebp} = require("cwebp");
 const fs = require("fs");
+const ffmpeg = require('fluent-ffmpeg');
 
 const config = JSON.parse(fs.readFileSync('./converter.config.json', 'utf-8'));
 const directoryPath = config.directories;
@@ -37,29 +38,66 @@ async function converter() {
                     console.error(`Le fichier ${file} n'existe pas ou ne peut être lu.`);
                     reject(err);
                 } else {
-                    const encoder = CWebp(file);
                     const fileExtension = file.split('.').pop().toLowerCase();
-                    const outputFile = file.replace(`.${fileExtension}`, '.webp');
                     const fileName = file.replace('src/assets/imgs', '');
 
-                    encoder.write(outputFile, function (err) {
-                        if (err) {
-                            console.error(`Erreur lors de la conversion du fichier ${fileName} :`, err);
-                            reject(err);
-                        } else {
-                            console.log(`Le fichier ${fileName} a bien été converti.`);
+                    if (fileExtension === 'gif') {
+                        // Convert GIF to WebM
+                        const outputFile = file.replace(`.${fileExtension}`, '.webm');
 
-                            // Supprimer le fichier original après conversion réussie
-                            fs.unlink(file, (unlinkErr) => {
-                                if (unlinkErr) {
-                                    console.error(`Erreur lors de la suppression du fichier original ${fileName} :`, unlinkErr);
-                                } else {
-                                    console.log(`Fichier original ${fileName} supprimé avec succès.`);
-                                }
-                                resolve();
-                            });
-                        }
-                    });
+                        ffmpeg(file)
+                            .output(outputFile)
+                            .videoCodec('libvpx-vp9')
+                            .videoBitrate('1000k')
+                            .noAudio()
+                            .format('webm')
+                            .outputOptions([
+                                '-pix_fmt yuva420p',
+                                '-an',
+                                '-auto-alt-ref 0'
+                            ])
+                            .on('error', (err) => {
+                                console.error(`Erreur lors de la conversion du fichier ${fileName} :`, err);
+                                reject(err);
+                            })
+                            .on('end', () => {
+                                console.log(`Le fichier ${fileName} a bien été converti en WebM.`);
+
+                                // Supprimer le fichier original après conversion réussie
+                                fs.unlink(file, (unlinkErr) => {
+                                    if (unlinkErr) {
+                                        console.error(`Erreur lors de la suppression du fichier original ${fileName} :`, unlinkErr);
+                                    } else {
+                                        console.log(`Fichier original ${fileName} supprimé avec succès.`);
+                                    }
+                                    resolve();
+                                });
+                            })
+                            .run();
+                    } else {
+                        // Convert PNG/JPG to WebP
+                        const encoder = CWebp(file);
+                        const outputFile = file.replace(`.${fileExtension}`, '.webp');
+
+                        encoder.write(outputFile, function (err) {
+                            if (err) {
+                                console.error(`Erreur lors de la conversion du fichier ${fileName} :`, err);
+                                reject(err);
+                            } else {
+                                console.log(`Le fichier ${fileName} a bien été converti en WebP.`);
+
+                                // Supprimer le fichier original après conversion réussie
+                                fs.unlink(file, (unlinkErr) => {
+                                    if (unlinkErr) {
+                                        console.error(`Erreur lors de la suppression du fichier original ${fileName} :`, unlinkErr);
+                                    } else {
+                                        console.log(`Fichier original ${fileName} supprimé avec succès.`);
+                                    }
+                                    resolve();
+                                });
+                            }
+                        });
+                    }
                 }
             });
         });

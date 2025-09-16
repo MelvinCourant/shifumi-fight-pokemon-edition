@@ -14,6 +14,7 @@ export default defineConfig({
     '**/*.jpeg',
     '**/*.mp3',
     '**/*.webp',
+    '**/*.webm',
   ],
   build: {
     rollupOptions: {
