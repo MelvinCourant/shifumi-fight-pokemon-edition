@@ -1,11 +1,15 @@
 <script setup>
 import '../../assets/css/components/pc/_pokemon-details.scss';
-import AnimatedSprite from '../sprites/AnimatedSprite.vue';
+import PreloadedAnimatedSprite from '../sprites/PreloadedAnimatedSprite.vue';
 import Input from '../inputs/Input.vue';
 
 defineProps({
   pokemonDetails: {
     type: Object,
+    required: true,
+  },
+  pokemonList: {
+    type: Array,
     required: true,
   },
   pseudo: {
@@ -26,7 +30,7 @@ defineEmits(['pseudoChanged']);
       <p>{{ pokemonDetails.pokedexId }}</p>
     </div>
     <div class="pokemon-details__preview">
-      <AnimatedSprite :ratio="pokemonDetails.ratio" />
+      <PreloadedAnimatedSprite :pokemonList="pokemonList" :ratio="pokemonDetails.ratio" />
     </div>
     <Input @input="$emit('pseudoChanged', $event)" />
     <div class="pokemon-details__level">

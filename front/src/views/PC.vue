@@ -140,6 +140,7 @@ function updatePseudo(newPseudo) {
     <div class="pc__system" v-if="shinyDataInitialized">
       <PokemonDetails
         :pokemonDetails="pokemonDetails"
+        :pokemonList="pokemons"
         @pseudoChanged="updatePseudo($event)"
       />
       <PCBox
