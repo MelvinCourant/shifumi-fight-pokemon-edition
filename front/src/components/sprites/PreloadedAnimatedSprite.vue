@@ -14,8 +14,8 @@ const props = defineProps({
 });
 
 const pokemonSprite = ref(inject('pokemonSprite'));
-const preloadedImages = ref(new Map());
-const loadedImages = ref(new Set());
+const preloadedVideos = ref(new Map());
+const loadedVideos = ref(new Set());
 
 function capitalizeFirstLetter(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -36,80 +36,92 @@ const currentPokemonKey = computed(() => {
 
 const isCurrentPokemonLoaded = computed(() => {
   return currentPokemonKey.value
-    ? loadedImages.value.has(currentPokemonKey.value)
+    ? loadedVideos.value.has(currentPokemonKey.value)
     : false;
 });
 
 onMounted(async () => {
-  const imagePromises = [];
+  const videoPromises = [];
 
   props.pokemonList.forEach((pokemon) => {
     const frontSrc = generateImageSrc(pokemon.image, 'front', false);
-    const frontImg = new Image();
-    frontImg.src = frontSrc;
+    const frontVideo = document.createElement('video');
+    frontVideo.src = frontSrc;
+    frontVideo.loop = true;
+    frontVideo.muted = true;
+    frontVideo.preload = 'metadata';
     const frontKey = `${pokemon.image}-front-false`;
-    imagePromises.push(
+    videoPromises.push(
       new Promise((resolve) => {
-        frontImg.onload = () => {
-          loadedImages.value.add(frontKey);
+        frontVideo.oncanplaythrough = () => {
+          loadedVideos.value.add(frontKey);
           resolve();
         };
-        frontImg.onerror = () => resolve();
+        frontVideo.onerror = () => resolve();
       }),
     );
-    preloadedImages.value.set(frontKey, frontImg);
+    preloadedVideos.value.set(frontKey, frontVideo);
 
     if (pokemon.shiny !== undefined) {
       const shinyFrontSrc = generateImageSrc(pokemon.image, 'front', true);
-      const shinyFrontImg = new Image();
-      shinyFrontImg.src = shinyFrontSrc;
+      const shinyFrontVideo = document.createElement('video');
+      shinyFrontVideo.src = shinyFrontSrc;
+      shinyFrontVideo.loop = true;
+      shinyFrontVideo.muted = true;
+      shinyFrontVideo.preload = 'metadata';
       const shinyFrontKey = `${pokemon.image}-front-true`;
-      imagePromises.push(
+      videoPromises.push(
         new Promise((resolve) => {
-          shinyFrontImg.onload = () => {
-            loadedImages.value.add(shinyFrontKey);
+          shinyFrontVideo.oncanplaythrough = () => {
+            loadedVideos.value.add(shinyFrontKey);
             resolve();
           };
-          shinyFrontImg.onerror = () => resolve();
+          shinyFrontVideo.onerror = () => resolve();
         }),
       );
-      preloadedImages.value.set(shinyFrontKey, shinyFrontImg);
+      preloadedVideos.value.set(shinyFrontKey, shinyFrontVideo);
     }
 
     const backSrc = generateImageSrc(pokemon.image, 'back', false);
-    const backImg = new Image();
-    backImg.src = backSrc;
+    const backVideo = document.createElement('video');
+    backVideo.src = backSrc;
+    backVideo.loop = true;
+    backVideo.muted = true;
+    backVideo.preload = 'metadata';
     const backKey = `${pokemon.image}-back-false`;
-    imagePromises.push(
+    videoPromises.push(
       new Promise((resolve) => {
-        backImg.onload = () => {
-          loadedImages.value.add(backKey);
+        backVideo.oncanplaythrough = () => {
+          loadedVideos.value.add(backKey);
           resolve();
         };
-        backImg.onerror = () => resolve();
+        backVideo.onerror = () => resolve();
       }),
     );
-    preloadedImages.value.set(backKey, backImg);
+    preloadedVideos.value.set(backKey, backVideo);
 
     if (pokemon.shiny !== undefined) {
       const shinyBackSrc = generateImageSrc(pokemon.image, 'back', true);
-      const shinyBackImg = new Image();
-      shinyBackImg.src = shinyBackSrc;
+      const shinyBackVideo = document.createElement('video');
+      shinyBackVideo.src = shinyBackSrc;
+      shinyBackVideo.loop = true;
+      shinyBackVideo.muted = true;
+      shinyBackVideo.preload = 'metadata';
       const shinyBackKey = `${pokemon.image}-back-true`;
-      imagePromises.push(
+      videoPromises.push(
         new Promise((resolve) => {
-          shinyBackImg.onload = () => {
-            loadedImages.value.add(shinyBackKey);
+          shinyBackVideo.oncanplaythrough = () => {
+            loadedVideos.value.add(shinyBackKey);
             resolve();
           };
-          shinyBackImg.onerror = () => resolve();
+          shinyBackVideo.onerror = () => resolve();
         }),
       );
-      preloadedImages.value.set(shinyBackKey, shinyBackImg);
+      preloadedVideos.value.set(shinyBackKey, shinyBackVideo);
     }
   });
 
-  await Promise.all(imagePromises);
+  await Promise.all(videoPromises);
 });
 </script>
 
@@ -119,8 +131,9 @@ onMounted(async () => {
       v-if="!isCurrentPokemonLoaded && pokemonSprite?.pokemon"
       class="animated-sprite__skeleton"
     ></div>
-    <template v-else v-for="[key, img] in preloadedImages" :key="key">
+    <template v-else v-for="[key, video] in preloadedVideos" :key="key">
       <video
+        ref="videoEl"
         loop
         autoplay
         muted
@@ -129,7 +142,7 @@ onMounted(async () => {
           { 'animated-sprite--damaged': pokemonSprite?.receiveDamage },
           { 'animated-sprite--ko': pokemonSprite?.ko },
         ]"
-        :src="img.src"
+        :src="video.src"
         :style="{
           display: currentPokemonKey === key ? 'block' : 'none',
         }"
