@@ -30,8 +30,13 @@
     height: 100svh;
 
     @media screen and (max-width: 1024px) and (orientation: portrait) {
+      background-image: url('../../imgs/cynthia-background-tablet-mobile.jpg');
       height: 50svh;
       border: 8px solid var(--black);
+    }
+
+    @media screen and (max-width: 1024px) {
+      background-image: url('../../imgs/cynthia-background-tablet-mobile.jpg');
     }
 
     @media screen and (max-width: 991px) and (orientation: landscape) {

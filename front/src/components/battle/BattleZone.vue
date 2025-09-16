@@ -1,7 +1,7 @@
 <script setup>
 import '../../assets/css/components/battle/_battle-zone.scss';
 import AnimatedSprite from '../sprites/AnimatedSprite.vue';
-import { inject, provide } from 'vue';
+import { inject, provide, ref, useTemplateRef } from 'vue';
 
 const props = defineProps({
   pokemonSprite: {
@@ -18,13 +18,41 @@ const pokemonSprite =
   Object.keys(props.pokemonSprite).length > 0
     ? props.pokemonSprite
     : inject('pokemonSprite');
+const isMobileOrTablet = ref(false);
+const battleZone = useTemplateRef('.battle-zone__image');
 
 if (props.pokemonSprite) {
   provide('pokemonSprite', pokemonSprite);
+
+  if (window.innerWidth <= 1024) {
+    isMobileOrTablet.value = true;
+  } else {
+    isMobileOrTablet.value = false;
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1024 && isMobileOrTablet.value === false) {
+      isMobileOrTablet.value = true;
+
+      if (battleZone.value) {
+        battleZone.value.src = generateImageSrc(pokemonSprite.side);
+      }
+    } else if (window.innerWidth > 1024 && isMobileOrTablet.value === true) {
+      isMobileOrTablet.value = false;
+
+      if (battleZone.value) {
+        battleZone.value.src = generateImageSrc(pokemonSprite.side);
+      }
+    }
+  });
 }
 
 function generateImageSrc(side) {
-  return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}.png`;
+  if (!isMobileOrTablet.value) {
+    return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}.png`;
+  } else {
+    return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}-tablet-mobile.png`;
+  }
 }
 </script>
 
