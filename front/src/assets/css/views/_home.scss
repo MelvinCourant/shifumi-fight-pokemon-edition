@@ -22,11 +22,6 @@
     background-image: url('../../imgs/cynthia-background-tablet-mobile.webp');
   }
 
-  @media screen and (max-width: 991px) and (orientation: landscape) {
-    justify-content: flex-end !important;
-    padding-top: 0 !important;
-  }
-
   @media screen and (max-width: 991px) {
     justify-content: center;
     gap: 0;
