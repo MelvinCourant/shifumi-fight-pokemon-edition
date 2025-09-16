@@ -49,9 +49,9 @@ if (props.pokemonSprite) {
 
 function generateImageSrc(side) {
   if (!isMobileOrTablet.value) {
-    return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}.png`;
+    return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}.webp`;
   } else {
-    return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}-tablet-mobile.png`;
+    return `/imgs/battle-zone-${side === 'front' ? '2' : '1'}-tablet-mobile.webp`;
   }
 }
 </script>

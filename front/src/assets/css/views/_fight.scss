@@ -22,7 +22,7 @@
 
   &__container {
     position: relative;
-    background-image: url('../../../assets/imgs/cynthia-background.jpg');
+    background-image: url('../../../assets/imgs/cynthia-background.webp');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -30,13 +30,13 @@
     height: 100svh;
 
     @media screen and (max-width: 1024px) and (orientation: portrait) {
-      background-image: url('../../imgs/cynthia-background-tablet-mobile.jpg');
+      background-image: url('../../imgs/cynthia-background-tablet-mobile.webp');
       height: 50svh;
       border: 8px solid var(--black);
     }
 
     @media screen and (max-width: 1024px) {
-      background-image: url('../../imgs/cynthia-background-tablet-mobile.jpg');
+      background-image: url('../../imgs/cynthia-background-tablet-mobile.webp');
     }
 
     @media screen and (max-width: 991px) and (orientation: landscape) {

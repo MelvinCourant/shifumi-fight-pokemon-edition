@@ -26,20 +26,23 @@ defineEmits(['pseudoChanged']);
       {{ pokemonDetails.name }}
     </h2>
     <div v-if="pokemonDetails.pokedexId" class="pokemon-details__pokedex-id">
-      <img src="../../assets/imgs/pc/number.png" alt="N°" />
+      <img src="../../assets/imgs/pc/number.webp" alt="N°" />
       <p>{{ pokemonDetails.pokedexId }}</p>
     </div>
     <div class="pokemon-details__preview">
-      <PreloadedAnimatedSprite :pokemonList="pokemonList" :ratio="pokemonDetails.ratio" />
+      <PreloadedAnimatedSprite
+        :pokemonList="pokemonList"
+        :ratio="pokemonDetails.ratio"
+      />
     </div>
     <Input @input="$emit('pseudoChanged', $event)" />
     <div class="pokemon-details__level">
-      <img src="../../assets/imgs/pc/niveau.png" alt="N." />
+      <img src="../../assets/imgs/pc/niveau.webp" alt="N." />
       <p>100</p>
     </div>
     <img
       class="pokemon-details__background"
-      src="../../assets/imgs/pc/pokemon-details.png"
+      src="../../assets/imgs/pc/pokemon-details.webp"
       alt="Pokemon details background"
     />
   </div>

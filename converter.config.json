@@ -1,0 +1,8 @@
+{
+  "directories": [
+    "front/src/assets/imgs/hp-bars",
+    "front/src/assets/imgs/pc",
+    "front/src/assets/imgs/pc/pc-sprites"
+  ],
+  "formats": ["png", "jpg"]
+}

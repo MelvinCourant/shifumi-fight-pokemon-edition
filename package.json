@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm recursive run dev",
-    "build": "pnpm recursive run build"
+    "build": "pnpm recursive run build",
+    "calcule-ratio": "node calculate-ratios.js",
+    "convert": "node convert.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cwebp": "^3.2.0",
     "uuid": "^12.0.0"
   }
 }

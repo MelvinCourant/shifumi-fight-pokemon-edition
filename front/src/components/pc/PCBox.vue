@@ -162,7 +162,7 @@ async function moveInBox(event) {
           class="pc-box__hand"
           :style="`top: ${handPosition.y}%; left: ${handPosition.x}%;`"
         >
-          <img src="../../assets/imgs/pc/hand.png" alt="Hand" />
+          <img src="../../assets/imgs/pc/hand.webp" alt="Hand" />
         </div>
 
         <div
@@ -170,13 +170,13 @@ async function moveInBox(event) {
           class="pc-box__hand-shadow"
           :style="`top: ${handPosition.y}%; left: ${handPosition.x}%;`"
         >
-          <img src="../../assets/imgs/pc/hand-shadow.png" alt="Hand Shadow" />
+          <img src="../../assets/imgs/pc/hand-shadow.webp" alt="Hand Shadow" />
         </div>
       </div>
     </div>
     <img
       class="pc-box__background"
-      src="../../assets/imgs/pc/pc-box.png"
+      src="../../assets/imgs/pc/pc-box.webp"
       alt="PC Box Background"
     />
   </div>

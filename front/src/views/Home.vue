@@ -164,7 +164,7 @@ async function newGame() {
       target="_blank"
       title="Aller sur le site du développeur: Melvin Courant"
     >
-      <img src="../assets/imgs/logo.jpg" alt="Logo Melvin Courant" />
+      <img src="../assets/imgs/logo.webp" alt="Logo Melvin Courant" />
     </a>
     <Credits
       @updateInteractionSound="$emit('updateInteractionSound', $event)"

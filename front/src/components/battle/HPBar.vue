@@ -20,7 +20,7 @@ const background = computed(() => {
 });
 
 function generateImageSrc(role) {
-  return `/imgs/hp-bars/hp-bar${role === 'enemy' ? '-enemy' : ''}.png`;
+  return `/imgs/hp-bars/hp-bar${role === 'enemy' ? '-enemy' : ''}.webp`;
 }
 
 watch(props.player, () => {
