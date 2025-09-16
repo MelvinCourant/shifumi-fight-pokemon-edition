@@ -14,8 +14,8 @@ const props = defineProps({
 });
 
 const pokemonSprite = ref(inject('pokemonSprite'));
-const preloadedVideos = ref(new Map());
-const loadedVideos = ref(new Set());
+const preloadedImages = ref(new Map());
+const loadedImages = ref(new Set());
 
 function capitalizeFirstLetter(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -23,8 +23,8 @@ function capitalizeFirstLetter(val) {
 
 function generateImageSrc(pokemon, side, shiny) {
   const basePath = shiny
-    ? `/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.webm`
-    : `/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.webm`;
+    ? `/imgs/animated-sprites/shinies/${pokemon}${side === 'front' ? '' : '-back'}.gif`
+    : `/imgs/animated-sprites/${pokemon}${side === 'front' ? '' : '-back'}.gif`;
 
   return new URL(basePath, import.meta.url).href;
 }
@@ -36,92 +36,80 @@ const currentPokemonKey = computed(() => {
 
 const isCurrentPokemonLoaded = computed(() => {
   return currentPokemonKey.value
-    ? loadedVideos.value.has(currentPokemonKey.value)
+    ? loadedImages.value.has(currentPokemonKey.value)
     : false;
 });
 
 onMounted(async () => {
-  const videoPromises = [];
+  const imagePromises = [];
 
   props.pokemonList.forEach((pokemon) => {
     const frontSrc = generateImageSrc(pokemon.image, 'front', false);
-    const frontVideo = document.createElement('video');
-    frontVideo.src = frontSrc;
-    frontVideo.loop = true;
-    frontVideo.muted = true;
-    frontVideo.preload = 'metadata';
+    const frontImg = new Image();
+    frontImg.src = frontSrc;
     const frontKey = `${pokemon.image}-front-false`;
-    videoPromises.push(
+    imagePromises.push(
       new Promise((resolve) => {
-        frontVideo.oncanplaythrough = () => {
-          loadedVideos.value.add(frontKey);
+        frontImg.onload = () => {
+          loadedImages.value.add(frontKey);
           resolve();
         };
-        frontVideo.onerror = () => resolve();
+        frontImg.onerror = () => resolve();
       }),
     );
-    preloadedVideos.value.set(frontKey, frontVideo);
+    preloadedImages.value.set(frontKey, frontImg);
 
     if (pokemon.shiny !== undefined) {
       const shinyFrontSrc = generateImageSrc(pokemon.image, 'front', true);
-      const shinyFrontVideo = document.createElement('video');
-      shinyFrontVideo.src = shinyFrontSrc;
-      shinyFrontVideo.loop = true;
-      shinyFrontVideo.muted = true;
-      shinyFrontVideo.preload = 'metadata';
+      const shinyFrontImg = new Image();
+      shinyFrontImg.src = shinyFrontSrc;
       const shinyFrontKey = `${pokemon.image}-front-true`;
-      videoPromises.push(
+      imagePromises.push(
         new Promise((resolve) => {
-          shinyFrontVideo.oncanplaythrough = () => {
-            loadedVideos.value.add(shinyFrontKey);
+          shinyFrontImg.onload = () => {
+            loadedImages.value.add(shinyFrontKey);
             resolve();
           };
-          shinyFrontVideo.onerror = () => resolve();
+          shinyFrontImg.onerror = () => resolve();
         }),
       );
-      preloadedVideos.value.set(shinyFrontKey, shinyFrontVideo);
+      preloadedImages.value.set(shinyFrontKey, shinyFrontImg);
     }
 
     const backSrc = generateImageSrc(pokemon.image, 'back', false);
-    const backVideo = document.createElement('video');
-    backVideo.src = backSrc;
-    backVideo.loop = true;
-    backVideo.muted = true;
-    backVideo.preload = 'metadata';
+    const backImg = new Image();
+    backImg.src = backSrc;
     const backKey = `${pokemon.image}-back-false`;
-    videoPromises.push(
+    imagePromises.push(
       new Promise((resolve) => {
-        backVideo.oncanplaythrough = () => {
-          loadedVideos.value.add(backKey);
+        backImg.onload = () => {
+          loadedImages.value.add(backKey);
           resolve();
         };
-        backVideo.onerror = () => resolve();
+        backImg.onerror = () => resolve();
       }),
     );
-    preloadedVideos.value.set(backKey, backVideo);
+    preloadedImages.value.set(backKey, backImg);
 
     if (pokemon.shiny !== undefined) {
       const shinyBackSrc = generateImageSrc(pokemon.image, 'back', true);
-      const shinyBackVideo = document.createElement('video');
-      shinyBackVideo.src = shinyBackSrc;
-      shinyBackVideo.loop = true;
-      shinyBackVideo.muted = true;
-      shinyBackVideo.preload = 'metadata';
+      const shinyBackImg = new Image();
+      shinyBackImg.src = shinyBackSrc;
       const shinyBackKey = `${pokemon.image}-back-true`;
-      videoPromises.push(
+      imagePromises.push(
         new Promise((resolve) => {
-          shinyBackVideo.oncanplaythrough = () => {
-            loadedVideos.value.add(shinyBackKey);
+          shinyBackImg.onload = () => {
+            loadedImages.value.add(shinyBackKey);
             resolve();
           };
-          shinyBackVideo.onerror = () => resolve();
+          shinyBackImg.onerror = () => resolve();
         }),
       );
-      preloadedVideos.value.set(shinyBackKey, shinyBackVideo);
+      preloadedImages.value.set(shinyBackKey, shinyBackImg);
     }
   });
 
-  await Promise.all(videoPromises);
+  await Promise.all(imagePromises);
 });
 </script>
 
@@ -131,18 +119,15 @@ onMounted(async () => {
       v-if="!isCurrentPokemonLoaded && pokemonSprite?.pokemon"
       class="animated-sprite__skeleton"
     ></div>
-    <template v-else v-for="[key, video] in preloadedVideos" :key="key">
-      <video
-        ref="videoEl"
-        loop
-        autoplay
-        muted
+    <template v-else v-for="[key, img] in preloadedImages" :key="key">
+      <img
         :class="[
           `animated-sprite animated-sprite--${pokemonSprite?.side}`,
           { 'animated-sprite--damaged': pokemonSprite?.receiveDamage },
           { 'animated-sprite--ko': pokemonSprite?.ko },
         ]"
-        :src="video.src"
+        :src="img.src"
+        :alt="`${capitalizeFirstLetter(key.split('-')[0])} sprite`"
         :style="{
           display: currentPokemonKey === key ? 'block' : 'none',
         }"
