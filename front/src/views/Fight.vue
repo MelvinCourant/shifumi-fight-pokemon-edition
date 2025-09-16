@@ -117,7 +117,12 @@ const soundsAttributes = reactive([
   {
     controls: true,
     volume: settings.soundVolume,
-    id: 'super-effective',
+    id: 'super-effective-player',
+  },
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'super-effective-enemy',
   },
   {
     controls: true,
@@ -127,7 +132,17 @@ const soundsAttributes = reactive([
   {
     controls: true,
     volume: settings.soundVolume,
-    id: 'faint',
+    id: 'faint-player',
+  },
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'faint-enemy',
+  },
+  {
+    controls: true,
+    volume: settings.soundVolume,
+    id: 'faint-both',
   },
   {
     controls: true,
@@ -137,7 +152,11 @@ const soundsAttributes = reactive([
 ]);
 const soundsPlay = reactive([
   {
-    id: 'super-effective',
+    id: 'super-effective-player',
+    play: false,
+  },
+  {
+    id: 'super-effective-enemy',
     play: false,
   },
   {
@@ -145,7 +164,15 @@ const soundsPlay = reactive([
     play: false,
   },
   {
-    id: 'faint',
+    id: 'faint-player',
+    play: false,
+  },
+  {
+    id: 'faint-enemy',
+    play: false,
+  },
+  {
+    id: 'faint-both',
     play: false,
   },
   {
@@ -265,7 +292,7 @@ function attack(moveId) {
     sendFightInHistory();
 
     soundsPlay.forEach((sound) => {
-      if (sound.id === 'super-effective') {
+      if (sound.id === 'super-effective-enemy') {
         sound.play = true;
       }
     });
@@ -294,7 +321,7 @@ function attack(moveId) {
     sendFightInHistory();
 
     soundsPlay.forEach((sound) => {
-      if (sound.id === 'super-effective') {
+      if (sound.id === 'super-effective-player') {
         sound.play = true;
       }
     });
@@ -412,9 +439,25 @@ function nextStep() {
     dialog.value = `${enemy.pseudo} est K.O.! Vous avez gagné!`;
   }
 
-  if (player.hp === 0 || enemy.hp === 0) {
+  if (player.hp === 0 && enemy.hp === 0) {
     soundsPlay.forEach((sound) => {
-      if (sound.id === 'faint') {
+      if (sound.id === 'faint-both') {
+        sound.play = true;
+      }
+    });
+
+    step.value = 'fight-finished';
+  } else if (player.hp === 0) {
+    soundsPlay.forEach((sound) => {
+      if (sound.id === 'faint-player') {
+        sound.play = true;
+      }
+    });
+
+    step.value = 'fight-finished';
+  } else if (enemy.hp === 0) {
+    soundsPlay.forEach((sound) => {
+      if (sound.id === 'faint-enemy') {
         sound.play = true;
       }
     });
@@ -512,24 +555,39 @@ onUnmounted(() => {
       <Moves @moveSelected="attack($event)" />
     </div>
     <Sound
-      sound="fight/super-effective"
+      sound="fight/super-effective-player"
       :attributes="soundsAttributes[0]"
       :play="soundsPlay[0].play"
     />
     <Sound
-      sound="fight/normal"
+      sound="fight/super-effective-enemy"
       :attributes="soundsAttributes[1]"
       :play="soundsPlay[1].play"
     />
     <Sound
-      sound="fight/faint"
+      sound="fight/normal"
       :attributes="soundsAttributes[2]"
       :play="soundsPlay[2].play"
     />
     <Sound
-      sound="fight/restore"
+      sound="fight/faint-player"
       :attributes="soundsAttributes[3]"
       :play="soundsPlay[3].play"
+    />
+    <Sound
+      sound="fight/faint-enemy"
+      :attributes="soundsAttributes[4]"
+      :play="soundsPlay[4].play"
+    />
+    <Sound
+      sound="fight/faint-both"
+      :attributes="soundsAttributes[5]"
+      :play="soundsPlay[5].play"
+    />
+    <Sound
+      sound="fight/restore"
+      :attributes="soundsAttributes[6]"
+      :play="soundsPlay[6].play"
     />
   </main>
 </template>
