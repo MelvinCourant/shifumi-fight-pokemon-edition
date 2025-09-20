@@ -5,7 +5,7 @@ import HUD from '../components/battle/HUD.vue';
 import Moves from '../components/battle/Moves.vue';
 import { useUserStore } from '../stores/user.js';
 import { useHistoryStore } from '../stores/history.js';
-import { onUnmounted, provide, reactive, ref } from 'vue';
+import { onUnmounted, onMounted, provide, reactive, ref, watch } from 'vue';
 import CharactersJson from '../data/characters.json';
 import PokemonsJson from '../data/pokemons.json';
 import TextBox from '../components/utils/TextBox.vue';
@@ -180,7 +180,9 @@ const soundsPlay = reactive([
     play: false,
   },
 ]);
-const enteringAnimation = ref(true);
+
+const playerAnimationEnd = ref(false);
+const enemyAnimationEnd = ref(false);
 
 provide('moves', moves);
 provide('maxHp', maxHp);
@@ -230,10 +232,6 @@ if (lastFight && lastFight.inProgress) {
     datetime: new Date(),
   });
 }
-
-setTimeout(() => {
-  enteringAnimation.value = false;
-}, 3200);
 
 function filterPpForHistory(moves) {
   return moves.map(({ id, pp }) => ({ id, pp }));
@@ -504,6 +502,42 @@ function restart() {
   step.value = 'choice';
 }
 
+onMounted(() => {
+  const isDesktop = window.innerWidth >= 1024;
+
+  let playerElement, enemyElement;
+
+  if (isDesktop) {
+    playerElement = document.querySelector('.fight__player .hp-bar');
+    enemyElement = document.querySelector('.fight__enemy .hp-bar');
+  } else {
+    playerElement = document.querySelector('.fight__player .hud');
+    enemyElement = document.querySelector('.fight__enemy .hud');
+  }
+
+  playerElement.addEventListener(
+    'animationend',
+    () => {
+      playerAnimationEnd.value = true;
+    },
+    { once: true },
+  );
+  enemyElement.addEventListener(
+    'animationend',
+    () => {
+      enemyAnimationEnd.value = true;
+    },
+    { once: true },
+  );
+});
+
+watch([playerAnimationEnd, enemyAnimationEnd], ([playerEnd, enemyEnd]) => {
+  if (playerEnd && enemyEnd) {
+    const fightPage = document.querySelector('.fight');
+    fightPage.classList.remove('fight--entering-animation');
+  }
+});
+
 onUnmounted(() => {
   soundsPlay.forEach((sound) => {
     if (sound.play === true) {
@@ -514,7 +548,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main :class="['fight', { 'fight--entering-animation': enteringAnimation }]">
+  <main class="fight fight--entering-animation">
     <h1 class="hidden-title">Fight</h1>
     <div class="fight__container">
       <div class="fight__enemy">
