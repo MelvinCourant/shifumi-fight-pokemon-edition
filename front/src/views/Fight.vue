@@ -508,11 +508,11 @@ onMounted(() => {
   let playerElement, enemyElement;
 
   if (isDesktop) {
-    playerElement = document.querySelector('.fight__player .hp-bar');
-    enemyElement = document.querySelector('.fight__enemy .hp-bar');
-  } else {
     playerElement = document.querySelector('.fight__player .hud');
     enemyElement = document.querySelector('.fight__enemy .hud');
+  } else {
+    playerElement = document.querySelector('.fight__player .hp_bar');
+    enemyElement = document.querySelector('.fight__enemy .hp-bar');
   }
 
   playerElement.addEventListener(

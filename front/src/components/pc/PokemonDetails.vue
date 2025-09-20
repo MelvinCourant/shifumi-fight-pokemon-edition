@@ -26,7 +26,7 @@ defineEmits(['pseudoChanged']);
       {{ pokemonDetails.name }}
     </h2>
     <div v-if="pokemonDetails.pokedexId" class="pokemon-details__pokedex-id">
-      <img src="../../assets/imgs/pc/number.webp" alt="N°" />
+      <img width="50" src="../../assets/imgs/pc/number.webp" alt="N°" />
       <p>{{ pokemonDetails.pokedexId }}</p>
     </div>
     <div class="pokemon-details__preview">
@@ -37,10 +37,11 @@ defineEmits(['pseudoChanged']);
     </div>
     <Input @input="$emit('pseudoChanged', $event)" />
     <div class="pokemon-details__level">
-      <img src="../../assets/imgs/pc/niveau.webp" alt="N." />
+      <img width="36" src="../../assets/imgs/pc/niveau.webp" alt="N." />
       <p>100</p>
     </div>
     <img
+      width="509"
       class="pokemon-details__background"
       src="../../assets/imgs/pc/pokemon-details.webp"
       alt="Pokemon details background"

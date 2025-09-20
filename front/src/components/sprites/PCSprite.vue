@@ -17,6 +17,7 @@ function generateImageSrc(pokemon) {
 
 <template>
   <img
+    width="120"
     class="pc-sprite"
     :src="generateImageSrc(pokemon)"
     loading="lazy"

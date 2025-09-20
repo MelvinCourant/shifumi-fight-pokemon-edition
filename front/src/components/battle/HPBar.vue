@@ -42,6 +42,10 @@ watch(props.player, () => {
         :style="{ transform: `scaleX(${HPLevel / 100})` }"
       ></span>
     </div>
-    <img :src="generateImageSrc(player.role)" alt="HP bar" />
+    <img
+      :width="player.role === 'enemy' ? 477 : 500"
+      :src="generateImageSrc(player.role)"
+      alt="HP bar"
+    />
   </div>
 </template>
