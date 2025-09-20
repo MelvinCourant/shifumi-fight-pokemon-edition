@@ -59,6 +59,7 @@
     text-align: center;
     max-width: 480px;
     text-shadow: functions.rem(3.72) functions.rem(3.72) 0 var(--text-shadow-grey), 0 functions.rem(3.72) 0 var(--text-shadow-grey), functions.rem(3.72) 0 0 var(--text-shadow-grey);
+    overflow: hidden;
 
     @media screen and (max-width: 767px) {
       font-size: functions.rem(37);
